@@ -160,9 +160,6 @@ function hlName(name) {
     : escHtml(name);
 }
 
-function surfaceLabel(s) {
-  return { hard: 'Hard', clay: 'Clay', grass: 'Grass', indoor: 'Indoor' }[s] || (s || '');
-}
 
 function fmtOtherScore(sets) {
   return (sets || [])
@@ -436,7 +433,6 @@ function renderOtherCard(m) {
         </div>
         <div class="match-card-mid">
           ${m.location ? `<span class="match-loc">📍 ${escHtml(m.location)}</span>` : ''}
-          ${m.surface  ? `<span class="badge-surf badge-surf--${m.surface}">${surfaceLabel(m.surface)}</span>` : ''}
         </div>
         ${score ? `<div class="match-score">${escHtml(score)}</div>` : ''}
       </div>
@@ -468,7 +464,6 @@ function renderOtherDetail() {
           <div class="detail-meta">
             <span>${fmtDate(m.date)}</span>
             ${m.location ? `<span class="meta-sep">·</span><span>${escHtml(m.location)}</span>` : ''}
-            ${m.surface  ? `<span class="meta-sep">·</span><span class="badge-surf badge-surf--${m.surface}">${surfaceLabel(m.surface)}</span>` : ''}
           </div>
         </div>
       </div>
@@ -531,20 +526,10 @@ function renderOtherAdd() {
       </div>
 
       <form id="otherMatchForm" onsubmit="submitOtherMatch(event)">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label" for="fDate">Date <span class="req">*</span></label>
-            <input class="form-input" type="date" id="fDate"
-                   value="${f.date || today()}" required/>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="fSurface">Surface</label>
-            <select class="form-select" id="fSurface">
-              ${['hard','clay','grass','indoor'].map(s =>
-                `<option value="${s}"${(f.surface || 'hard') === s ? ' selected' : ''}>${surfaceLabel(s)}</option>`
-              ).join('')}
-            </select>
-          </div>
+        <div class="form-group">
+          <label class="form-label" for="fDate">Date <span class="req">*</span></label>
+          <input class="form-input" type="date" id="fDate"
+                 value="${f.date || today()}" required/>
         </div>
 
         <div class="form-group">
@@ -637,7 +622,6 @@ function submitOtherMatch(e) {
   const date     = document.getElementById('fDate').value;
   const opponent = document.getElementById('fOpp').value.trim();
   const location = document.getElementById('fLoc').value.trim();
-  const surface  = document.getElementById('fSurface').value;
   const resultEl = document.querySelector('input[name="result"]:checked');
   const notes    = document.getElementById('fNotes').value.trim();
 
@@ -652,11 +636,11 @@ function submitOtherMatch(e) {
   if (state.otherEditId) {
     const idx = otherMatches.findIndex(m => m.id === state.otherEditId);
     if (idx !== -1) {
-      otherMatches[idx] = { ...otherMatches[idx], date, opponent, location, surface, sets, result, notes };
+      otherMatches[idx] = { ...otherMatches[idx], date, opponent, location, sets, result, notes };
     }
   } else {
     otherMatches.push({
-      id: genId(), date, opponent, location, surface, sets, result, notes, createdAt: Date.now(),
+      id: genId(), date, opponent, location, sets, result, notes, createdAt: Date.now(),
     });
   }
 
