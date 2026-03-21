@@ -2,37 +2,145 @@
    TENNIS JOURNAL — app.js
    ================================================= */
 
+// ===== CONSTANTS =====
+const MY_NAME = 'Laurentiu Borcan';
+
 // ===== STORAGE =====
-const KEY = { matches: 'tj_matches', training: 'tj_training' };
-
-function lsGet(k) {
-  try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; }
-}
-function lsSet(k, v) {
-  try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
-}
-
-// ===== STATE =====
-let matches  = lsGet(KEY.matches);
-let training = lsGet(KEY.training);
-
-const state = {
-  view:          'journal',  // journal | detail | add-match | stats | training
-  detailId:      null,
-  editId:        null,
-  formSets:      [{ p: '', o: '' }],
-  showTrainForm: false,
+const KEYS = {
+  leagueNotes:  'tj_league_notes',
+  otherMatches: 'tj_other_matches',
 };
 
-function saveMatches()  { lsSet(KEY.matches,  matches);  }
-function saveTraining() { lsSet(KEY.training, training); }
+function lsGet(k, def) {
+  try { const v = localStorage.getItem(k); return v !== null ? JSON.parse(v) : def; }
+  catch { return def; }
+}
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+
+// ===== PRE-LOADED DATA =====
+
+const MY_STATS = {
+  points: 16, played: 10, wins: 7, draws: 2, losses: 1, diff: 22, ranking: 'C30.3'
+};
+
+// Scores always from my (Laurentiu) perspective: my–opp
+const MY_LEAGUE_MATCHES = [
+  { id: 'lm1',  opponent: 'Franco Gueli',           my: 8,    opp: 6,    result: 'win'      },
+  { id: 'lm2',  opponent: 'Laurent Gunsbourg',      my: 9,    opp: 7,    result: 'win'      },
+  { id: 'lm3',  opponent: 'Guillaume Lainé',        my: 9,    opp: 6,    result: 'win'      },
+  { id: 'lm4',  opponent: 'Georges Mensah',         my: 8,    opp: 6,    result: 'win'      },
+  { id: 'lm5',  opponent: 'Christophe Jonckheere',  my: 9,    opp: 7,    result: 'win'      },
+  { id: 'lm6',  opponent: 'Alain Braem',            my: 7,    opp: 7,    result: 'draw'     },
+  { id: 'lm7',  opponent: 'Gilles Petit',           my: 12,   opp: 7,    result: 'win'      },
+  { id: 'lm8',  opponent: 'Olivier Gatti',          my: 7,    opp: 7,    result: 'draw'     },
+  { id: 'lm9',  opponent: 'Christopher Debuyst',    my: 12,   opp: 5,    result: 'win'      },
+  { id: 'lm10', opponent: 'Jan Vavrovec',           my: 7,    opp: 8,    result: 'loss'     },
+  { id: 'lm11', opponent: 'Louis Herbert',          my: null, opp: null, result: 'upcoming',
+    date: '29/03/2026', time: '18:00' },
+];
+
+const STANDINGS = [
+  { name: 'Gilles Petit',          ranking: 'C15.5', pts: 16, played: 9,  wins: 8, draws: 0, losses: 1, diff: 60  },
+  { name: MY_NAME,                 ranking: 'C30.3', pts: 16, played: 10, wins: 7, draws: 2, losses: 1, diff: 22  },
+  { name: 'Franco Gueli',          ranking: 'NC',    pts: 12, played: 8,  wins: 6, draws: 0, losses: 2, diff: 10  },
+  { name: 'Georges Mensah',        ranking: 'C30.1', pts: 12, played: 11, wins: 6, draws: 0, losses: 5, diff: 0   },
+  { name: 'Alain Braem',           ranking: 'C30.5', pts: 11, played: 9,  wins: 5, draws: 1, losses: 3, diff: 5   },
+  { name: 'Louis Herbert',         ranking: 'NC',    pts: 10, played: 8,  wins: 5, draws: 0, losses: 3, diff: 16  },
+  { name: 'Christopher Debuyst',   ranking: 'C30.2', pts: 10, played: 8,  wins: 5, draws: 0, losses: 3, diff: 1   },
+  { name: 'Guillaume Lainé',       ranking: 'NC',    pts: 6,  played: 8,  wins: 3, draws: 0, losses: 5, diff: -1  },
+  { name: 'Olivier Gatti',         ranking: 'C30.1', pts: 6,  played: 9,  wins: 2, draws: 2, losses: 5, diff: -9  },
+  { name: 'Christophe Jonckheere', ranking: 'C30.4', pts: 3,  played: 8,  wins: 1, draws: 1, losses: 6, diff: -17 },
+  { name: 'Laurent Gunsbourg',     ranking: 'C30.2', pts: 2,  played: 9,  wins: 1, draws: 0, losses: 8, diff: -31 },
+  { name: 'Jan Vavrovec',          ranking: 'C30.6', pts: 2,  played: 8,  wins: 1, draws: 0, losses: 7, diff: -53 },
+  { name: 'Xavier Naegel',         ranking: 'C30.4', pts: 0,  played: 0,  wins: 0, draws: 0, losses: 0, diff: 0   },
+];
+
+// Most recent first
+const ALL_MATCHES = [
+  { p1: 'Guillaume Lainé',        s1: 7,  p2: 'Georges Mensah',        s2: 9  },
+  { p1: 'Christophe Jonckheere',  s1: 4,  p2: 'Georges Mensah',        s2: 7  },
+  { p1: 'Olivier Gatti',          s1: 15, p2: 'Jan Vavrovec',           s2: 4  },
+  { p1: 'Gilles Petit',           s1: 16, p2: 'Laurent Gunsbourg',      s2: 4  },
+  { p1: MY_NAME,                  s1: 8,  p2: 'Franco Gueli',           s2: 6  },
+  { p1: MY_NAME,                  s1: 9,  p2: 'Laurent Gunsbourg',      s2: 7  },
+  { p1: 'Christopher Debuyst',    s1: 7,  p2: 'Christophe Jonckheere',  s2: 5  },
+  { p1: 'Laurent Gunsbourg',      s1: 4,  p2: 'Christopher Debuyst',    s2: 11 },
+  { p1: 'Olivier Gatti',          s1: 6,  p2: 'Georges Mensah',         s2: 8  },
+  { p1: 'Guillaume Lainé',        s1: 6,  p2: MY_NAME,                  s2: 9  },
+  { p1: 'Christophe Jonckheere',  s1: 7,  p2: 'Olivier Gatti',          s2: 7  },
+  { p1: 'Laurent Gunsbourg',      s1: 5,  p2: 'Georges Mensah',         s2: 8  },
+  { p1: 'Guillaume Lainé',        s1: 11, p2: 'Alain Braem',            s2: 6  },
+  { p1: 'Georges Mensah',         s1: 6,  p2: MY_NAME,                  s2: 8  },
+  { p1: 'Gilles Petit',           s1: 13, p2: 'Christopher Debuyst',    s2: 4  },
+  { p1: 'Franco Gueli',           s1: 8,  p2: 'Guillaume Lainé',        s2: 7  },
+  { p1: 'Alain Braem',            s1: 11, p2: 'Laurent Gunsbourg',      s2: 6  },
+  { p1: 'Jan Vavrovec',           s1: 4,  p2: 'Alain Braem',            s2: 10 },
+  { p1: 'Gilles Petit',           s1: 13, p2: 'Jan Vavrovec',           s2: 4  },
+  { p1: 'Louis Herbert',          s1: 17, p2: 'Alain Braem',            s2: 4  },
+  { p1: 'Guillaume Lainé',        s1: 4,  p2: 'Gilles Petit',           s2: 9  },
+  { p1: 'Christophe Jonckheere',  s1: 9,  p2: 'Franco Gueli',           s2: 6  },
+  { p1: 'Franco Gueli',           s1: 9,  p2: 'Alain Braem',            s2: 7  },
+  { p1: MY_NAME,                  s1: 9,  p2: 'Christophe Jonckheere',  s2: 7  },
+  { p1: 'Gilles Petit',           s1: 11, p2: 'Franco Gueli',           s2: 3  },
+  { p1: 'Alain Braem',            s1: 7,  p2: MY_NAME,                  s2: 7  },
+  { p1: 'Jan Vavrovec',           s1: 5,  p2: 'Georges Mensah',         s2: 11 },
+  { p1: 'Guillaume Lainé',        s1: 10, p2: 'Christophe Jonckheere',  s2: 5  },
+  { p1: 'Louis Herbert',          s1: 12, p2: 'Jan Vavrovec',           s2: 7  },
+  { p1: 'Gilles Petit',           s1: 13, p2: 'Olivier Gatti',          s2: 3  },
+  { p1: 'Georges Mensah',         s1: 4,  p2: 'Gilles Petit',           s2: 14 },
+  { p1: 'Gilles Petit',           s1: 7,  p2: MY_NAME,                  s2: 12 },
+  { p1: 'Franco Gueli',           s1: 12, p2: 'Louis Herbert',          s2: 7  },
+  { p1: 'Laurent Gunsbourg',      s1: 7,  p2: 'Guillaume Lainé',        s2: 8  },
+  { p1: 'Laurent Gunsbourg',      s1: 6,  p2: 'Louis Herbert',          s2: 10 },
+  { p1: 'Alain Braem',            s1: 10, p2: 'Christophe Jonckheere',  s2: 6  },
+  { p1: 'Guillaume Lainé',        s1: 5,  p2: 'Olivier Gatti',          s2: 6  },
+  { p1: 'Georges Mensah',         s1: 5,  p2: 'Alain Braem',            s2: 10 },
+  { p1: 'Jan Vavrovec',           s1: 4,  p2: 'Franco Gueli',           s2: 11 },
+  { p1: 'Olivier Gatti',          s1: 7,  p2: MY_NAME,                  s2: 7  },
+  { p1: 'Louis Herbert',          s1: 4,  p2: 'Georges Mensah',         s2: 10 },
+  { p1: 'Alain Braem',            s1: 9,  p2: 'Olivier Gatti',          s2: 4  },
+  { p1: 'Christopher Debuyst',    s1: 4,  p2: 'Louis Herbert',          s2: 10 },
+  { p1: MY_NAME,                  s1: 12, p2: 'Christopher Debuyst',    s2: 5  },
+  { p1: 'Louis Herbert',          s1: 6,  p2: 'Gilles Petit',           s2: 8  },
+  { p1: 'Christopher Debuyst',    s1: 8,  p2: 'Olivier Gatti',          s2: 5  },
+  { p1: MY_NAME,                  s1: 7,  p2: 'Jan Vavrovec',           s2: 8  },
+  { p1: 'Georges Mensah',         s1: 5,  p2: 'Christopher Debuyst',    s2: 6  },
+  { p1: 'Franco Gueli',           s1: 10, p2: 'Laurent Gunsbourg',      s2: 9  },
+  { p1: 'Olivier Gatti',          s1: 7,  p2: 'Louis Herbert',          s2: 8  },
+  { p1: 'Jan Vavrovec',           s1: 3,  p2: 'Christopher Debuyst',    s2: 13 },
+  { p1: 'Franco Gueli',           s1: 8,  p2: 'Georges Mensah',         s2: 4  },
+  { p1: 'Christophe Jonckheere',  s1: 3,  p2: 'Laurent Gunsbourg',      s2: 7  },
+];
+
+const UPCOMING = [
+  { date: '15/03/2026', time: '13:30', p1: 'Gilles Petit',        p2: 'Alain Braem'       },
+  { date: '15/03/2026', time: '15:00', p1: 'Christopher Debuyst', p2: 'Guillaume Lainé'   },
+  { date: '20/03/2026', time: '21:00', p1: 'Christopher Debuyst', p2: 'Alain Braem'       },
+  { date: '22/03/2026', time: '18:00', p1: 'Jan Vavrovec',        p2: 'Guillaume Lainé'   },
+  { date: '29/03/2026', time: '18:00', p1: 'Louis Herbert',       p2: MY_NAME             },
+  { date: '11/04/2026', time: '17:30', p1: 'Jan Vavrovec',        p2: 'Laurent Gunsbourg' },
+  { date: '13/04/2026', time: '19:00', p1: 'Olivier Gatti',       p2: 'Laurent Gunsbourg' },
+  { date: '15/04/2026', time: '17:30', p1: 'Guillaume Lainé',     p2: 'Louis Herbert'     },
+];
+
+// ===== STATE =====
+let leagueNotes  = lsGet(KEYS.leagueNotes,  {});
+let otherMatches = lsGet(KEYS.otherMatches, []);
+
+const state = {
+  tab:           'me',      // 'me' | 'all' | 'other'
+  otherView:     'journal', // 'journal' | 'detail' | 'add'
+  otherDetailId: null,
+  otherEditId:   null,
+  otherFormSets: [{ p: '', o: '' }],
+};
 
 // ===== UTILS =====
-function genId()   { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
-function today()   { return new Date().toISOString().slice(0, 10); }
+function genId()  { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function today()  { return new Date().toISOString().slice(0, 10); }
 
 function escHtml(s) {
-  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 function fmtDate(d) {
@@ -42,63 +150,255 @@ function fmtDate(d) {
   return `${months[+m - 1]} ${+day}, ${y}`;
 }
 
-function fmtScore(sets) {
-  return (sets || [])
-    .filter(s => s.p !== '' && s.o !== '')
-    .map(s => `${s.p}–${s.o}`)
-    .join('  ');
+function fmtDiff(d) {
+  return d > 0 ? `+${d}` : String(d);
+}
+
+function hlName(name) {
+  return name === MY_NAME
+    ? `<span class="my-name">${escHtml(name)}</span>`
+    : escHtml(name);
 }
 
 function surfaceLabel(s) {
   return { hard: 'Hard', clay: 'Clay', grass: 'Grass', indoor: 'Indoor' }[s] || (s || '');
 }
 
-// ===== NAVIGATION =====
-function navigate(view, extras = {}) {
-  state.view = view;
+function fmtOtherScore(sets) {
+  return (sets || [])
+    .filter(s => s.p !== '' && s.o !== '')
+    .map(s => `${s.p}–${s.o}`)
+    .join('  ');
+}
 
-  if (extras.detailId !== undefined) state.detailId = extras.detailId;
+// ===== RENDER =====
+const app = document.getElementById('app');
 
-  if (view === 'add-match') {
-    if (extras.editId !== undefined) {
-      state.editId = extras.editId;
-      const m = matches.find(x => x.id === extras.editId);
-      state.formSets = m
-        ? m.sets.map(s => ({ p: String(s.p), o: String(s.o) }))
-        : [{ p: '', o: '' }];
-    } else {
-      state.editId  = null;
-      state.formSets = [{ p: '', o: '' }];
-    }
+function switchTab(tab) {
+  state.tab = tab;
+  if (tab !== 'other') {
+    state.otherView     = 'journal';
+    state.otherDetailId = null;
+    state.otherEditId   = null;
   }
-
   render();
   window.scrollTo(0, 0);
 }
 
-// ===== RENDER DISPATCHER =====
-const app = document.getElementById('app');
-
 function render() {
-  // Sync active tab highlight
-  const tabView = state.view === 'detail' ? 'journal' : state.view;
   document.querySelectorAll('.tab-btn').forEach(b =>
-    b.classList.toggle('active', b.dataset.view === tabView)
+    b.classList.toggle('active', b.dataset.tab === state.tab)
   );
-
-  switch (state.view) {
-    case 'journal':   renderJournal();   break;
-    case 'detail':    renderDetail();    break;
-    case 'add-match': renderAddMatch();  break;
-    case 'stats':     renderStats();     break;
-    case 'training':  renderTraining();  break;
-    default:          renderJournal();
+  switch (state.tab) {
+    case 'me':    renderMe();    break;
+    case 'all':   renderAll();   break;
+    case 'other': renderOther(); break;
+    default:      renderMe();
   }
 }
 
-// ===== JOURNAL =====
-function renderJournal() {
-  const sorted = [...matches].sort(
+// ===== TAB 1: MY LEAGUE =====
+function renderMe() {
+  const { points, played, wins, draws, losses, diff, ranking } = MY_STATS;
+
+  app.innerHTML = `
+    <div class="league-view">
+
+      <div class="my-stats-card">
+        <div class="my-stats-header">
+          <div>
+            <div class="my-stats-name">${escHtml(MY_NAME)}</div>
+            <div class="my-stats-sub">${escHtml(ranking)} · Division Messieurs 4</div>
+          </div>
+          <div class="my-stats-pts-wrap">
+            <span class="my-stats-pts">${points}</span>
+            <span class="my-stats-pts-label">pts</span>
+          </div>
+        </div>
+        <div class="my-stats-grid">
+          <div class="my-stat">
+            <span class="my-stat-val">${played}</span>
+            <span class="my-stat-label">Played</span>
+          </div>
+          <div class="my-stat">
+            <span class="my-stat-val my-stat-val--green">${wins}</span>
+            <span class="my-stat-label">Wins</span>
+          </div>
+          <div class="my-stat">
+            <span class="my-stat-val my-stat-val--orange">${draws}</span>
+            <span class="my-stat-label">Draws</span>
+          </div>
+          <div class="my-stat">
+            <span class="my-stat-val my-stat-val--red">${losses}</span>
+            <span class="my-stat-label">Losses</span>
+          </div>
+          <div class="my-stat">
+            <span class="my-stat-val">${fmtDiff(diff)}</span>
+            <span class="my-stat-label">Diff</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:0.75rem;">My Matches</div>
+      <div class="lm-list">
+        ${MY_LEAGUE_MATCHES.map(renderMyMatchCard).join('')}
+      </div>
+    </div>`;
+
+  // Wire note auto-save
+  app.querySelectorAll('.note-area').forEach(el => {
+    el.addEventListener('input', () => {
+      leagueNotes[el.dataset.id] = el.value;
+      lsSet(KEYS.leagueNotes, leagueNotes);
+    });
+  });
+}
+
+function renderMyMatchCard(m) {
+  if (m.result === 'upcoming') {
+    return `
+      <div class="lm-card lm-card--upcoming">
+        <div class="lm-badge lm-badge--upcoming">UP</div>
+        <div class="lm-body">
+          <div class="lm-top">
+            <span class="lm-opp">vs ${escHtml(m.opponent)}</span>
+            <span class="lm-when">${escHtml(m.date)} · ${escHtml(m.time)}</span>
+          </div>
+          <div class="lm-upcoming-tag">Upcoming match</div>
+        </div>
+      </div>`;
+  }
+
+  const label = m.result === 'win' ? 'W' : m.result === 'draw' ? 'D' : 'L';
+  const note  = leagueNotes[m.id] || '';
+
+  return `
+    <div class="lm-card">
+      <div class="lm-badge lm-badge--${m.result}">${label}</div>
+      <div class="lm-body">
+        <div class="lm-top">
+          <span class="lm-opp">vs ${escHtml(m.opponent)}</span>
+          <span class="lm-score">${m.my}–${m.opp}</span>
+        </div>
+        <textarea
+          class="note-area"
+          data-id="${m.id}"
+          placeholder="Add notes for this match…"
+          rows="2"
+        >${escHtml(note)}</textarea>
+      </div>
+    </div>`;
+}
+
+// ===== TAB 2: ALL LEAGUE =====
+function renderAll() {
+  const standingsRows = STANDINGS.map((p, i) => {
+    const isMe = p.name === MY_NAME;
+    return `
+      <tr class="${isMe ? 'my-row' : ''}">
+        <td class="td-rank">${i + 1}</td>
+        <td class="td-name">
+          ${isMe ? `<span class="my-name">${escHtml(p.name)}</span>` : escHtml(p.name)}
+          <span class="player-rnk">${escHtml(p.ranking)}</span>
+        </td>
+        <td class="td-pts"><strong>${p.pts}</strong></td>
+        <td class="td-num">${p.played}</td>
+        <td class="td-wdl">
+          <span class="wdl-w">${p.wins}W</span>
+          ${p.draws > 0 ? `<span class="wdl-d">${p.draws}D</span>` : ''}
+          <span class="wdl-l">${p.losses}L</span>
+        </td>
+        <td class="td-diff ${p.diff > 0 ? 'diff-pos' : p.diff < 0 ? 'diff-neg' : ''}">${fmtDiff(p.diff)}</td>
+      </tr>`;
+  }).join('');
+
+  const completedRows = ALL_MATCHES.map(m => {
+    const me = m.p1 === MY_NAME || m.p2 === MY_NAME;
+    return `
+      <div class="am-row${me ? ' am-row--me' : ''}">
+        <span class="am-p${m.p1 === MY_NAME ? ' am-p--me' : ''}">${hlName(m.p1)}</span>
+        <span class="am-score">${m.s1}–${m.s2}</span>
+        <span class="am-p${m.p2 === MY_NAME ? ' am-p--me' : ''}">${hlName(m.p2)}</span>
+      </div>`;
+  }).join('');
+
+  const upcomingRows = UPCOMING.map(m => {
+    const me = m.p1 === MY_NAME || m.p2 === MY_NAME;
+    return `
+      <div class="am-row am-row--upcoming${me ? ' am-row--me' : ''}">
+        <span class="am-dt">${escHtml(m.date)} <span class="am-time">${escHtml(m.time)}</span></span>
+        <span class="am-p${m.p1 === MY_NAME ? ' am-p--me' : ''}">${hlName(m.p1)}</span>
+        <span class="am-vs">vs</span>
+        <span class="am-p${m.p2 === MY_NAME ? ' am-p--me' : ''}">${hlName(m.p2)}</span>
+      </div>`;
+  }).join('');
+
+  app.innerHTML = `
+    <div class="all-view">
+
+      <div class="section-card">
+        <div class="section-title">Standings — Division Messieurs 4</div>
+        <div class="standings-wrap">
+          <table class="standings-table">
+            <thead>
+              <tr>
+                <th class="td-rank">#</th>
+                <th class="td-name">Player</th>
+                <th class="td-pts">Pts</th>
+                <th class="td-num">P</th>
+                <th class="td-wdl">W/D/L</th>
+                <th class="td-diff">Diff</th>
+              </tr>
+            </thead>
+            <tbody>${standingsRows}</tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Upcoming Matches</div>
+        <div class="am-list">${upcomingRows}</div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Completed Matches (${ALL_MATCHES.length})</div>
+        <div class="am-list">${completedRows}</div>
+      </div>
+
+    </div>`;
+}
+
+// ===== TAB 3: OTHER MATCHES =====
+function navigateOther(view, extras = {}) {
+  state.otherView = view;
+  if (extras.detailId !== undefined) state.otherDetailId = extras.detailId;
+  if (view === 'add') {
+    if (extras.editId !== undefined) {
+      state.otherEditId = extras.editId;
+      const m = otherMatches.find(x => x.id === extras.editId);
+      state.otherFormSets = m
+        ? m.sets.map(s => ({ p: String(s.p), o: String(s.o) }))
+        : [{ p: '', o: '' }];
+    } else {
+      state.otherEditId   = null;
+      state.otherFormSets = [{ p: '', o: '' }];
+    }
+  }
+  render();
+  window.scrollTo(0, 0);
+}
+
+function renderOther() {
+  switch (state.otherView) {
+    case 'journal': renderOtherJournal(); break;
+    case 'detail':  renderOtherDetail();  break;
+    case 'add':     renderOtherAdd();     break;
+    default:        renderOtherJournal();
+  }
+}
+
+function renderOtherJournal() {
+  const sorted = [...otherMatches].sort(
     (a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt
   );
 
@@ -106,9 +406,9 @@ function renderJournal() {
     app.innerHTML = `
       <div class="empty-state">
         <div class="empty-icon">🎾</div>
-        <h2 class="empty-title">No matches logged yet</h2>
-        <p class="empty-sub">Start recording your matches to track your progress over time.</p>
-        <button class="btn-primary" onclick="navigate('add-match')">+ Log Your First Match</button>
+        <h2 class="empty-title">No other matches yet</h2>
+        <p class="empty-sub">Log your friendly, tournament, or training matches here.</p>
+        <button class="btn-primary" onclick="navigateOther('add')">+ Log a Match</button>
       </div>`;
     return;
   }
@@ -116,18 +416,19 @@ function renderJournal() {
   app.innerHTML = `
     <div class="journal-header">
       <span class="journal-count">${sorted.length} match${sorted.length !== 1 ? 'es' : ''}</span>
-      <button class="btn-primary" onclick="navigate('add-match')">+ Add Match</button>
+      <button class="btn-primary" onclick="navigateOther('add')">+ Add Match</button>
     </div>
     <div class="match-list">
-      ${sorted.map(renderMatchCard).join('')}
+      ${sorted.map(renderOtherCard).join('')}
     </div>`;
 }
 
-function renderMatchCard(m) {
-  const score = fmtScore(m.sets);
+function renderOtherCard(m) {
+  const score = fmtOtherScore(m.sets);
+  const label = m.result === 'win' ? 'W' : m.result === 'draw' ? 'D' : 'L';
   return `
-    <div class="match-card" onclick="navigate('detail', {detailId:'${m.id}'})">
-      <div class="match-card-result match-card-result--${m.result}">${m.result === 'win' ? 'W' : 'L'}</div>
+    <div class="match-card" onclick="navigateOther('detail', {detailId:'${m.id}'})">
+      <div class="match-card-result match-card-result--${m.result}">${label}</div>
       <div class="match-card-body">
         <div class="match-card-top">
           <span class="match-opp">vs ${escHtml(m.opponent)}</span>
@@ -143,25 +444,25 @@ function renderMatchCard(m) {
     </div>`;
 }
 
-// ===== MATCH DETAIL =====
-function renderDetail() {
-  const m = matches.find(x => x.id === state.detailId);
-  if (!m) { navigate('journal'); return; }
+function renderOtherDetail() {
+  const m = otherMatches.find(x => x.id === state.otherDetailId);
+  if (!m) { navigateOther('journal'); return; }
 
-  const validSets = (m.sets || []).filter(s => s.p !== '' && s.o !== '');
+  const validSets  = (m.sets || []).filter(s => s.p !== '' && s.o !== '');
+  const resultText = m.result === 'win' ? 'WIN' : m.result === 'draw' ? 'DRAW' : 'LOSS';
 
   app.innerHTML = `
     <div class="detail-view">
       <div class="detail-nav">
-        <button class="back-btn" onclick="navigate('journal')">← Journal</button>
+        <button class="back-btn" onclick="navigateOther('journal')">← Other Matches</button>
         <div class="detail-actions">
-          <button class="btn-secondary" onclick="navigate('add-match', {editId:'${m.id}'})">Edit</button>
-          <button class="btn-danger"    onclick="deleteMatch('${m.id}')">Delete</button>
+          <button class="btn-secondary" onclick="navigateOther('add', {editId:'${m.id}'})">Edit</button>
+          <button class="btn-danger"    onclick="deleteOtherMatch('${m.id}')">Delete</button>
         </div>
       </div>
 
       <div class="detail-header">
-        <div class="detail-result detail-result--${m.result}">${m.result === 'win' ? 'WIN' : 'LOSS'}</div>
+        <div class="detail-result detail-result--${m.result}">${resultText}</div>
         <div>
           <h2 class="detail-opp">vs ${escHtml(m.opponent)}</h2>
           <div class="detail-meta">
@@ -192,44 +493,44 @@ function renderDetail() {
     </div>`;
 }
 
-function deleteMatch(id) {
+function deleteOtherMatch(id) {
   if (!confirm('Delete this match? This cannot be undone.')) return;
-  matches = matches.filter(m => m.id !== id);
-  saveMatches();
-  navigate('journal');
+  otherMatches = otherMatches.filter(m => m.id !== id);
+  lsSet(KEYS.otherMatches, otherMatches);
+  navigateOther('journal');
 }
 
-// ===== ADD / EDIT MATCH =====
-function renderAddMatch() {
-  const editing = state.editId ? matches.find(m => m.id === state.editId) : null;
+function renderOtherAdd() {
+  const editing = state.otherEditId ? otherMatches.find(m => m.id === state.otherEditId) : null;
   const f = editing || {};
 
-  const setsHtml = state.formSets.map((s, i) => `
+  const setsHtml = state.otherFormSets.map((s, i) => `
     <div class="set-row" id="set-row-${i}">
       <span class="set-row-label">Set ${i + 1}</span>
       <input type="number" class="set-input" id="sp-${i}"
              value="${escHtml(String(s.p))}" min="0" max="99" placeholder="0"
-             oninput="updateSet(${i},'p',this.value)"/>
+             oninput="updateOtherSet(${i},'p',this.value)"/>
       <span class="set-sep">–</span>
       <input type="number" class="set-input" id="so-${i}"
              value="${escHtml(String(s.o))}" min="0" max="99" placeholder="0"
-             oninput="updateSet(${i},'o',this.value)"/>
-      ${state.formSets.length > 1
-        ? `<button type="button" class="set-remove" onclick="removeSet(${i})" title="Remove set">×</button>`
+             oninput="updateOtherSet(${i},'o',this.value)"/>
+      ${state.otherFormSets.length > 1
+        ? `<button type="button" class="set-remove" onclick="removeOtherSet(${i})" title="Remove">×</button>`
         : ''}
     </div>`).join('');
 
-  const isWin  = (f.result === 'win')  || !f.result;
-  const isLoss = (f.result === 'loss');
+  const isWin  = f.result === 'win'  || !f.result;
+  const isDraw = f.result === 'draw';
+  const isLoss = f.result === 'loss';
 
   app.innerHTML = `
     <div class="form-view">
       <div class="form-nav">
-        <button class="back-btn" onclick="handleFormBack()">← ${editing ? 'Back' : 'Journal'}</button>
+        <button class="back-btn" onclick="handleOtherFormBack()">← ${editing ? 'Back' : 'Other Matches'}</button>
         <h2 class="form-title">${editing ? 'Edit Match' : 'Log Match'}</h2>
       </div>
 
-      <form id="matchForm" onsubmit="submitMatch(event)">
+      <form id="otherMatchForm" onsubmit="submitOtherMatch(event)">
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label" for="fDate">Date <span class="req">*</span></label>
@@ -263,8 +564,8 @@ function renderAddMatch() {
         <div class="form-group">
           <label class="form-label">Score by Set</label>
           <div id="setsContainer">${setsHtml}</div>
-          ${state.formSets.length < 5
-            ? `<button type="button" class="btn-add-set" onclick="addSet()">+ Add Set</button>`
+          ${state.otherFormSets.length < 5
+            ? `<button type="button" class="btn-add-set" onclick="addOtherSet()">+ Add Set</button>`
             : ''}
         </div>
 
@@ -274,6 +575,10 @@ function renderAddMatch() {
             <label class="result-option result-win-opt${isWin ? ' result-option--active' : ''}">
               <input type="radio" name="result" value="win" ${isWin ? 'checked' : ''}/>
               <span>Win</span>
+            </label>
+            <label class="result-option result-draw-opt${isDraw ? ' result-option--active' : ''}">
+              <input type="radio" name="result" value="draw" ${isDraw ? 'checked' : ''}/>
+              <span>Draw</span>
             </label>
             <label class="result-option result-loss-opt${isLoss ? ' result-option--active' : ''}">
               <input type="radio" name="result" value="loss" ${isLoss ? 'checked' : ''}/>
@@ -285,7 +590,7 @@ function renderAddMatch() {
         <div class="form-group">
           <label class="form-label" for="fNotes">Match Notes</label>
           <textarea class="form-textarea" id="fNotes" rows="5"
-                    placeholder="Tactics used, what went well, areas to improve…">${escHtml(f.notes || '')}</textarea>
+                    placeholder="Tactics, what went well, areas to improve…">${escHtml(f.notes || '')}</textarea>
         </div>
 
         <div class="form-actions">
@@ -296,7 +601,6 @@ function renderAddMatch() {
       </form>
     </div>`;
 
-  // Wire result-toggle visual feedback
   document.querySelectorAll('input[name="result"]').forEach(radio => {
     radio.addEventListener('change', () => {
       document.querySelectorAll('.result-option').forEach(o => o.classList.remove('result-option--active'));
@@ -305,32 +609,31 @@ function renderAddMatch() {
   });
 }
 
-function handleFormBack() {
-  if (state.editId) {
-    navigate('detail', { detailId: state.editId });
+function handleOtherFormBack() {
+  if (state.otherEditId) {
+    navigateOther('detail', { detailId: state.otherEditId });
   } else {
-    navigate('journal');
+    navigateOther('journal');
   }
 }
 
-function updateSet(idx, field, val) {
-  if (state.formSets[idx]) state.formSets[idx][field] = val;
+function updateOtherSet(idx, field, val) {
+  if (state.otherFormSets[idx]) state.otherFormSets[idx][field] = val;
 }
 
-function addSet() {
-  if (state.formSets.length >= 5) return;
-  state.formSets.push({ p: '', o: '' });
-  renderAddMatch();
+function addOtherSet() {
+  if (state.otherFormSets.length >= 5) return;
+  state.otherFormSets.push({ p: '', o: '' });
+  renderOtherAdd();
 }
 
-function removeSet(idx) {
-  state.formSets.splice(idx, 1);
-  renderAddMatch();
+function removeOtherSet(idx) {
+  state.otherFormSets.splice(idx, 1);
+  renderOtherAdd();
 }
 
-function submitMatch(e) {
+function submitOtherMatch(e) {
   e.preventDefault();
-
   const date     = document.getElementById('fDate').value;
   const opponent = document.getElementById('fOpp').value.trim();
   const location = document.getElementById('fLoc').value.trim();
@@ -341,244 +644,35 @@ function submitMatch(e) {
   if (!date || !opponent) { alert('Please fill in the required fields.'); return; }
 
   const result = resultEl ? resultEl.value : 'win';
-
-  // Collect sets from live DOM inputs (latest values)
-  const sets = state.formSets.map((_, i) => ({
+  const sets   = state.otherFormSets.map((_, i) => ({
     p: parseInt(document.getElementById(`sp-${i}`)?.value || '0', 10),
     o: parseInt(document.getElementById(`so-${i}`)?.value || '0', 10),
   }));
 
-  if (state.editId) {
-    const idx = matches.findIndex(m => m.id === state.editId);
+  if (state.otherEditId) {
+    const idx = otherMatches.findIndex(m => m.id === state.otherEditId);
     if (idx !== -1) {
-      matches[idx] = { ...matches[idx], date, opponent, location, surface, sets, result, notes };
+      otherMatches[idx] = { ...otherMatches[idx], date, opponent, location, surface, sets, result, notes };
     }
   } else {
-    matches.push({
-      id: genId(), date, opponent, location, surface, sets, result, notes,
-      createdAt: Date.now(),
+    otherMatches.push({
+      id: genId(), date, opponent, location, surface, sets, result, notes, createdAt: Date.now(),
     });
   }
 
-  saveMatches();
-  state.formSets = [{ p: '', o: '' }];
-  navigate('journal');
-}
-
-// ===== STATS =====
-function computeStats() {
-  const total  = matches.length;
-  const wins   = matches.filter(m => m.result === 'win').length;
-  const losses = total - wins;
-  const winPct = total ? Math.round(wins / total * 100) : 0;
-
-  // Surface breakdown
-  const surfStats = ['hard', 'clay', 'grass', 'indoor'].map(s => {
-    const ms = matches.filter(m => m.surface === s);
-    const sw = ms.filter(m => m.result === 'win').length;
-    return { surface: s, total: ms.length, wins: sw, pct: ms.length ? Math.round(sw / ms.length * 100) : 0 };
-  }).filter(s => s.total > 0);
-
-  // Current streak — from most-recent match outward
-  const sorted = [...matches].sort(
-    (a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt
-  );
-  let streak = 0, streakType = null;
-  for (const m of sorted) {
-    if (!streakType)            { streakType = m.result; streak = 1; }
-    else if (m.result === streakType) streak++;
-    else break;
-  }
-
-  return { total, wins, losses, winPct, surfStats, streak, streakType, sorted };
-}
-
-function renderStats() {
-  if (!matches.length) {
-    app.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">📊</div>
-        <h2 class="empty-title">No data yet</h2>
-        <p class="empty-sub">Log some matches to see your statistics here.</p>
-        <button class="btn-primary" onclick="navigate('add-match')">+ Log a Match</button>
-      </div>`;
-    return;
-  }
-
-  const { total, wins, losses, winPct, surfStats, streak, streakType, sorted } = computeStats();
-
-  const streakHtml = streak > 0 ? `
-    <div class="streak-banner streak-banner--${streakType}">
-      <span>${streakType === 'win' ? '🔥' : '📉'}</span>
-      <span><strong>${streak}-match</strong> ${streakType === 'win' ? 'win' : 'losing'} streak</span>
-    </div>` : '';
-
-  const surfBarsHtml = surfStats.map(s => `
-    <div class="surf-row">
-      <span class="surf-label">${surfaceLabel(s.surface)}</span>
-      <div class="surf-bar-track">
-        <div class="surf-bar-fill surf-bar-fill--${s.surface}" style="width:${s.pct}%"></div>
-      </div>
-      <span class="surf-pct">${s.pct}%</span>
-      <span class="surf-rec">${s.wins}–${s.total - s.wins}</span>
-    </div>`).join('');
-
-  const recentDots = sorted.slice(0, 10).map(m => `
-    <span class="form-dot form-dot--${m.result}"
-          title="${fmtDate(m.date)} vs ${escHtml(m.opponent)}"
-    >${m.result === 'win' ? 'W' : 'L'}</span>`).join('');
-
-  app.innerHTML = `
-    <div class="stats-view">
-      ${streakHtml}
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-big">${total}</span>
-          <span class="stat-label">Matches</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-big stat-big--green">${wins}</span>
-          <span class="stat-label">Wins</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-big stat-big--red">${losses}</span>
-          <span class="stat-label">Losses</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-big">${winPct}%</span>
-          <span class="stat-label">Win Rate</span>
-        </div>
-      </div>
-
-      <div class="win-rate-bar">
-        <div class="win-rate-fill" style="width:${winPct}%">
-          ${winPct >= 15 ? `<span class="win-rate-label">${wins}W</span>` : ''}
-        </div>
-        <div class="loss-rate-fill">
-          ${(100 - winPct) >= 15 ? `<span class="loss-rate-label">${losses}L</span>` : ''}
-        </div>
-      </div>
-
-      ${surfStats.length ? `
-      <div class="section-card">
-        <div class="section-title">Win % by Surface</div>
-        <div class="surf-bars">${surfBarsHtml}</div>
-      </div>` : ''}
-
-      <div class="section-card">
-        <div class="section-title">Recent Form (last ${Math.min(sorted.length, 10)})</div>
-        <div class="recent-form">
-          ${recentDots}
-          <span class="form-arrow">← most recent</span>
-        </div>
-      </div>
-    </div>`;
-}
-
-// ===== TRAINING =====
-function renderTraining() {
-  const sorted = [...training].sort(
-    (a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt
-  );
-
-  const formHtml = state.showTrainForm ? `
-    <div class="train-form-wrap">
-      <div class="section-title">New Training Session</div>
-      <form id="trainForm" onsubmit="submitTraining(event)">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label" for="tDate">Date</label>
-            <input class="form-input" type="date" id="tDate" value="${today()}"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="tDuration">Duration</label>
-            <input class="form-input" type="text" id="tDuration" placeholder="e.g. 90 min"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tFocus">Focus Area</label>
-          <input class="form-input" type="text" id="tFocus"
-                 placeholder="e.g. Serve, Footwork, Backhand cross-court…"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tNotes">Notes</label>
-          <textarea class="form-textarea" id="tNotes" rows="4"
-                    placeholder="What did you drill? Key takeaways, things to keep working on…"></textarea>
-        </div>
-        <div class="form-actions form-actions--row">
-          <button type="submit" class="btn-primary">Save Session</button>
-          <button type="button" class="btn-secondary" onclick="toggleTrainForm(false)">Cancel</button>
-        </div>
-      </form>
-    </div>` : '';
-
-  const sessionsHtml = sorted.length
-    ? sorted.map(t => `
-      <div class="train-card">
-        <div class="train-card-head">
-          <div>
-            <span class="train-date">${fmtDate(t.date)}</span>
-            ${t.focus    ? `<span class="train-focus">${escHtml(t.focus)}</span>` : ''}
-          </div>
-          <div class="train-card-right">
-            ${t.duration ? `<span class="train-dur">${escHtml(t.duration)}</span>` : ''}
-            <button class="btn-icon-del" onclick="deleteTraining('${t.id}')" title="Delete">×</button>
-          </div>
-        </div>
-        ${t.notes ? `<div class="train-notes">${escHtml(t.notes).replace(/\n/g, '<br>')}</div>` : ''}
-      </div>`).join('')
-    : `<div class="empty-inline">No training sessions logged yet.</div>`;
-
-  app.innerHTML = `
-    <div class="training-view">
-      <div class="training-header">
-        <span class="journal-count">${sorted.length} session${sorted.length !== 1 ? 's' : ''}</span>
-        ${!state.showTrainForm
-          ? `<button class="btn-primary" onclick="toggleTrainForm(true)">+ Add Session</button>`
-          : ''}
-      </div>
-      ${formHtml}
-      <div class="train-list">${sessionsHtml}</div>
-    </div>`;
-}
-
-function toggleTrainForm(show) {
-  state.showTrainForm = show;
-  renderTraining();
-}
-
-function submitTraining(e) {
-  e.preventDefault();
-  const date     = document.getElementById('tDate').value;
-  const focus    = document.getElementById('tFocus').value.trim();
-  const duration = document.getElementById('tDuration').value.trim();
-  const notes    = document.getElementById('tNotes').value.trim();
-
-  training.push({ id: genId(), date, focus, duration, notes, createdAt: Date.now() });
-  saveTraining();
-  state.showTrainForm = false;
-  renderTraining();
-}
-
-function deleteTraining(id) {
-  if (!confirm('Delete this training session?')) return;
-  training = training.filter(t => t.id !== id);
-  saveTraining();
-  renderTraining();
+  lsSet(KEYS.otherMatches, otherMatches);
+  state.otherFormSets = [{ p: '', o: '' }];
+  navigateOther('journal');
 }
 
 // ===== INIT =====
 function init() {
-  // Tab click — delegated
   document.getElementById('tabsBar').addEventListener('click', e => {
     const btn = e.target.closest('.tab-btn');
-    if (!btn || !btn.dataset.view) return;
-    navigate(btn.dataset.view);
+    if (!btn || !btn.dataset.tab) return;
+    switchTab(btn.dataset.tab);
   });
-
-  // Show journal on load
-  navigate('journal');
+  render();
 }
 
 document.addEventListener('DOMContentLoaded', init);
