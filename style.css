@@ -73,6 +73,42 @@ textarea { resize: vertical; }
   border-radius: 999px;
 }
 
+/* ===== SEASON BAR ===== */
+.season-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+.season-bar-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0.45rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.season-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.season-select {
+  background: var(--bg);
+  border: 1px solid var(--border-hl);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.28rem 0.65rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition);
+  font-family: var(--font);
+}
+.season-select:focus  { border-color: var(--green-dim); box-shadow: 0 0 0 2px var(--green-glow); }
+.season-select option { background: var(--bg-card); }
+
 /* ===== TABS ===== */
 .tabs-bar {
   display: flex;
@@ -387,6 +423,12 @@ textarea { resize: vertical; }
   box-shadow: 0 0 0 2px var(--green-glow);
   color: var(--text);
 }
+.note-area--readonly {
+  opacity: 0.45;
+  cursor: default;
+  resize: none;
+}
+.note-area--readonly:focus { border-color: var(--border); box-shadow: none; color: var(--text-muted); }
 
 /* ===== TAB 2: ALL LEAGUE ===== */
 .all-view { animation: fadeIn 0.15s ease; }
@@ -803,6 +845,7 @@ textarea { resize: vertical; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .header-sub { display: none; }
+  .season-bar-inner { padding: 0.4rem 0.85rem; }
   .main { padding: 1rem 0.85rem 2.5rem; }
   .tabs-bar { padding: 0 0.4rem; }
   .tab-btn  { padding: 0.6rem 0.75rem; font-size: 0.82rem; }
