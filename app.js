@@ -269,6 +269,28 @@ function fmtOtherScore(sets) {
 // ===== RENDER =====
 const app = document.getElementById('app');
 
+function switchSeason(id) {
+  currentSeasonId = id;
+  render();
+  window.scrollTo(0, 0);
+}
+
+function renderSeasonSelector() {
+  const bar = document.getElementById('seasonBar');
+  if (!bar) return;
+  const options = SEASONS.map(s => {
+    const label = s.status === 'active' ? `${s.label} ●` : s.label;
+    return `<option value="${escHtml(s.id)}"${s.id === currentSeasonId ? ' selected' : ''}>${escHtml(label)}</option>`;
+  }).join('');
+  bar.innerHTML = `
+    <div class="season-bar-inner">
+      <span class="season-label">Season</span>
+      <select class="season-select" id="seasonSelect" onchange="switchSeason(this.value)">
+        ${options}
+      </select>
+    </div>`;
+}
+
 function switchTab(tab) {
   state.tab = tab;
   if (tab !== 'other') {
@@ -281,6 +303,7 @@ function switchTab(tab) {
 }
 
 function render() {
+  renderSeasonSelector();
   document.querySelectorAll('.tab-btn').forEach(b =>
     b.classList.toggle('active', b.dataset.tab === state.tab)
   );
@@ -294,7 +317,9 @@ function render() {
 
 // ===== TAB 1: MY LEAGUE =====
 function renderMe() {
-  const { points, played, wins, draws, losses, diff, ranking } = MY_STATS;
+  const season = getSeason(currentSeasonId);
+  const { points, played, wins, draws, losses, diff, ranking } = season.myStats;
+  const archived = season.status === 'archived';
 
   app.innerHTML = `
     <div class="league-view">
@@ -336,20 +361,22 @@ function renderMe() {
 
       <div class="section-title" style="margin-bottom:0.75rem;">My Matches</div>
       <div class="lm-list">
-        ${MY_LEAGUE_MATCHES.map(renderMyMatchCard).join('')}
+        ${season.myMatches.map(m => renderMyMatchCard(m, archived)).join('')}
       </div>
     </div>`;
 
-  // Wire note auto-save
-  app.querySelectorAll('.note-area').forEach(el => {
-    el.addEventListener('input', () => {
-      leagueNotes[el.dataset.id] = el.value;
-      lsSet(KEYS.leagueNotes, leagueNotes);
+  // Wire note auto-save (active season only)
+  if (!archived) {
+    app.querySelectorAll('.note-area').forEach(el => {
+      el.addEventListener('input', () => {
+        leagueNotes[el.dataset.id] = el.value;
+        lsSet(KEYS.leagueNotes, leagueNotes);
+      });
     });
-  });
+  }
 }
 
-function renderMyMatchCard(m) {
+function renderMyMatchCard(m, archived = false) {
   if (m.result === 'upcoming') {
     return `
       <div class="lm-card lm-card--upcoming">
@@ -376,10 +403,11 @@ function renderMyMatchCard(m) {
           <span class="lm-score">${m.my}–${m.opp}</span>
         </div>
         <textarea
-          class="note-area"
+          class="note-area${archived ? ' note-area--readonly' : ''}"
           data-id="${m.id}"
-          placeholder="Add notes for this match…"
+          placeholder="${archived ? 'Archived season — notes are read-only' : 'Add notes for this match…'}"
           rows="2"
+          ${archived ? 'readonly' : ''}
         >${escHtml(note)}</textarea>
       </div>
     </div>`;
@@ -387,7 +415,9 @@ function renderMyMatchCard(m) {
 
 // ===== TAB 2: ALL LEAGUE =====
 function renderAll() {
-  const standingsRows = STANDINGS.map((p, i) => {
+  const { standings, allMatches, upcoming } = getSeason(currentSeasonId);
+
+  const standingsRows = standings.map((p, i) => {
     const isMe = p.name === MY_NAME;
     return `
       <tr class="${isMe ? 'my-row' : ''}">
@@ -407,7 +437,7 @@ function renderAll() {
       </tr>`;
   }).join('');
 
-  const completedRows = ALL_MATCHES.map(m => {
+  const completedRows = allMatches.map(m => {
     const me = m.p1 === MY_NAME || m.p2 === MY_NAME;
     return `
       <div class="am-row${me ? ' am-row--me' : ''}">
@@ -417,7 +447,7 @@ function renderAll() {
       </div>`;
   }).join('');
 
-  const upcomingRows = UPCOMING.map(m => {
+  const upcomingRows = upcoming.map(m => {
     const me = m.p1 === MY_NAME || m.p2 === MY_NAME;
     return `
       <div class="am-row am-row--upcoming${me ? ' am-row--me' : ''}">
@@ -450,13 +480,14 @@ function renderAll() {
         </div>
       </div>
 
+      ${upcoming.length ? `
       <div class="section-card">
         <div class="section-title">Upcoming Matches</div>
         <div class="am-list">${upcomingRows}</div>
-      </div>
+      </div>` : ''}
 
       <div class="section-card">
-        <div class="section-title">Completed Matches (${ALL_MATCHES.length})</div>
+        <div class="section-title">Completed Matches (${allMatches.length})</div>
         <div class="am-list">${completedRows}</div>
       </div>
 
