@@ -779,12 +779,33 @@ function submitOtherMatch(e) {
 }
 
 // ===== INIT =====
-function init() {
+async function init() {
   document.getElementById('tabsBar').addEventListener('click', e => {
     const btn = e.target.closest('.tab-btn');
     if (!btn || !btn.dataset.tab) return;
     switchTab(btn.dataset.tab);
   });
+
+  // Show loading indicator while fetching active season data
+  const seasonBar = document.getElementById('seasonBar');
+  seasonBar.innerHTML = `<div class="season-bar-inner"><span class="season-label season-label--loading">Loading…</span></div>`;
+
+  try {
+    const res  = await fetch('./data/season-2025-26.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const season = SEASONS.find(s => s.id === data.id);
+    if (season) {
+      season.myStats    = data.myStats;
+      season.myMatches  = data.myMatches;
+      season.standings  = data.standings;
+      season.allMatches = data.allMatches;
+      season.upcoming   = data.upcoming;
+    }
+  } catch {
+    // Network or parse error — fall back to hardcoded data silently
+  }
+
   render();
 }
 

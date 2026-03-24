@@ -108,6 +108,7 @@ textarea { resize: vertical; }
 }
 .season-select:focus  { border-color: var(--green-dim); box-shadow: 0 0 0 2px var(--green-glow); }
 .season-select option { background: var(--bg-card); }
+.season-label--loading { opacity: 0.5; font-style: italic; letter-spacing: 0.04em; }
 
 /* ===== TABS ===== */
 .tabs-bar {
