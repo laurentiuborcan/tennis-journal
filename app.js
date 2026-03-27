@@ -3,7 +3,7 @@
    ================================================= */
 
 // ===== CONSTANTS =====
-const MY_NAME = 'Laurentiu Borcan';
+const MY_NAME = 'Laurentiu B.';
 
 // ===== STORAGE =====
 const KEYS = {
