@@ -2,7 +2,7 @@
   "id": "2025-26",
   "label": "2025/26",
   "status": "active",
-  "lastUpdated": "2026-03-29",
+  "lastUpdated": "2026-03-30",
   "standings": [
     {
       "name": "Gilles Petit",
@@ -28,21 +28,21 @@
       "name": "Christopher Debuyst",
       "ranking": "C30.2",
       "pts": 14,
-      "played": 10,
+      "played": 11,
       "wins": 7,
       "draws": 0,
-      "losses": 3,
-      "diff": 9
+      "losses": 4,
+      "diff": 8
     },
     {
       "name": "Franco Gueli",
       "ranking": "NC",
-      "pts": 12,
-      "played": 9,
-      "wins": 6,
+      "pts": 14,
+      "played": 10,
+      "wins": 7,
       "draws": 0,
       "losses": 3,
-      "diff": 7
+      "diff": 8
     },
     {
       "name": "Georges Mensah",
@@ -477,15 +477,15 @@
       "s1": 5,
       "p2": "Guillaume Lainé",
       "s2": 11
+    },
+    {
+      "p1": "Franco Gueli",
+      "s1": 8,
+      "p2": "Christopher Debuyst",
+      "s2": 7
     }
   ],
   "upcoming": [
-    {
-      "date": "27/03/2026",
-      "time": "21:00",
-      "p1": "Franco Gueli",
-      "p2": "Christopher Debuyst"
-    },
     {
       "date": "29/03/2026",
       "time": "18:00",
@@ -494,14 +494,14 @@
     },
     {
       "date": "05/04/2026",
-      "time": "18:00",
-      "p1": "Olivier Gatti",
+      "time": "13:00",
+      "p1": "Jan Vavrovec",
       "p2": "Laurent Gunsbourg"
     },
     {
-      "date": "11/04/2026",
-      "time": "17:30",
-      "p1": "Jan Vavrovec",
+      "date": "05/04/2026",
+      "time": "18:00",
+      "p1": "Olivier Gatti",
       "p2": "Laurent Gunsbourg"
     },
     {
