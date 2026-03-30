@@ -48,6 +48,39 @@ function stripTags(s) {
     .trim();
 }
 
+// ── HTML helpers (continued) ─────────────────────────────────────────────────
+
+/**
+ * Extract the full inner content of the first <div id="<id>"> in html,
+ * correctly handling nested <div> elements (the lazy-regex approach stops
+ * at the first inner </div> and misses trailing content).
+ */
+function extractDivById(html, id) {
+  const openTag = `<div id="${id}">`;
+  const start   = html.indexOf(openTag);
+  if (start === -1) return null;
+
+  let pos   = start + openTag.length;
+  let depth = 1;
+
+  while (pos < html.length && depth > 0) {
+    const nextOpen  = html.indexOf('<div', pos);
+    const nextClose = html.indexOf('</div>', pos);
+
+    if (nextClose === -1) break;
+
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      depth++;
+      pos = nextOpen + 4;          // skip past "<div"
+    } else {
+      depth--;
+      if (depth === 0) return html.slice(start + openTag.length, nextClose);
+      pos = nextClose + 6;         // skip past "</div>"
+    }
+  }
+  return null;
+}
+
 // ── Parsers ──────────────────────────────────────────────────────────────────
 
 /**
@@ -116,8 +149,8 @@ function parseStandings(html) {
  * Upcoming matches are identified by a non-empty <b> tag (which holds the date/time).
  */
 function parseMatches(html) {
-  const divMatch = html.match(/<div id="liste_matches">([\s\S]*?)<\/div>/);
-  if (!divMatch) {
+  const divContent = extractDivById(html, 'liste_matches');
+  if (!divContent) {
     console.warn('WARNING: #liste_matches div not found');
     return { allMatches: [], upcoming: [] };
   }
@@ -128,7 +161,7 @@ function parseMatches(html) {
   const pRe = /<p>([\s\S]*?)<\/p>/g;
   let   pm;
 
-  while ((pm = pRe.exec(divMatch[1])) !== null) {
+  while ((pm = pRe.exec(divContent)) !== null) {
     const inner = pm[1];
 
     // Capture the <b> tag content (may be empty for completed, or "DD/MM/YYYY HH:MM" for upcoming)
