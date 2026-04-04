@@ -2,7 +2,7 @@
   "id": "2025-26",
   "label": "2025/26",
   "status": "active",
-  "lastUpdated": "2026-04-03",
+  "lastUpdated": "2026-04-04",
   "standings": [
     {
       "name": "Gilles Petit",
@@ -18,11 +18,11 @@
       "name": "Laurentiu Borcan",
       "ranking": "C30.3",
       "pts": 16,
-      "played": 10,
+      "played": 11,
       "wins": 7,
       "draws": 2,
-      "losses": 1,
-      "diff": 22
+      "losses": 2,
+      "diff": 12
     },
     {
       "name": "Christopher Debuyst",
@@ -45,6 +45,16 @@
       "diff": 8
     },
     {
+      "name": "Louis Herbert",
+      "ranking": "NC",
+      "pts": 12,
+      "played": 9,
+      "wins": 6,
+      "draws": 0,
+      "losses": 3,
+      "diff": 26
+    },
+    {
       "name": "Georges Mensah",
       "ranking": "C30.1",
       "pts": 12,
@@ -63,16 +73,6 @@
       "draws": 1,
       "losses": 5,
       "diff": -8
-    },
-    {
-      "name": "Louis Herbert",
-      "ranking": "NC",
-      "pts": 10,
-      "played": 8,
-      "wins": 5,
-      "draws": 0,
-      "losses": 3,
-      "diff": 16
     },
     {
       "name": "Guillaume Lainé",
@@ -483,15 +483,15 @@
       "s1": 8,
       "p2": "Christopher Debuyst",
       "s2": 7
+    },
+    {
+      "p1": "Louis Herbert",
+      "s1": 12,
+      "p2": "Laurentiu Borcan",
+      "s2": 2
     }
   ],
   "upcoming": [
-    {
-      "date": "29/03/2026",
-      "time": "18:00",
-      "p1": "Louis Herbert",
-      "p2": "Laurentiu Borcan"
-    },
     {
       "date": "05/04/2026",
       "time": "13:00",
@@ -593,15 +593,22 @@
       "my": 7,
       "opp": 8,
       "result": "loss"
+    },
+    {
+      "id": "lm11",
+      "opponent": "Louis Herbert",
+      "my": 2,
+      "opp": 12,
+      "result": "loss"
     }
   ],
   "myStats": {
     "points": 16,
-    "played": 10,
+    "played": 11,
     "wins": 7,
     "draws": 2,
-    "losses": 1,
-    "diff": 22,
+    "losses": 2,
+    "diff": 12,
     "ranking": "C30.3"
   }
 }
