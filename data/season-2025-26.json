@@ -2,7 +2,7 @@
   "id": "2025-26",
   "label": "2025/26",
   "status": "active",
-  "lastUpdated": "2026-04-11",
+  "lastUpdated": "2026-04-12",
   "standings": [
     {
       "name": "Gilles Petit",
@@ -75,6 +75,16 @@
       "diff": -8
     },
     {
+      "name": "Olivier Gatti",
+      "ranking": "C30.1",
+      "pts": 8,
+      "played": 10,
+      "wins": 3,
+      "draws": 2,
+      "losses": 5,
+      "diff": 1
+    },
+    {
       "name": "Guillaume Lainé",
       "ranking": "NC",
       "pts": 8,
@@ -85,14 +95,14 @@
       "diff": 0
     },
     {
-      "name": "Olivier Gatti",
-      "ranking": "C30.1",
-      "pts": 6,
-      "played": 9,
+      "name": "Laurent Gunsbourg",
+      "ranking": "C30.2",
+      "pts": 4,
+      "played": 11,
       "wins": 2,
-      "draws": 2,
-      "losses": 5,
-      "diff": -9
+      "draws": 0,
+      "losses": 9,
+      "diff": -32
     },
     {
       "name": "Christophe Jonckheere",
@@ -105,24 +115,14 @@
       "diff": -17
     },
     {
-      "name": "Laurent Gunsbourg",
-      "ranking": "C30.2",
-      "pts": 2,
-      "played": 9,
-      "wins": 1,
-      "draws": 0,
-      "losses": 8,
-      "diff": -31
-    },
-    {
       "name": "Jan Vavrovec",
       "ranking": "C30.6",
       "pts": 2,
-      "played": 9,
+      "played": 10,
       "wins": 1,
       "draws": 0,
-      "losses": 8,
-      "diff": -59
+      "losses": 9,
+      "diff": -68
     },
     {
       "name": "Xavier Naegel",
@@ -489,21 +489,21 @@
       "s1": 12,
       "p2": "Laurentiu Borcan",
       "s2": 2
+    },
+    {
+      "p1": "Jan Vavrovec",
+      "s1": 5,
+      "p2": "Laurent Gunsbourg",
+      "s2": 14
+    },
+    {
+      "p1": "Olivier Gatti",
+      "s1": 15,
+      "p2": "Laurent Gunsbourg",
+      "s2": 5
     }
   ],
   "upcoming": [
-    {
-      "date": "05/04/2026",
-      "time": "13:00",
-      "p1": "Jan Vavrovec",
-      "p2": "Laurent Gunsbourg"
-    },
-    {
-      "date": "05/04/2026",
-      "time": "18:00",
-      "p1": "Olivier Gatti",
-      "p2": "Laurent Gunsbourg"
-    },
     {
       "date": "15/04/2026",
       "time": "17:30",
