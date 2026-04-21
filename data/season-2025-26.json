@@ -2,7 +2,7 @@
   "id": "2025-26",
   "label": "2025/26",
   "status": "active",
-  "lastUpdated": "2026-04-20",
+  "lastUpdated": "2026-04-21",
   "standings": [
     {
       "name": "Gilles Petit",
@@ -13,6 +13,16 @@
       "draws": 0,
       "losses": 1,
       "diff": 70
+    },
+    {
+      "name": "Louis Herbert",
+      "ranking": "NC",
+      "pts": 16,
+      "played": 11,
+      "wins": 8,
+      "draws": 0,
+      "losses": 3,
+      "diff": 41
     },
     {
       "name": "Laurentiu Borcan",
@@ -38,21 +48,11 @@
       "name": "Franco Gueli",
       "ranking": "NC",
       "pts": 14,
-      "played": 10,
+      "played": 11,
       "wins": 7,
       "draws": 0,
-      "losses": 3,
-      "diff": 8
-    },
-    {
-      "name": "Louis Herbert",
-      "ranking": "NC",
-      "pts": 12,
-      "played": 9,
-      "wins": 6,
-      "draws": 0,
-      "losses": 3,
-      "diff": 26
+      "losses": 4,
+      "diff": 7
     },
     {
       "name": "Georges Mensah",
@@ -77,22 +77,22 @@
     {
       "name": "Olivier Gatti",
       "ranking": "C30.1",
-      "pts": 8,
-      "played": 10,
-      "wins": 3,
+      "pts": 10,
+      "played": 11,
+      "wins": 4,
       "draws": 2,
       "losses": 5,
-      "diff": 1
+      "diff": 2
     },
     {
       "name": "Guillaume Lainé",
       "ranking": "NC",
       "pts": 8,
-      "played": 10,
+      "played": 11,
       "wins": 4,
       "draws": 0,
-      "losses": 6,
-      "diff": 0
+      "losses": 7,
+      "diff": -7
     },
     {
       "name": "Laurent Gunsbourg",
@@ -108,11 +108,11 @@
       "name": "Christophe Jonckheere",
       "ranking": "C30.4",
       "pts": 3,
-      "played": 8,
+      "played": 9,
       "wins": 1,
       "draws": 1,
-      "losses": 6,
-      "diff": -17
+      "losses": 7,
+      "diff": -25
     },
     {
       "name": "Jan Vavrovec",
@@ -501,28 +501,27 @@
       "s1": 15,
       "p2": "Laurent Gunsbourg",
       "s2": 5
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "15/04/2026",
-      "time": "17:30",
       "p1": "Guillaume Lainé",
-      "p2": "Louis Herbert"
+      "s1": 2,
+      "p2": "Louis Herbert",
+      "s2": 9
     },
     {
-      "date": "16/04/2026",
-      "time": "20:30",
       "p1": "Christophe Jonckheere",
-      "p2": "Louis Herbert"
+      "s1": 3,
+      "p2": "Louis Herbert",
+      "s2": 11
     },
     {
-      "date": "17/04/2026",
-      "time": "12:30",
       "p1": "Olivier Gatti",
-      "p2": "Franco Gueli"
+      "s1": 8,
+      "p2": "Franco Gueli",
+      "s2": 7
     }
   ],
+  "upcoming": [],
   "myMatches": [
     {
       "id": "lm1",
