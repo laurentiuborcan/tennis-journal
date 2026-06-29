@@ -5,26 +5,25 @@
  * scrape-twb.js
  *
  * Logs in to the TWB (Tennis Province du Brabant Wallon) members area and
- * scrapes the authenticated user's singles/doubles tournament results across
- * all available ranking periods, then writes data/tournaments-twb.json.
+ * scrapes the authenticated user's singles tournament results across all 9
+ * ranking-period ordinals, then writes data/tournaments-twb.json.
  *
  * Uses only Node.js built-ins — no npm packages.
  *
- * Auth:   POST https://auth.tppwb.be/Authenticate/Login
- *         form fields affiliationNumber + pinCode (from env TWB_USERNAME / TWB_PIN)
- * Results: https://tennis.tppwb.be/MyAFT/?page=mytournois_myresults
+ * Auth:    POST https://auth.tppwb.be/Authenticate/Login
+ *          form fields affiliationNumber + pinCode (from env TWB_USERNAME / TWB_PIN)
+ * Results: GET https://tennis.tppwb.be/MyAFT/MyResults/Results?ordinal=N  (N = 1..9)
  *
- * ── ASSUMPTIONS THAT MAY NEED VERIFICATION AGAINST THE LIVE SITE ─────────────
- *  1. PERIOD_PARAM — the query/post field used to select a ranking period.
- *     The dropdown option *labels* are known (see PERIODS) but the request
- *     parameter name is a best guess ('periode'). Adjust if the page uses a
- *     different name or requires an ASP.NET __doPostBack form post.
- *  2. Ranking / totalPoints extraction — pulled best-effort from the current
- *     period page; falls back to '' / 0 if the labels differ.
- *  The match-card parsing itself is driven by the documented text format
- *  ("Tournoi X le DD/MM/YYYY", "Contre NAME (N pts)", score, Victoires/Défaites)
- *  and is covered by a fixture test (see bottom of this file / repo history).
- * ─────────────────────────────────────────────────────────────────────────────
+ * Each results response is parsed directly from its real HTML structure:
+ *  - Ranking/points come from the selected option of
+ *    <select id="ddlRankingPeriod_results"> (e.g. "Classement 2026: C30.4 - 51.387 pts").
+ *  - Win cards are <dl class="grid-data-item"> elements inside
+ *    <div id="divMyResultsSingleVictory">; loss cards are the same inside
+ *    <div id="divMyResultsSingleDefeat">.
+ *  - Within each card: tournament + date from the first <dd> ("Tournoi X le
+ *    DD/MM/YYYY"), category from the second <dd>, opponent name/points from
+ *    the `title="Plus d'info sur NAME (N pts)"` anchor, and score from the
+ *    last <dd> before the "view-draw" anchor.
  */
 
 const https = require('https');
@@ -35,45 +34,19 @@ const { URL } = require('url');
 
 // ── Config ───────────────────────────────────────────────────────────────────
 
-const LOGIN_URL   = 'https://auth.tppwb.be/Authenticate/Login';
-const RESULTS_URL = 'https://tennis.tppwb.be/MyAFT/?page=mytournois_myresults';
-const OUT         = path.join(__dirname, '..', 'data', 'tournaments-twb.json');
-const DEBUG_HTML  = path.join(__dirname, '..', 'data', 'twb-debug.html');
-
-// When TWB_DEBUG=1, dump the first period's raw HTML to DEBUG_HTML and exit
-// before parsing, so the real page structure can be inspected.
-const DEBUG = process.env.TWB_DEBUG === '1';
-
-// Ranking-period option labels to iterate. These are sent as the value of
-// PERIOD_PARAM on each results request (see assumption #1 above).
-const PERIODS = [
-  'Période courante',
-  'Classement mai 2026',
-  'Classement octobre 2025',
-  'Classement mai 2025',
-  'Classement octobre 2024',
-  'Classement mai 2024',
-  'Classement octobre 2023',
-  'Classement mai 2023',
-  'Classement octobre 2022',
-];
-
-// Best-guess request parameter name for the period selector.
-const PERIOD_PARAM = 'periode';
+const LOGIN_URL    = 'https://auth.tppwb.be/Authenticate/Login';
+const RESULTS_BASE = 'https://tennis.tppwb.be/MyAFT/MyResults/Results';
+const ORDINALS      = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const OUT          = path.join(__dirname, '..', 'data', 'tournaments-twb.json');
 
 const USER_AGENT = 'tennis-journal-twb-scraper/1.0 (+https://github.com/laurentiuborcan/tennis-journal)';
 
 // ── Cookie jar ───────────────────────────────────────────────────────────────
 
-// The jar is intentionally a single flat store shared across hosts (not
-// scoped by the Set-Cookie Domain attribute). auth.tppwb.be and
-// tennis.tppwb.be are different hostnames, so a domain-scoped jar would
-// need to know they share a session; instead every cookie this jar has
-// ever seen is sent on every request, which means a cookie set while
-// logging in on auth.tppwb.be is automatically included when we then call
-// tennis.tppwb.be. This is the deliberate fix for "cookies dropped across
-// domains" — there's only ever one jar instance, created once in main()
-// and threaded through login() and every fetchPeriod() call.
+// A single flat store shared across hosts (not scoped by the Set-Cookie
+// Domain attribute) — auth.tppwb.be and tennis.tppwb.be are different
+// hostnames but share one session, so every cookie this jar has seen is sent
+// on every request regardless of which host set it.
 function createJar() {
   const cookies = {};
   return {
@@ -87,18 +60,12 @@ function createJar() {
         const name  = pair.slice(0, eq).trim();
         const value = pair.slice(eq + 1).trim();
         if (!name) continue;
-        // An empty value (e.g. "session=; expires=Thu, 01 Jan 1970 ...")
-        // means the server is clearing the cookie — drop it instead of
-        // storing an empty string, so a logout/clear doesn't get re-sent.
         if (value === '') delete cookies[name];
         else cookies[name] = value;
       }
     },
     header() {
       return Object.entries(cookies).map(([k, v]) => `${k}=${v}`).join('; ');
-    },
-    names() {
-      return Object.keys(cookies);
     },
   };
 }
@@ -139,12 +106,7 @@ function request(method, urlStr, { headers = {}, body = null, jar = null } = {})
   });
 }
 
-/**
- * Perform a request, following 3xx redirects while preserving the cookie jar.
- * If opts.onHop is given, it's called after every hop (including the final,
- * non-redirecting one) with { method, url, res } — used by login() to print
- * per-hop status/Location/Set-Cookie debug output.
- */
+/** Perform a request, following 3xx redirects while preserving the cookie jar. */
 async function requestFollow(method, urlStr, opts = {}, maxRedirects = 6) {
   let url    = urlStr;
   let m      = method;
@@ -152,7 +114,6 @@ async function requestFollow(method, urlStr, opts = {}, maxRedirects = 6) {
 
   for (let i = 0; i <= maxRedirects; i++) {
     const res = await request(m, url, { ...opts, body });
-    if (opts.onHop) opts.onHop({ method: m, url, res });
     if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
       url  = new URL(res.headers.location, url).toString();
       m    = 'GET';     // 302/303 → switch to GET, drop body
@@ -166,20 +127,6 @@ async function requestFollow(method, urlStr, opts = {}, maxRedirects = 6) {
 
 // ── Auth ─────────────────────────────────────────────────────────────────────
 
-/** Find every <input> tag in html and return its name + type attributes. */
-function extractInputFields(html) {
-  const inputs = [];
-  const re = /<input\b[^>]*>/gi;
-  let m;
-  while ((m = re.exec(html)) !== null) {
-    const tag  = m[0];
-    const name = (tag.match(/\bname\s*=\s*["']([^"']*)["']/i) || [])[1] || '';
-    const type = (tag.match(/\btype\s*=\s*["']([^"']*)["']/i) || [])[1] || 'text';
-    if (name) inputs.push({ name, type });
-  }
-  return inputs;
-}
-
 function pageTitle(html) {
   const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   return m ? decodeEntities(m[1]).replace(/\s+/g, ' ').trim() : '';
@@ -188,14 +135,6 @@ function pageTitle(html) {
 /** Fetch the login page to seed cookies and grab an antiforgery token if present. */
 async function getLoginToken(jar) {
   const res = await requestFollow('GET', LOGIN_URL, { jar });
-  console.log(`[login] GET ${LOGIN_URL} -> HTTP ${res.statusCode}`);
-
-  const fields = extractInputFields(res.body);
-  console.log(`[login] login page has ${fields.length} <input> field(s):`);
-  for (const f of fields) {
-    console.log(`[login]   name="${f.name}" type="${f.type}"`);
-  }
-
   const m = res.body.match(/name="__RequestVerificationToken"[^>]*value="([^"]+)"/i);
   return m ? m[1] : null;
 }
@@ -208,34 +147,14 @@ async function login(jar) {
   }
 
   const token = await getLoginToken(jar);
-  console.log(`[login] __RequestVerificationToken: ${token ? `found (${token.length} chars)` : 'not present on page'}`);
-
   const params = new URLSearchParams({ affiliationNumber: user, pinCode: pin });
   if (token) params.set('__RequestVerificationToken', token);
-  console.log(`[login] POSTing fields: ${[...params.keys()].join(', ')}`);
 
-  let hop = 0;
   const res = await requestFollow('POST', LOGIN_URL, {
     jar,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: params.toString(),
-    onHop({ method, url, res: hopRes }) {
-      hop++;
-      console.log(`[login] hop ${hop}: ${method} ${url} -> HTTP ${hopRes.statusCode}`);
-      if (hopRes.headers.location) {
-        console.log(`[login] hop ${hop}: redirect Location -> ${hopRes.headers.location}`);
-      }
-      const setCookie = hopRes.headers['set-cookie'];
-      if (setCookie) {
-        const arr = Array.isArray(setCookie) ? setCookie : [setCookie];
-        for (const sc of arr) console.log(`[login] hop ${hop}: Set-Cookie -> ${sc}`);
-      }
-      console.log(`[login] hop ${hop}: cookie jar now holds [${jar.names().join(', ')}]`);
-    },
   });
-
-  const title = pageTitle(res.body);
-  console.log(`[login] final page title: "${title}"`);
 
   if (res.statusCode !== 200) {
     throw new Error(`Login failed: HTTP ${res.statusCode}`);
@@ -244,27 +163,25 @@ async function login(jar) {
   // A logged-out site typically bounces back to the login form; treat a
   // "Login" page title or the presence of the login form fields on the
   // landing page as an auth failure.
+  const title = pageTitle(res.body);
   const stillOnLoginPage =
     /^login$/i.test(title) ||
     (/name="affiliationNumber"/i.test(res.body) && /name="pinCode"/i.test(res.body));
 
   if (stillOnLoginPage) {
-    console.log('[login] result: FAILURE — still on the login page');
     throw new Error('Login failed: still on login page (check credentials)');
   }
 
-  console.log('[login] result: SUCCESS — left the login page');
   return res;
 }
 
-// ── Fetch one period ─────────────────────────────────────────────────────────
+// ── Fetch one ordinal ────────────────────────────────────────────────────────
 
-async function fetchPeriod(jar, period) {
-  const sep = RESULTS_URL.includes('?') ? '&' : '?';
-  const url = `${RESULTS_URL}${sep}${PERIOD_PARAM}=${encodeURIComponent(period)}`;
+async function fetchOrdinal(jar, ordinal) {
+  const url = `${RESULTS_BASE}?ordinal=${ordinal}`;
   const res = await requestFollow('GET', url, { jar });
   if (res.statusCode !== 200) {
-    throw new Error(`Failed to fetch period "${period}": HTTP ${res.statusCode}`);
+    throw new Error(`Failed to fetch ordinal ${ordinal}: HTTP ${res.statusCode}`);
   }
   return res.body;
 }
@@ -299,80 +216,124 @@ function toISODate(ddmmyyyy) {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-// ── Parsing ──────────────────────────────────────────────────────────────────
-
-const ANCHOR_RE   = /Tournoi\s+(.+?)\s+le\s+(\d{2}\/\d{2}\/\d{4})/g;
-const OPPONENT_RE = /Contre\s+(.+?)\s*\((\d+)\s*pts?\)/i;
-const CATEGORY_RE = /((?:Simples|Doubles)\s+(?:Messieurs|Dames|Mixtes?)[\s\S]*?)(?=Contre|Tournoi|$)/i;
-const SCORE_RE    = /(\d+\/\d+(?:-\d+\/\d+)+(?:\s*Ab\.?)?)/;
-
 /**
- * Parse a single results page into match objects.
- * Win vs loss is determined by which section ("Victoires" / "Défaites") the
- * match card falls under in document order.
+ * Extract the full inner content of the first <div ... id="id" ...> in html,
+ * correctly handling nested <div> elements.
  */
-function parseMatches(html) {
-  const text = stripTags(html);
+function extractDivById(html, id) {
+  const openTagRe = new RegExp(`<div[^>]*\\bid="${id}"[^>]*>`, 'i');
+  const openMatch = openTagRe.exec(html);
+  if (!openMatch) return null;
 
-  const vIdx = text.search(/Victoires/i);
-  const dIdx = text.search(/D[ée]faites/i);
+  let pos   = openMatch.index + openMatch[0].length;
+  let depth = 1;
 
-  const anchors = [];
-  let m;
-  ANCHOR_RE.lastIndex = 0;
-  while ((m = ANCHOR_RE.exec(text)) !== null) {
-    anchors.push({ index: m.index, tournament: m[1].trim(), date: m[2] });
-  }
+  while (pos < html.length && depth > 0) {
+    const nextOpen  = html.indexOf('<div', pos);
+    const nextClose = html.indexOf('</div>', pos);
 
-  const matches = [];
-  for (let i = 0; i < anchors.length; i++) {
-    const a    = anchors[i];
-    const end  = i + 1 < anchors.length ? anchors[i + 1].index : text.length;
-    const card = text.slice(a.index, end);
+    if (nextClose === -1) break;
 
-    const opp = card.match(OPPONENT_RE);
-    const cat = card.match(CATEGORY_RE);
-    const sc  = card.match(SCORE_RE);
-
-    // Determine win/loss by section ordering.
-    let result = 'win';
-    if (vIdx !== -1 && dIdx !== -1) {
-      result = (a.index >= dIdx) ? 'loss' : 'win';
-    } else if (dIdx !== -1 && vIdx === -1) {
-      result = 'loss';
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      depth++;
+      pos = nextOpen + 4;
+    } else {
+      depth--;
+      if (depth === 0) return html.slice(openMatch.index + openMatch[0].length, nextClose);
+      pos = nextClose + 6;
     }
-
-    matches.push({
-      date:        toISODate(a.date),
-      tournament:  a.tournament,
-      category:    cat ? cat[1].replace(/\s+/g, ' ').trim() : '',
-      opponent:    opp ? opp[1].trim() : '',
-      opponentPts: opp ? parseInt(opp[2], 10) : 0,
-      score:       sc ? sc[1].replace(/\s+/g, ' ').trim() : '',
-      result,
-    });
   }
-
-  return matches;
+  return null;
 }
 
-/** Best-effort extraction of the user's own ranking and total points. */
-function parseHeader(html) {
-  const text = stripTags(html);
-  const rank = text.match(/\b(NC|[A-C]\d+(?:\.\d+)?|B[-+]?\d+|A\d+)\b/);
-  const pts  = text.match(/Total[^0-9]{0,30}?([\d.\s]+?)\s*pts?/i);
+// ── Parsing ──────────────────────────────────────────────────────────────────
+
+const DL_RE          = /<dl[^>]*class="grid-data-item"[^>]*>([\s\S]*?)<\/dl>/gi;
+const DD_RE           = /<dd[^>]*>([\s\S]*?)<\/dd>/gi;
+const ANCHOR_RE       = /Tournoi\s+(.+?)\s+le\s+(\d{2}\/\d{2}\/\d{4})/;
+const OPPONENT_RE     = /title="Plus d(?:'|&#0?39;)info sur\s+([^(]+?)\s*\((\d+)\s*pts?\)"/i;
+const VIEW_DRAW_RE    = /<a[^>]*class="view-draw"/i;
+
+/** Parse one <dl class="grid-data-item"> card into a match object. */
+function parseMatchCard(dlHtml, result) {
+  const dds = [];
+  let dm;
+  DD_RE.lastIndex = 0;
+  while ((dm = DD_RE.exec(dlHtml)) !== null) {
+    dds.push(dm[1]);
+  }
+
+  const firstDd  = dds[0] ? stripTags(dds[0]) : '';
+  const secondDd = dds[1] ? stripTags(dds[1]) : '';
+
+  const anchorIdx     = dlHtml.search(VIEW_DRAW_RE);
+  const beforeAnchor  = anchorIdx !== -1 ? dlHtml.slice(0, anchorIdx) : dlHtml;
+  const ddsBeforeAnchor = [];
+  DD_RE.lastIndex = 0;
+  let dm2;
+  while ((dm2 = DD_RE.exec(beforeAnchor)) !== null) {
+    ddsBeforeAnchor.push(dm2[1]);
+  }
+  const score = ddsBeforeAnchor.length ? stripTags(ddsBeforeAnchor[ddsBeforeAnchor.length - 1]) : '';
+
+  const tournoiMatch = firstDd.match(ANCHOR_RE);
+  const opponentMatch = dlHtml.match(OPPONENT_RE);
+
   return {
-    ranking:     rank ? rank[1] : '',
-    totalPoints: pts  ? parseInt(pts[1].replace(/[.\s]/g, ''), 10) || 0 : 0,
+    date:        tournoiMatch ? toISODate(tournoiMatch[2]) : '',
+    tournament:  tournoiMatch ? tournoiMatch[1].trim() : '',
+    category:    secondDd,
+    opponent:    opponentMatch ? decodeEntities(opponentMatch[1]).trim() : '',
+    opponentPts: opponentMatch ? parseInt(opponentMatch[2], 10) : 0,
+    score,
+    result,
   };
 }
 
-/** Deduplicate matches that appear across multiple ranking periods. */
+/** Parse all <dl class="grid-data-item"> cards inside the named div, tagging them with result. */
+function parseSection(html, divId, result) {
+  const divContent = extractDivById(html, divId);
+  if (!divContent) return [];
+
+  const matches = [];
+  let m;
+  DL_RE.lastIndex = 0;
+  while ((m = DL_RE.exec(divContent)) !== null) {
+    matches.push(parseMatchCard(m[1], result));
+  }
+  return matches;
+}
+
+/** Parse a single results-ordinal response into match objects. */
+function parseMatches(html) {
+  const wins   = parseSection(html, 'divMyResultsSingleVictory', 'win');
+  const losses = parseSection(html, 'divMyResultsSingleDefeat', 'loss');
+  return wins.concat(losses);
+}
+
+/** Extract the user's ranking and total points from the ranking-period dropdown. */
+function parseHeader(html) {
+  const selMatch = html.match(/<select[^>]*\bid="ddlRankingPeriod_results"[^>]*>([\s\S]*?)<\/select>/i);
+  if (!selMatch) return { ranking: '', totalPoints: 0 };
+
+  const selectedMatch = selMatch[1].match(/<option[^>]*\bselected\b[^>]*>([\s\S]*?)<\/option>/i);
+  const text = stripTags(selectedMatch ? selectedMatch[1] : selMatch[1]);
+
+  const rank = text.match(/:\s*([A-C]\d+(?:\.\d+)?|NC)\b/i);
+  const pts  = text.match(/([\d.]+)\s*pts/i);
+
+  return {
+    ranking:     rank ? rank[1] : '',
+    totalPoints: pts  ? parseInt(pts[1].replace(/\./g, ''), 10) || 0 : 0,
+  };
+}
+
+/** Deduplicate matches that appear across multiple ordinals. */
 function dedupe(matches) {
   const seen = new Set();
   const out  = [];
   for (const mt of matches) {
-    const key = [mt.date, mt.tournament, mt.opponent, mt.score].join('|');
+    const key = [mt.date, mt.tournament, mt.opponent].join('|');
     if (seen.has(key)) continue;
     seen.add(key);
     out.push(mt);
@@ -384,43 +345,14 @@ function dedupe(matches) {
 
 async function main() {
   const jar = createJar();
+  await login(jar);
 
-  console.log('Logging in to TWB ...');
-  const landing = await login(jar);
+  let allMatches = [];
+  let header     = { ranking: '', totalPoints: 0 };
 
-  let periodsFetched = 0;
-  let allMatches     = [];
-  let header         = { ranking: '', totalPoints: 0 };
-
-  for (const period of PERIODS) {
-    const html = await fetchPeriod(jar, period);
-    periodsFetched++;
-
-    // Log a preview of every period's HTML so the structure is visible in the
-    // GitHub Action logs. The first period shows the tail of the page (where
-    // the match cards live) along with the total length, instead of the head.
-    if (periodsFetched === 1) {
-      console.log(`\n──── HTML total length for "${period}": ${html.length} chars ────`);
-      console.log(`──── HTML preview for "${period}" (last 3000 chars) ────`);
-      console.log(html.slice(-3000));
-      console.log('──── end preview ────\n');
-    } else {
-      console.log(`\n──── HTML preview for "${period}" (first 2000 chars) ────`);
-      console.log(html.slice(0, 2000));
-      console.log('──── end preview ────\n');
-    }
-
-    // Debug mode: dump the first fetched page in full and stop before parsing.
-    if (DEBUG) {
-      fs.writeFileSync(DEBUG_HTML, html);
-      console.log(`✓ TWB_DEBUG=1 — wrote raw HTML of "${period}" to ${DEBUG_HTML} (${html.length} bytes)`);
-      console.log('Exiting before parse so the real page structure can be inspected.');
-      return;
-    }
-
-    if (period === 'Période courante') {
-      header = parseHeader(html.length ? html : landing.body);
-    }
+  for (const ordinal of ORDINALS) {
+    const html = await fetchOrdinal(jar, ordinal);
+    if (ordinal === 1) header = parseHeader(html);
     allMatches = allMatches.concat(parseMatches(html));
   }
 
@@ -439,11 +371,10 @@ async function main() {
 
   fs.writeFileSync(OUT, JSON.stringify(output, null, 2) + '\n');
 
-  console.log(`✓ periods fetched: ${periodsFetched}`);
-  console.log(`✓ matches found:   ${matches.length}`);
-  console.log(`✓ wins:            ${wins}`);
-  console.log(`✓ losses:          ${losses}`);
-  console.log(`✓ written to       ${OUT}`);
+  console.log(`✓ matches found: ${matches.length}`);
+  console.log(`✓ wins:          ${wins}`);
+  console.log(`✓ losses:        ${losses}`);
+  console.log(`✓ written to     ${OUT}`);
 }
 
 // Export internals for unit testing; only run when invoked directly.
