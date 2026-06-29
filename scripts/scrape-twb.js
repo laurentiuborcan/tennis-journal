@@ -397,9 +397,11 @@ async function main() {
     periodsFetched++;
 
     // Log a preview of every period's HTML so the structure is visible in the
-    // GitHub Action logs.
-    console.log(`\n──── HTML preview for "${period}" (first 2000 chars) ────`);
-    console.log(html.slice(0, 2000));
+    // GitHub Action logs. The first period gets a longer preview so the
+    // dump reaches past <head> into the body where the match cards live.
+    const previewLen = periodsFetched === 1 ? 8000 : 2000;
+    console.log(`\n──── HTML preview for "${period}" (first ${previewLen} chars) ────`);
+    console.log(html.slice(0, previewLen));
     console.log('──── end preview ────\n');
 
     // Debug mode: dump the first fetched page in full and stop before parsing.
