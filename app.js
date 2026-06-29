@@ -866,6 +866,8 @@ function renderTWB() {
 
 function renderTwbMatchCard(m) {
   const isWin = m.result === 'win';
+  const oppMatch = m.opponent.match(/title="Plus d'info sur ([^"]+)"/);
+  const opponent = oppMatch ? oppMatch[1] : m.opponent;
   return `
     <div class="twb-match-card">
       <div class="twb-badge twb-badge--${m.result}">${isWin ? 'V' : 'D'}</div>
@@ -876,7 +878,7 @@ function renderTwbMatchCard(m) {
         </div>
         <div class="twb-category">${escHtml(m.category)}</div>
         <div class="twb-match-mid">
-          <span class="twb-opponent">${escHtml(m.opponent)} <span class="twb-opponent-pts">(${m.opponentPts} pts)</span></span>
+          <span class="twb-opponent">${escHtml(opponent)} <span class="twb-opponent-pts">(${m.opponentPts} pts)</span></span>
         </div>
         <div class="twb-score">${escHtml(m.score)}</div>
       </div>
