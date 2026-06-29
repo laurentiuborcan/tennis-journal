@@ -267,14 +267,29 @@ function parseMatchCard(dlHtml, result) {
   const scoreDd  = dds.slice(2).find(dd => SCORE_RE.test(dd)) || '';
 
   const tournoiMatch = firstDd.match(ANCHOR_RE);
-  const oppMatch     = dlHtml.match(/title="Plus d'info sur ([^(]+?) \((\d+) pts\)"/);
+
+  // Try matching the title attribute with any apostrophe variant
+  let opponent    = '';
+  let opponentPts = 0;
+  const oppMatch = dlHtml.match(/title="Plus d.info sur ([^(]+?)\s*\((\d+)\s*pts\)"/);
+  if (oppMatch) {
+    opponent    = oppMatch[1].trim();
+    opponentPts = parseInt(oppMatch[2]);
+  } else {
+    // Fallback: extract from the anchor text between >NAME< before " (N pts)"
+    const nameMatch = dlHtml.match(/data-url="\/MyAFT\/Players\/Detail\/\d+" title="[^"]*">([^<]+)\s*\((\d+)\s*pts\)<\/a>/);
+    if (nameMatch) {
+      opponent    = nameMatch[1].trim();
+      opponentPts = parseInt(nameMatch[2]);
+    }
+  }
 
   return {
     date:        tournoiMatch ? toISODate(tournoiMatch[2]) : '',
     tournament:  tournoiMatch ? tournoiMatch[1].trim() : '',
     category:    secondDd,
-    opponent:    oppMatch ? oppMatch[1].trim() : '',
-    opponentPts: oppMatch ? parseInt(oppMatch[2]) : 0,
+    opponent,
+    opponentPts,
     score:       scoreDd,
     result,
   };

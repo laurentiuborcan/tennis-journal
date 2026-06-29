@@ -866,8 +866,8 @@ function renderTWB() {
 
 function renderTwbMatchCard(m) {
   const isWin = m.result === 'win';
-  const oppMatch = m.opponent.match(/title="Plus d'info sur ([^"]+)"/);
-  const opponent = oppMatch ? oppMatch[1] : m.opponent;
+  const oppMatch = m.opponent.match(/title="Plus d.info sur ([^(]+?)\s*\((\d+)\s*pts\)"/);
+  const opponent = oppMatch ? oppMatch[1].trim() : m.opponent;
   return `
     <div class="twb-match-card">
       <div class="twb-badge twb-badge--${m.result}">${isWin ? 'V' : 'D'}</div>
