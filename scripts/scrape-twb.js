@@ -15,8 +15,8 @@
  * Results: GET https://tennis.tppwb.be/MyAFT/MyResults/Results?ordinal=N  (N = 1..9)
  *
  * Each results response is parsed directly from its real HTML structure:
- *  - Ranking/points come from the selected option of
- *    <select id="ddlRankingPeriod_results"> (e.g. "Classement 2026: C30.4 - 51.387 pts").
+ *  - Ranking/points come from the page text matching
+ *    "Classement 2026: C30.4 ... 51.387 pts".
  *  - Win cards are <dl class="grid-data-item"> elements inside
  *    <div id="divMyResultsSingleVictory">; loss cards are the same inside
  *    <div id="divMyResultsSingleDefeat">.
@@ -252,7 +252,7 @@ const DL_RE          = /<dl[^>]*class="grid-data-item"[^>]*>([\s\S]*?)<\/dl>/gi;
 const DD_RE           = /<dd[^>]*>([\s\S]*?)<\/dd>/gi;
 const ANCHOR_RE       = /Tournoi\s+(.+?)\s+le\s+(\d{2}\/\d{2}\/\d{4})/;
 const OPPONENT_RE     = /title="Plus d(?:'|&#0?39;)info sur\s+([^(]+?)\s*\((\d+)\s*pts?\)"/i;
-const VIEW_DRAW_RE    = /<a[^>]*class="view-draw"/i;
+const SCORE_RE        = /\d+\/\d+/;
 
 /** Parse one <dl class="grid-data-item"> card into a match object. */
 function parseMatchCard(dlHtml, result) {
@@ -260,23 +260,14 @@ function parseMatchCard(dlHtml, result) {
   let dm;
   DD_RE.lastIndex = 0;
   while ((dm = DD_RE.exec(dlHtml)) !== null) {
-    dds.push(dm[1]);
+    dds.push(stripTags(dm[1]));
   }
 
-  const firstDd  = dds[0] ? stripTags(dds[0]) : '';
-  const secondDd = dds[1] ? stripTags(dds[1]) : '';
+  const firstDd  = dds[0] || '';
+  const secondDd = dds[1] || '';
+  const scoreDd  = dds.slice(2).find(dd => SCORE_RE.test(dd)) || '';
 
-  const anchorIdx     = dlHtml.search(VIEW_DRAW_RE);
-  const beforeAnchor  = anchorIdx !== -1 ? dlHtml.slice(0, anchorIdx) : dlHtml;
-  const ddsBeforeAnchor = [];
-  DD_RE.lastIndex = 0;
-  let dm2;
-  while ((dm2 = DD_RE.exec(beforeAnchor)) !== null) {
-    ddsBeforeAnchor.push(dm2[1]);
-  }
-  const score = ddsBeforeAnchor.length ? stripTags(ddsBeforeAnchor[ddsBeforeAnchor.length - 1]) : '';
-
-  const tournoiMatch = firstDd.match(ANCHOR_RE);
+  const tournoiMatch  = firstDd.match(ANCHOR_RE);
   const opponentMatch = dlHtml.match(OPPONENT_RE);
 
   return {
@@ -285,7 +276,7 @@ function parseMatchCard(dlHtml, result) {
     category:    secondDd,
     opponent:    opponentMatch ? decodeEntities(opponentMatch[1]).trim() : '',
     opponentPts: opponentMatch ? parseInt(opponentMatch[2], 10) : 0,
-    score,
+    score:       scoreDd,
     result,
   };
 }
@@ -311,20 +302,14 @@ function parseMatches(html) {
   return wins.concat(losses);
 }
 
-/** Extract the user's ranking and total points from the ranking-period dropdown. */
+/** Extract the user's ranking and total points from the "Classement YYYY: RANK ... PTS pts" text. */
 function parseHeader(html) {
-  const selMatch = html.match(/<select[^>]*\bid="ddlRankingPeriod_results"[^>]*>([\s\S]*?)<\/select>/i);
-  if (!selMatch) return { ranking: '', totalPoints: 0 };
-
-  const selectedMatch = selMatch[1].match(/<option[^>]*\bselected\b[^>]*>([\s\S]*?)<\/option>/i);
-  const text = stripTags(selectedMatch ? selectedMatch[1] : selMatch[1]);
-
-  const rank = text.match(/:\s*([A-C]\d+(?:\.\d+)?|NC)\b/i);
-  const pts  = text.match(/([\d.]+)\s*pts/i);
+  const text = stripTags(html);
+  const m = text.match(/Classement\s+\d{4}\s*:\s*([A-C]\d+(?:\.\d+)?|NC)\b[^0-9]*?([\d.]+)\s*pts/i);
 
   return {
-    ranking:     rank ? rank[1] : '',
-    totalPoints: pts  ? parseInt(pts[1].replace(/\./g, ''), 10) || 0 : 0,
+    ranking:     m ? m[1] : '',
+    totalPoints: m ? parseInt(m[2].replace(/\./g, ''), 10) || 0 : 0,
   };
 }
 
