@@ -1,6 +1,547 @@
 {
   "lastUpdated": "2026-06-29",
-  "ranking": "C30.5",
+  "ranking": "",
   "totalPoints": 0,
-  "matches": []
+  "matches": [
+    {
+      "date": "2026-06-22",
+      "tournament": "EVERE WS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361878?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1121866\" title=\"Plus d'info sur ORANI Stefano",
+      "opponentPts": 3,
+      "score": "4/6-6/1-0/0 Ab.",
+      "result": "win"
+    },
+    {
+      "date": "2026-04-24",
+      "tournament": "MOUNIER",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361437?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1113154\" title=\"Plus d'info sur SMITH OLIVIER",
+      "opponentPts": 20,
+      "score": "6/3-6/4-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2026-06-28",
+      "tournament": "OMBRAGE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361881?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1081992\" title=\"Plus d'info sur SOMERS Matthieu",
+      "opponentPts": 5,
+      "score": "6/2-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2026-06-26",
+      "tournament": "EVERE WS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361878?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1119030\" title=\"Plus d'info sur SINGH Sandeep Kumar",
+      "opponentPts": 3,
+      "score": "6/3-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2026-06-19",
+      "tournament": "EVERE WS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361878?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1113879\" title=\"Plus d'info sur Suciu Serban",
+      "opponentPts": 20,
+      "score": "6/1-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2026-04-27",
+      "tournament": "MOUNIER",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361437?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1021574\" title=\"Plus d'info sur ROELANDS Bruno",
+      "opponentPts": 30,
+      "score": "6/1-7/5-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-12-28",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361403?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1047851\" title=\"Plus d'info sur LAMMENS Alexandre",
+      "opponentPts": 25,
+      "score": "6/2-7/5-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-10-25",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361389?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1089647\" title=\"Plus d'info sur CATTOIR Amaury",
+      "opponentPts": 20,
+      "score": "6/2-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-10-23",
+      "tournament": "CASTLE CLUB",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361392?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1082280\" title=\"Plus d'info sur TIMPERMAN Aurélien",
+      "opponentPts": 10,
+      "score": "5/7-6/3-7/6",
+      "result": "loss"
+    },
+    {
+      "date": "2025-06-22",
+      "tournament": "EVERE WS",
+      "category": "Simples Messieurs 50 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 50 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360972?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1065840\" title=\"Plus d'info sur LECLERCQ Sébastian",
+      "opponentPts": 5,
+      "score": "6/1-6/2-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2025-08-10",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 50 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 50 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361063?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1114634\" title=\"Plus d'info sur Tatulli Massimo",
+      "opponentPts": 15,
+      "score": "6/4-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-08-09",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361063?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1004274\" title=\"Plus d'info sur VAN MEERBEECK Cédric",
+      "opponentPts": 15,
+      "score": "6/0-6/4-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-08-04",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 50 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 50 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361045?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1114570\" title=\"Plus d'info sur SANTORO Enrico",
+      "opponentPts": 25,
+      "score": "6/0-6/3-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-08-03",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361045?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1042474\" title=\"Plus d'info sur TIMMERMAN Fabien",
+      "opponentPts": 25,
+      "score": "6/2-6/3-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-07-20",
+      "tournament": "BOIS CAMBRE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/361023?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1062620\" title=\"Plus d'info sur WINDERICKX Dimitri",
+      "opponentPts": 10,
+      "score": "6/4-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-07-06",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360980?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1103418\" title=\"Plus d'info sur KOGUC Tomasz",
+      "opponentPts": 20,
+      "score": "3/2-0/0-0/0 Ab.",
+      "result": "loss"
+    },
+    {
+      "date": "2025-07-04",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360980?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1098320\" title=\"Plus d'info sur DIJKSTRA SALVADOR PABLO",
+      "opponentPts": 10,
+      "score": "6/2-6/4-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-06-28",
+      "tournament": "OMBRAGE",
+      "category": "Simples Messieurs 50 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 50 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360973?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1114570\" title=\"Plus d'info sur SANTORO Enrico",
+      "opponentPts": 25,
+      "score": "7/6-6/1-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2025-06-23",
+      "tournament": "EVERE WS",
+      "category": "Simples Messieurs 50 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 50 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360972?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1094906\" title=\"Plus d'info sur NAETS Noel",
+      "opponentPts": 25,
+      "score": "6/4-7/6-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-11-03",
+      "tournament": "CASTLE CLUB",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360379?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1113482\" title=\"Plus d'info sur GRIMM NIKITA",
+      "opponentPts": 15,
+      "score": "0/0-0/0-0/0 WO",
+      "result": "win"
+    },
+    {
+      "date": "2024-10-27",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360377?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1085808\" title=\"Plus d'info sur VAN HOUTE Gabriel",
+      "opponentPts": 10,
+      "score": "6/4-6/3-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-10-24",
+      "tournament": "CASTLE CLUB",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360379?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1102832\" title=\"Plus d'info sur MANSVELT Louis",
+      "opponentPts": 10,
+      "score": "6/2-6/4-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2025-04-25",
+      "tournament": "MOUNIER",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360415?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1085643\" title=\"Plus d'info sur NAGEL Mathieu",
+      "opponentPts": 15,
+      "score": "3/6-6/0-6/1",
+      "result": "loss"
+    },
+    {
+      "date": "2024-10-31",
+      "tournament": "CASTLE CLUB",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360379?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1103642\" title=\"Plus d'info sur GAHYLLE-CARUSO Vincent",
+      "opponentPts": 25,
+      "score": "4/6-6/1-6/1",
+      "result": "loss"
+    },
+    {
+      "date": "2024-10-29",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360377?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1110607\" title=\"Plus d'info sur JACOBS Rémi",
+      "opponentPts": 20,
+      "score": "2/6-6/1-6/4",
+      "result": "loss"
+    },
+    {
+      "date": "2024-08-25",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359822?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1112726\" title=\"Plus d'info sur BIANCHI Giovanni",
+      "opponentPts": 3,
+      "score": "6/0-6/2-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-08-14",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359539?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1094356\" title=\"Plus d'info sur DE REUS Jean-Valery",
+      "opponentPts": 5,
+      "score": "6/4-6/0-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-08-12",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359539?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1098567\" title=\"Plus d'info sur Gatti Olivier",
+      "opponentPts": 30,
+      "score": "7/6-6/0-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-08-12",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359539?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1113682\" title=\"Plus d'info sur Bruynincx Olivier",
+      "opponentPts": 3,
+      "score": "6/2-6/2-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-08-10",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359539?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1104859\" title=\"Plus d'info sur Kaninda Barth",
+      "opponentPts": 20,
+      "score": "6/3-6/2-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-07-20",
+      "tournament": "BOIS CAMBRE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359788?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1111922\" title=\"Plus d'info sur Jaffer Zulfikar",
+      "opponentPts": 3,
+      "score": "6/2-2/6-6/4",
+      "result": "win"
+    },
+    {
+      "date": "2024-07-08",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359778?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1092391\" title=\"Plus d'info sur KESZEI ETIENNE",
+      "opponentPts": 3,
+      "score": "6/1-6/0-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-07-07",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359778?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1086093\" title=\"Plus d'info sur PAILLET Matthieu",
+      "opponentPts": 10,
+      "score": "6/3-6/2-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-08-28",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359822?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/3022337\" title=\"Plus d'info sur PAINDAVEINE Davy",
+      "opponentPts": 5,
+      "score": "3/6-6/3-6/1",
+      "result": "loss"
+    },
+    {
+      "date": "2024-08-24",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359822?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1020462\" title=\"Plus d'info sur LOOSE Florian",
+      "opponentPts": 30,
+      "score": "7/5-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-08-15",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359539?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1020462\" title=\"Plus d'info sur LOOSE Florian",
+      "opponentPts": 30,
+      "score": "6/2-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-08-15",
+      "tournament": "ROYALLARASANTE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359539?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1042474\" title=\"Plus d'info sur TIMMERMAN Fabien",
+      "opponentPts": 3,
+      "score": "6/1-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-07-28",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359800?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/6012527\" title=\"Plus d'info sur RENARD Frédéric",
+      "opponentPts": 15,
+      "score": "6/4-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-07-26",
+      "tournament": "BOIS CAMBRE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359788?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1030271\" title=\"Plus d'info sur DE KERCKHOVE Paul",
+      "opponentPts": 5,
+      "score": "6/0-6/3-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-07-15",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359790?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/4027106\" title=\"Plus d'info sur DEBORRE Valery",
+      "opponentPts": 3,
+      "score": "6/2-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-07-13",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359790?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/2233588\" title=\"Plus d'info sur Maquenne Olivier",
+      "opponentPts": 15,
+      "score": "6/0-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-07-11",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359778?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1104508\" title=\"Plus d'info sur JONCKHEERE Christophe",
+      "opponentPts": 5,
+      "score": "5/7-6/4-6/3",
+      "result": "loss"
+    },
+    {
+      "date": "2024-07-09",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359778?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1084847\" title=\"Plus d'info sur FERON Bernard",
+      "opponentPts": 25,
+      "score": "6/0-1/0-0/0 Ab.",
+      "result": "loss"
+    },
+    {
+      "date": "2024-05-04",
+      "tournament": "BOIS CAMBRE",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360191?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1094026\" title=\"Plus d'info sur RANSBOTYN Timoté",
+      "opponentPts": 15,
+      "score": "7/6-6/4-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2024-04-26",
+      "tournament": "MOUNIER",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359292?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1110127\" title=\"Plus d'info sur Mo Dennis",
+      "opponentPts": 5,
+      "score": "2/6-6/3-6/4",
+      "result": "win"
+    },
+    {
+      "date": "2024-05-05",
+      "tournament": "BOIS CAMBRE",
+      "category": "Simples Messieurs 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/360191?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1100314\" title=\"Plus d'info sur Ionescu Filip",
+      "opponentPts": 20,
+      "score": "6/2-6/1-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2024-04-27",
+      "tournament": "MOUNIER",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/359292?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1050470\" title=\"Plus d'info sur HUYNH HUU Phi-Long",
+      "opponentPts": 25,
+      "score": "5/7-6/3-7/5",
+      "result": "loss"
+    },
+    {
+      "date": "2023-08-09",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348932?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1026823\" title=\"Plus d'info sur TABURY Joel",
+      "opponentPts": 10,
+      "score": "6/4-7/5-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2023-08-07",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348932?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1076814\" title=\"Plus d'info sur WITSCHKE TOBIAS",
+      "opponentPts": 5,
+      "score": "6/0-6/3-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2023-08-06",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348932?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1110223\" title=\"Plus d'info sur LE MARCHAND Philippe",
+      "opponentPts": 3,
+      "score": "6/3-6/0-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2023-08-05",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 45 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348932?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1104859\" title=\"Plus d'info sur Kaninda Barth",
+      "opponentPts": 20,
+      "score": "6/4-6/0-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2023-09-03",
+      "tournament": "MOUNIER",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348957?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1077177\" title=\"Plus d'info sur CRUCIFIX Mikaël",
+      "opponentPts": 30,
+      "score": "6/2-6/1-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-08-27",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 45 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348949?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1099950\" title=\"Plus d'info sur WOONKON Suwatchai",
+      "opponentPts": 5,
+      "score": "2/6-0/4-0/0 Ab.",
+      "result": "loss"
+    },
+    {
+      "date": "2023-08-12",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348932?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1110913\" title=\"Plus d'info sur WANG Tien-Sing",
+      "opponentPts": 10,
+      "score": "6/3-7/5-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-08-08",
+      "tournament": "WOLU",
+      "category": "Simples Messieurs 45 4",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 4\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348932?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1060959\" title=\"Plus d'info sur VAN GILS Pierre-Yves",
+      "opponentPts": 30,
+      "score": "6/3-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-07-23",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 45 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348922?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1112167\" title=\"Plus d'info sur ARIU Lorenzo",
+      "opponentPts": 3,
+      "score": "6/3-7/5-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-07-21",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348922?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1105557\" title=\"Plus d'info sur COUY JOAO",
+      "opponentPts": 3,
+      "score": "6/4-6/1-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-07-20",
+      "tournament": "BOIS CAMBRE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348915?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1112505\" title=\"Plus d'info sur Ottoz Benjamin",
+      "opponentPts": 3,
+      "score": "6/1-6/3-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-07-07",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 5\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348725?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n<image src=\"/MyAFT/Content/Images/ranking.png\"></image>\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1106732\" title=\"Plus d'info sur SCLEP GUY",
+      "opponentPts": 15,
+      "score": "6/2-6/0-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2023-07-01",
+      "tournament": "OMBRAGE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "le tournoi\"><span class='glyphicon glyphicon-collapse-down'></span></a></div>        </dd>\r\n        <dd>\r\n            Simples Messieurs 35 6\r\n<div class=\"pull-right\"><a data-description=\"\" data-subscription=\"true\" data-toggle=\"popover\" data-url=\"/MyAFT/Tooltip/TournamentCategories/348636?displaySubscriptions=True\" title=\"Voir les catégories\"><span class='glyphicon glyphicon-collapse-down '></span></a></div>        </dd>\r\n                    <dd>\r\n\r\n                Contre\r\n<a data-load=\"ajax-state\" data-url=\"/MyAFT/Players/Detail/1105557\" title=\"Plus d'info sur COUY JOAO",
+      "opponentPts": 3,
+      "score": "6/2-6/1-0/0",
+      "result": "loss"
+    }
+  ]
 }
