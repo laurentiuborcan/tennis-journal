@@ -838,6 +838,137 @@ textarea { resize: vertical; }
 
 .form-actions { padding-top: 0.5rem; }
 
+/* ===== TOURNOIS TWB ===== */
+.twb-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hl);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem 1.1rem;
+  margin-bottom: 1.1rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.twb-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-dim), var(--green));
+}
+.twb-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.twb-ranking { font-size: 1.3rem; font-weight: 800; color: var(--text); }
+.twb-sub     { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; }
+.twb-pts-wrap { display: flex; align-items: baseline; gap: 0.25rem; flex-shrink: 0; }
+.twb-pts       { font-size: 1.7rem; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
+.twb-pts-label { font-size: 0.78rem; color: var(--text-muted); }
+
+.twb-stats {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 0.9rem;
+}
+.twb-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0 0.25rem;
+  border-right: 1px solid var(--border);
+}
+.twb-stat:last-child { border-right: none; }
+.twb-stat-val {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.twb-stat-val--green { color: var(--green); }
+.twb-stat-val--red   { color: var(--red); }
+.twb-stat-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.twb-filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.twb-filter-btn {
+  padding: 0.4rem 0.95rem;
+  border: 1px solid var(--border-hl);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+.twb-filter-btn:hover { color: var(--text); }
+.twb-filter-btn--win.twb-filter-btn--active  { border-color: var(--green-dim); background: var(--green-glow); color: var(--green); }
+.twb-filter-btn--loss.twb-filter-btn--active { border-color: rgba(248,81,73,0.4); background: var(--red-dim); color: var(--red); }
+
+.twb-match-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.twb-match-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  animation: fadeIn 0.15s ease;
+  transition: border-color var(--transition);
+}
+.twb-match-card:hover { border-color: var(--border-hl); }
+
+.twb-badge {
+  flex-shrink: 0;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+.twb-badge--win  { background: rgba(63,185,80,0.12); color: var(--green); }
+.twb-badge--loss { background: rgba(248,81,73,0.1);  color: var(--red); }
+
+.twb-match-body {
+  flex: 1;
+  padding: 0.7rem 0.9rem 0.6rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.twb-match-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.twb-tournament {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.twb-match-date { font-size: 0.76rem; color: var(--text-muted); flex-shrink: 0; }
+.twb-category   { font-size: 0.76rem; color: var(--text-muted); }
+.twb-match-mid  { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.twb-opponent     { font-size: 0.85rem; color: var(--text); }
+.twb-opponent-pts { font-size: 0.78rem; color: var(--text-muted); }
+.twb-score { font-size: 0.85rem; font-weight: 600; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -866,6 +997,11 @@ textarea { resize: vertical; }
   .am-dt  { min-width: 80px; font-size: 0.7rem; }
 
   .lm-top { flex-wrap: wrap; gap: 0.25rem; }
+
+  .twb-stats     { gap: 0; }
+  .twb-stat-val  { font-size: 1.05rem; }
+  .twb-pts       { font-size: 1.4rem; }
+  .twb-match-top { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
 }
 
 @media (max-width: 400px) {
