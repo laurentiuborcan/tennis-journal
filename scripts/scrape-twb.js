@@ -284,12 +284,17 @@ function parseMatchCard(dlHtml, result) {
     }
   }
 
+  // Opponent ranking classification (e.g. "C30.5") from the anchor's visible text
+  const rankMatch = dlHtml.match(/data-url="\/MyAFT\/Players\/Detail\/\d+"[^>]*>([^<]+)\(([^)]*)\)/);
+  const opponentRanking = rankMatch ? rankMatch[2].trim() : '';
+
   return {
     date:        tournoiMatch ? toISODate(tournoiMatch[2]) : '',
     tournament:  tournoiMatch ? tournoiMatch[1].trim() : '',
     category:    secondDd,
     opponent,
     opponentPts,
+    opponentRanking,
     score:       scoreDd,
     result,
   };
