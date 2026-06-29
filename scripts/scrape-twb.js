@@ -246,6 +246,35 @@ function extractDivById(html, id) {
   return null;
 }
 
+/** Map opponent points to a ranking classification per the fixed FFT/AFT scale. */
+function ptsToRanking(pts) {
+  if (pts >= 115) return 'A international';
+  if (pts >= 110) return 'A national';
+  if (pts >= 105) return 'B-15.4';
+  if (pts >= 100) return 'B-15.2';
+  if (pts >= 95)  return 'B-15.1';
+  if (pts >= 90)  return 'B-15';
+  if (pts >= 85)  return 'B0';
+  if (pts >= 80)  return 'B2';
+  if (pts >= 75)  return 'B4';
+  if (pts >= 70)  return 'C15';
+  if (pts >= 65)  return 'C15.1';
+  if (pts >= 60)  return 'C15.2';
+  if (pts >= 55)  return 'C15.3';
+  if (pts >= 50)  return 'C15.4';
+  if (pts >= 45)  return 'C15.5';
+  if (pts >= 40)  return 'C30';
+  if (pts >= 35)  return 'C30.1';
+  if (pts >= 30)  return 'C30.2';
+  if (pts >= 25)  return 'C30.3';
+  if (pts >= 20)  return 'C30.2';
+  if (pts >= 15)  return 'C30.3';
+  if (pts >= 10)  return 'C30.4';
+  if (pts >= 5)   return 'C30.5';
+  if (pts >= 3)   return 'C30.6';
+  return 'NC';
+}
+
 // ── Parsing ──────────────────────────────────────────────────────────────────
 
 const DL_RE          = /<dl[^>]*class="grid-data-item"[^>]*>([\s\S]*?)<\/dl>/gi;
@@ -284,22 +313,13 @@ function parseMatchCard(dlHtml, result) {
     }
   }
 
-  // Opponent ranking classification (e.g. "C30.5") from the anchor's visible text
-  const rankMatch = dlHtml.match(/data-url="\/MyAFT\/Players\/Detail\/\d+"[^>]*>([^<]+)\(([^)]*)\)/);
-  let opponentRanking = rankMatch ? rankMatch[2].trim() : '';
-
-  // Only keep ranking if it looks like a real classification (C15, C30.x, NC, B, etc.)
-  // Reject anything that's just "N pts" or doesn't match a tennis ranking pattern
-  const RANKING_RE = /^(NC|B\d*|C\d+(\.\d+)?|B)$/;
-  if (!RANKING_RE.test(opponentRanking)) opponentRanking = '';
-
   return {
     date:        tournoiMatch ? toISODate(tournoiMatch[2]) : '',
     tournament:  tournoiMatch ? tournoiMatch[1].trim() : '',
     category:    secondDd,
     opponent,
     opponentPts,
-    opponentRanking,
+    opponentRanking: ptsToRanking(opponentPts),
     score:       scoreDd,
     result,
   };
@@ -410,7 +430,7 @@ async function main() {
 }
 
 // Export internals for unit testing; only run when invoked directly.
-module.exports = { parseMatches, parseHeader, dedupe, matchKey, loadExisting, stripTags, toISODate };
+module.exports = { parseMatches, parseHeader, dedupe, matchKey, loadExisting, stripTags, toISODate, ptsToRanking };
 
 if (require.main === module) {
   main().catch(err => {

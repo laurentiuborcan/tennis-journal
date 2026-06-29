@@ -793,6 +793,35 @@ function renderTWB() {
     </div>`;
 }
 
+/** Map opponent points to a ranking classification per the fixed FFT/AFT scale. */
+function ptsToRanking(pts) {
+  if (pts >= 115) return 'A international';
+  if (pts >= 110) return 'A national';
+  if (pts >= 105) return 'B-15.4';
+  if (pts >= 100) return 'B-15.2';
+  if (pts >= 95)  return 'B-15.1';
+  if (pts >= 90)  return 'B-15';
+  if (pts >= 85)  return 'B0';
+  if (pts >= 80)  return 'B2';
+  if (pts >= 75)  return 'B4';
+  if (pts >= 70)  return 'C15';
+  if (pts >= 65)  return 'C15.1';
+  if (pts >= 60)  return 'C15.2';
+  if (pts >= 55)  return 'C15.3';
+  if (pts >= 50)  return 'C15.4';
+  if (pts >= 45)  return 'C15.5';
+  if (pts >= 40)  return 'C30';
+  if (pts >= 35)  return 'C30.1';
+  if (pts >= 30)  return 'C30.2';
+  if (pts >= 25)  return 'C30.3';
+  if (pts >= 20)  return 'C30.2';
+  if (pts >= 15)  return 'C30.3';
+  if (pts >= 10)  return 'C30.4';
+  if (pts >= 5)   return 'C30.5';
+  if (pts >= 3)   return 'C30.6';
+  return 'NC';
+}
+
 function renderTwbMatchCard(m) {
   const isWin = m.result === 'win';
   const oppMatch = m.opponent.match(/title="Plus d.info sur ([^(]+?)\s*\((\d+)\s*pts\)"/);
@@ -807,7 +836,7 @@ function renderTwbMatchCard(m) {
         </div>
         <div class="twb-category">${escHtml(m.category)}</div>
         <div class="twb-match-mid">
-          <span class="twb-opponent">${escHtml(opponent)} <span class="twb-opponent-pts">(${m.opponentPts} pts)</span></span>
+          <span class="twb-opponent">${escHtml(opponent)} <span class="twb-opponent-pts">(${escHtml(ptsToRanking(m.opponentPts))} / ${m.opponentPts} pts)</span></span>
         </div>
         <div class="twb-score">${escHtml(m.score)}</div>
       </div>
