@@ -11,7 +11,7 @@
  * Uses only Node.js built-ins — no npm packages.
  *
  * Auth:   POST https://auth.tppwb.be/Authenticate/Login
- *         form fields AffiliationNumber + PIN (from env TWB_USERNAME / TWB_PIN)
+ *         form fields affiliationNumber + pinCode (from env TWB_USERNAME / TWB_PIN)
  * Results: https://tennis.tppwb.be/MyAFT/?page=mytournois_myresults
  *
  * ── ASSUMPTIONS THAT MAY NEED VERIFICATION AGAINST THE LIVE SITE ─────────────
@@ -210,7 +210,7 @@ async function login(jar) {
   const token = await getLoginToken(jar);
   console.log(`[login] __RequestVerificationToken: ${token ? `found (${token.length} chars)` : 'not present on page'}`);
 
-  const params = new URLSearchParams({ AffiliationNumber: user, PIN: pin });
+  const params = new URLSearchParams({ affiliationNumber: user, pinCode: pin });
   if (token) params.set('__RequestVerificationToken', token);
   console.log(`[login] POSTing fields: ${[...params.keys()].join(', ')}`);
 
@@ -246,7 +246,7 @@ async function login(jar) {
   // landing page as an auth failure.
   const stillOnLoginPage =
     /^login$/i.test(title) ||
-    (/name="AffiliationNumber"/i.test(res.body) && /name="PIN"/i.test(res.body));
+    (/name="affiliationNumber"/i.test(res.body) && /name="pinCode"/i.test(res.body));
 
   if (stillOnLoginPage) {
     console.log('[login] result: FAILURE — still on the login page');
