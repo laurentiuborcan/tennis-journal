@@ -251,7 +251,6 @@ function extractDivById(html, id) {
 const DL_RE          = /<dl[^>]*class="grid-data-item"[^>]*>([\s\S]*?)<\/dl>/gi;
 const DD_RE           = /<dd[^>]*>([\s\S]*?)<\/dd>/gi;
 const ANCHOR_RE       = /Tournoi\s+(.+?)\s+le\s+(\d{2}\/\d{2}\/\d{4})/;
-const OPPONENT_RE     = /title="Plus d(?:'|&#0?39;)info sur\s+([^(]+?)\s*\((\d+)\s*pts?\)"/i;
 const SCORE_RE        = /\d+\/\d+/;
 
 /** Parse one <dl class="grid-data-item"> card into a match object. */
@@ -267,15 +266,15 @@ function parseMatchCard(dlHtml, result) {
   const secondDd = dds[1] || '';
   const scoreDd  = dds.slice(2).find(dd => SCORE_RE.test(dd)) || '';
 
-  const tournoiMatch  = firstDd.match(ANCHOR_RE);
-  const opponentMatch = dlHtml.match(OPPONENT_RE);
+  const tournoiMatch = firstDd.match(ANCHOR_RE);
+  const oppMatch     = dlHtml.match(/title="Plus d'info sur ([^(]+?) \((\d+) pts\)"/);
 
   return {
     date:        tournoiMatch ? toISODate(tournoiMatch[2]) : '',
     tournament:  tournoiMatch ? tournoiMatch[1].trim() : '',
     category:    secondDd,
-    opponent:    opponentMatch ? decodeEntities(opponentMatch[1]).trim() : '',
-    opponentPts: opponentMatch ? parseInt(opponentMatch[2], 10) : 0,
+    opponent:    oppMatch ? oppMatch[1].trim() : '',
+    opponentPts: oppMatch ? parseInt(oppMatch[2]) : 0,
     score:       scoreDd,
     result,
   };
