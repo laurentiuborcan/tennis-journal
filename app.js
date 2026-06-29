@@ -807,7 +807,7 @@ function renderTwbMatchCard(m) {
         </div>
         <div class="twb-category">${escHtml(m.category)}</div>
         <div class="twb-match-mid">
-          <span class="twb-opponent">${escHtml(opponent)} <span class="twb-opponent-pts">(${m.opponentPts} pts)</span></span>
+          <span class="twb-opponent">${escHtml(opponent)} <span class="twb-opponent-pts">(${m.opponentRanking ? `${escHtml(m.opponentRanking)} / ` : ''}${m.opponentPts} pts)</span></span>
         </div>
         <div class="twb-score">${escHtml(m.score)}</div>
       </div>
