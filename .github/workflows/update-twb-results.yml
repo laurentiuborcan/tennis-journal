@@ -1,0 +1,45 @@
+name: Update TWB Tournament Results
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # daily at 06:00 UTC (before the DVL scraper at 07:00)
+  workflow_dispatch:        # manual trigger from GitHub UI
+
+permissions:
+  contents: write           # needed to push the updated JSON back
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    env:
+      TWB_USERNAME: ${{ secrets.TWB_USERNAME }}
+      TWB_PIN: ${{ secrets.TWB_PIN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Run TWB scraper
+        run: node scripts/scrape-twb.js
+
+      - name: Commit and push if data changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/tournaments-twb.json
+          if git diff --cached --quiet; then
+            echo "No changes — TWB results are already up to date."
+          else
+            DATE=$(date -u '+%Y-%m-%d')
+            git commit -m "chore: update TWB tournament results $DATE"
+            git push
+          fi
