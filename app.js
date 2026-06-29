@@ -224,13 +224,15 @@ function getSeason(id) {
 // ===== STATE =====
 let leagueNotes  = lsGet(KEYS.leagueNotes,  {});
 let otherMatches = lsGet(KEYS.otherMatches, []);
+let twbData      = null; // fetched on init from ./data/tournaments-twb.json
 
 const state = {
-  tab:           'me',      // 'me' | 'all' | 'other'
+  tab:           'me',      // 'me' | 'all' | 'other' | 'twb'
   otherView:     'journal', // 'journal' | 'detail' | 'add'
   otherDetailId: null,
   otherEditId:   null,
   otherFormSets: [{ p: '', o: '' }],
+  twbFilter:     'all',     // 'all' | 'win' | 'loss'
 };
 
 // ===== UTILS =====
@@ -250,6 +252,16 @@ function fmtDate(d) {
 
 function fmtDiff(d) {
   return d > 0 ? `+${d}` : String(d);
+}
+
+function fmtDMY(iso) {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function fmtPts(n) {
+  return String(n ?? 0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 function hlName(name) {
@@ -311,6 +323,7 @@ function render() {
     case 'me':    renderMe();    break;
     case 'all':   renderAll();   break;
     case 'other': renderOther(); break;
+    case 'twb':   renderTWB();   break;
     default:      renderMe();
   }
 }
@@ -778,6 +791,98 @@ function submitOtherMatch(e) {
   navigateOther('journal');
 }
 
+// ===== TAB 4: TWB TOURNAMENTS =====
+function toggleTwbFilter(filter) {
+  state.twbFilter = state.twbFilter === filter ? 'all' : filter;
+  render();
+}
+
+function renderTWB() {
+  if (!twbData) {
+    app.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🎾</div>
+        <h2 class="empty-title">TWB data unavailable</h2>
+        <p class="empty-sub">Couldn't load tournament results right now. Please try again later.</p>
+      </div>`;
+    return;
+  }
+
+  const { ranking, totalPoints, lastUpdated, matches } = twbData;
+  const wins   = matches.filter(m => m.result === 'win').length;
+  const losses = matches.filter(m => m.result === 'loss').length;
+
+  const filtered = matches.filter(m => state.twbFilter === 'all' || m.result === state.twbFilter);
+  const sorted   = [...filtered].sort((a, b) => b.date.localeCompare(a.date));
+
+  app.innerHTML = `
+    <div class="twb-view">
+
+      <div class="twb-header">
+        <div class="twb-header-top">
+          <div>
+            <div class="twb-ranking">${escHtml(ranking || 'NC')}</div>
+            <div class="twb-sub">Tournois TWB · Mis à jour le ${fmtDMY(lastUpdated)}</div>
+          </div>
+          <div class="twb-pts-wrap">
+            <span class="twb-pts">${fmtPts(totalPoints)}</span>
+            <span class="twb-pts-label">pts</span>
+          </div>
+        </div>
+        <div class="twb-stats">
+          <div class="twb-stat">
+            <span class="twb-stat-val">${matches.length}</span>
+            <span class="twb-stat-label">Matchs</span>
+          </div>
+          <div class="twb-stat">
+            <span class="twb-stat-val twb-stat-val--green">${wins}</span>
+            <span class="twb-stat-label">Victoires</span>
+          </div>
+          <div class="twb-stat">
+            <span class="twb-stat-val twb-stat-val--red">${losses}</span>
+            <span class="twb-stat-label">Défaites</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="twb-filter-bar">
+        <button class="twb-filter-btn twb-filter-btn--win${state.twbFilter === 'win' ? ' twb-filter-btn--active' : ''}"
+                onclick="toggleTwbFilter('win')">Victoires</button>
+        <button class="twb-filter-btn twb-filter-btn--loss${state.twbFilter === 'loss' ? ' twb-filter-btn--active' : ''}"
+                onclick="toggleTwbFilter('loss')">Défaites</button>
+      </div>
+
+      <div class="twb-match-list">
+        ${sorted.length ? sorted.map(renderTwbMatchCard).join('') : `
+          <div class="empty-state">
+            <div class="empty-icon">🎾</div>
+            <h2 class="empty-title">No matches</h2>
+            <p class="empty-sub">No matches found for this filter.</p>
+          </div>`}
+      </div>
+
+    </div>`;
+}
+
+function renderTwbMatchCard(m) {
+  const isWin = m.result === 'win';
+  return `
+    <div class="twb-match-card">
+      <div class="twb-badge twb-badge--${m.result}">${isWin ? 'V' : 'D'}</div>
+      <div class="twb-match-body">
+        <div class="twb-match-top">
+          <span class="twb-tournament">${escHtml(m.tournament)}</span>
+          <span class="twb-match-date">${fmtDMY(m.date)}</span>
+        </div>
+        <div class="twb-category">${escHtml(m.category)}</div>
+        <div class="twb-match-mid">
+          <span class="twb-opponent">${escHtml(m.opponent)} <span class="twb-opponent-pts">(${m.opponentPts} pts)</span></span>
+        </div>
+        <div class="twb-score">${escHtml(m.score)}</div>
+      </div>
+    </div>`;
+}
+
 // ===== INIT =====
 async function init() {
   document.getElementById('tabsBar').addEventListener('click', e => {
@@ -804,6 +909,14 @@ async function init() {
     }
   } catch {
     // Network or parse error — fall back to hardcoded data silently
+  }
+
+  try {
+    const twbRes = await fetch('./data/tournaments-twb.json');
+    if (!twbRes.ok) throw new Error(`HTTP ${twbRes.status}`);
+    twbData = await twbRes.json();
+  } catch {
+    // Network or parse error — TWB tab will show an unavailable state
   }
 
   render();
