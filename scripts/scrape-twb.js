@@ -38,6 +38,11 @@ const { URL } = require('url');
 const LOGIN_URL   = 'https://auth.tppwb.be/Authenticate/Login';
 const RESULTS_URL = 'https://tennis.tppwb.be/MyAFT/?page=mytournois_myresults';
 const OUT         = path.join(__dirname, '..', 'data', 'tournaments-twb.json');
+const DEBUG_HTML  = path.join(__dirname, '..', 'data', 'twb-debug.html');
+
+// When TWB_DEBUG=1, dump the first period's raw HTML to DEBUG_HTML and exit
+// before parsing, so the real page structure can be inspected.
+const DEBUG = process.env.TWB_DEBUG === '1';
 
 // Ranking-period option labels to iterate. These are sent as the value of
 // PERIOD_PARAM on each results request (see assumption #1 above).
@@ -309,14 +314,22 @@ async function main() {
   let header         = { ranking: '', totalPoints: 0 };
 
   for (const period of PERIODS) {
-    let html;
-    if (period === 'Période courante') {
-      // The landing page already reflects the current period.
-      html = await fetchPeriod(jar, period);
-    } else {
-      html = await fetchPeriod(jar, period);
-    }
+    const html = await fetchPeriod(jar, period);
     periodsFetched++;
+
+    // Log a preview of every period's HTML so the structure is visible in the
+    // GitHub Action logs.
+    console.log(`\n──── HTML preview for "${period}" (first 2000 chars) ────`);
+    console.log(html.slice(0, 2000));
+    console.log('──── end preview ────\n');
+
+    // Debug mode: dump the first fetched page in full and stop before parsing.
+    if (DEBUG) {
+      fs.writeFileSync(DEBUG_HTML, html);
+      console.log(`✓ TWB_DEBUG=1 — wrote raw HTML of "${period}" to ${DEBUG_HTML} (${html.length} bytes)`);
+      console.log('Exiting before parse so the real page structure can be inspected.');
+      return;
+    }
 
     if (period === 'Période courante') {
       header = parseHeader(html.length ? html : landing.body);
