@@ -286,7 +286,12 @@ function parseMatchCard(dlHtml, result) {
 
   // Opponent ranking classification (e.g. "C30.5") from the anchor's visible text
   const rankMatch = dlHtml.match(/data-url="\/MyAFT\/Players\/Detail\/\d+"[^>]*>([^<]+)\(([^)]*)\)/);
-  const opponentRanking = rankMatch ? rankMatch[2].trim() : '';
+  let opponentRanking = rankMatch ? rankMatch[2].trim() : '';
+
+  // Only keep ranking if it looks like a real classification (C15, C30.x, NC, B, etc.)
+  // Reject anything that's just "N pts" or doesn't match a tennis ranking pattern
+  const RANKING_RE = /^(NC|B\d*|C\d+(\.\d+)?|B)$/;
+  if (!RANKING_RE.test(opponentRanking)) opponentRanking = '';
 
   return {
     date:        tournoiMatch ? toISODate(tournoiMatch[2]) : '',
