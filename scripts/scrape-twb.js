@@ -327,17 +327,31 @@ function parseHeader(html) {
   };
 }
 
-/** Deduplicate matches that appear across multiple ordinals. */
+function matchKey(mt) {
+  return [mt.date, mt.tournament, mt.opponent].join('|');
+}
+
+/** Deduplicate matches that appear across multiple ordinals (or scrape runs). */
 function dedupe(matches) {
   const seen = new Set();
   const out  = [];
   for (const mt of matches) {
-    const key = [mt.date, mt.tournament, mt.opponent].join('|');
+    const key = matchKey(mt);
     if (seen.has(key)) continue;
     seen.add(key);
     out.push(mt);
   }
   return out;
+}
+
+/** Load previously saved matches from OUT, if the file exists and is valid. */
+function loadExisting() {
+  try {
+    const data = JSON.parse(fs.readFileSync(OUT, 'utf8'));
+    return Array.isArray(data.matches) ? data.matches : [];
+  } catch {
+    return [];
+  }
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -355,9 +369,17 @@ async function main() {
     allMatches = allMatches.concat(parseMatches(html));
   }
 
-  const matches = dedupe(allMatches);
-  const wins    = matches.filter(x => x.result === 'win').length;
-  const losses  = matches.filter(x => x.result === 'loss').length;
+  const scraped  = dedupe(allMatches);
+  const existing = loadExisting();
+
+  const existingKeys = new Set(existing.map(matchKey));
+  const newCount      = scraped.filter(mt => !existingKeys.has(matchKey(mt))).length;
+
+  const matches = dedupe(scraped.concat(existing))
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  const wins   = matches.filter(x => x.result === 'win').length;
+  const losses = matches.filter(x => x.result === 'loss').length;
 
   const today = new Date().toISOString().slice(0, 10);
 
@@ -370,14 +392,15 @@ async function main() {
 
   fs.writeFileSync(OUT, JSON.stringify(output, null, 2) + '\n');
 
-  console.log(`✓ matches found: ${matches.length}`);
-  console.log(`✓ wins:          ${wins}`);
-  console.log(`✓ losses:        ${losses}`);
-  console.log(`✓ written to     ${OUT}`);
+  console.log(`✓ matches found:     ${matches.length}`);
+  console.log(`✓ new matches added: ${newCount}`);
+  console.log(`✓ wins:              ${wins}`);
+  console.log(`✓ losses:            ${losses}`);
+  console.log(`✓ written to         ${OUT}`);
 }
 
 // Export internals for unit testing; only run when invoked directly.
-module.exports = { parseMatches, parseHeader, dedupe, stripTags, toISODate };
+module.exports = { parseMatches, parseHeader, dedupe, matchKey, loadExisting, stripTags, toISODate };
 
 if (require.main === module) {
   main().catch(err => {
