@@ -397,12 +397,18 @@ async function main() {
     periodsFetched++;
 
     // Log a preview of every period's HTML so the structure is visible in the
-    // GitHub Action logs. The first period gets a longer preview so the
-    // dump reaches past <head> into the body where the match cards live.
-    const previewLen = periodsFetched === 1 ? 8000 : 2000;
-    console.log(`\n──── HTML preview for "${period}" (first ${previewLen} chars) ────`);
-    console.log(html.slice(0, previewLen));
-    console.log('──── end preview ────\n');
+    // GitHub Action logs. The first period shows the tail of the page (where
+    // the match cards live) along with the total length, instead of the head.
+    if (periodsFetched === 1) {
+      console.log(`\n──── HTML total length for "${period}": ${html.length} chars ────`);
+      console.log(`──── HTML preview for "${period}" (last 3000 chars) ────`);
+      console.log(html.slice(-3000));
+      console.log('──── end preview ────\n');
+    } else {
+      console.log(`\n──── HTML preview for "${period}" (first 2000 chars) ────`);
+      console.log(html.slice(0, 2000));
+      console.log('──── end preview ────\n');
+    }
 
     // Debug mode: dump the first fetched page in full and stop before parsing.
     if (DEBUG) {
