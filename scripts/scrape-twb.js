@@ -357,6 +357,64 @@ function parseHeader(html) {
   };
 }
 
+const TOTAL_RE       = /^Total\s*:?$/i;
+const MOYENNE_RE     = /Moyenne\s+pond[eé]r[eé]e\s*:?/i;
+const TOURNOI_ROW_RE = /^(?:TOURNOIS\s*-\s*)?(.+?)\((\d+)\)\s+(\d{2}\/\d{2}\/\d{4})\s+(.+)$/i;
+const POINTS_RE      = /([\d.]+)\s*pts/i;
+const FINAL_PTS_RE   = /=\s*([\d.]+)\s*pts/i;
+
+/**
+ * Parse the "Points obtenus pour le calcul du classement simple" breakdown
+ * out of the #pointDetailsModalDialog modal embedded in the ordinal=1
+ * results page — the per-tournament results counted toward the current
+ * ranking period, the total, and the weighted-average formula.
+ */
+function parsePointsBreakdown(html) {
+  const result = { bestResults: [], totalPoints: 0, weightedFormula: '', finalPoints: 0 };
+
+  const modal = extractDivById(html, 'pointDetailsModalDialog');
+  if (!modal) return result;
+
+  const dlRe = /<dl[^>]*class="grid-data-item"[^>]*>([\s\S]*?)<\/dl>/gi;
+  let dlMatch;
+  while ((dlMatch = dlRe.exec(modal)) !== null) {
+    const dds = [];
+    const ddRe = /<dd[^>]*>([\s\S]*?)<\/dd>/gi;
+    let ddMatch;
+    while ((ddMatch = ddRe.exec(dlMatch[1])) !== null) {
+      dds.push(stripTags(ddMatch[1]));
+    }
+    if (dds.length < 2) continue;
+
+    if (TOTAL_RE.test(dds[0])) {
+      const m = dds[1].match(POINTS_RE);
+      result.totalPoints = m ? parseFloat(m[1]) : 0;
+      continue;
+    }
+
+    if (MOYENNE_RE.test(dds[0])) {
+      result.weightedFormula = dds[1];
+      const m = dds[1].match(FINAL_PTS_RE);
+      result.finalPoints = m ? parseFloat(m[1]) : 0;
+      continue;
+    }
+
+    const rowMatch = dds[0].match(TOURNOI_ROW_RE);
+    if (rowMatch) {
+      const ptsMatch = dds[1].match(POINTS_RE);
+      result.bestResults.push({
+        tournament: rowMatch[1].trim(),
+        club:       rowMatch[2],
+        date:       toISODate(rowMatch[3]),
+        category:   rowMatch[4].trim(),
+        points:     ptsMatch ? parseFloat(ptsMatch[1]) : 0,
+      });
+    }
+  }
+
+  return result;
+}
+
 function matchKey(mt) {
   return [mt.date, mt.tournament, mt.opponent].join('|');
 }
@@ -390,12 +448,16 @@ async function main() {
   const jar = createJar();
   await login(jar);
 
-  let allMatches = [];
-  let header     = { ranking: '', totalPoints: 0 };
+  let allMatches      = [];
+  let header          = { ranking: '', totalPoints: 0 };
+  let pointsBreakdown = { bestResults: [], totalPoints: 0, weightedFormula: '', finalPoints: 0 };
 
   for (const ordinal of ORDINALS) {
     const html = await fetchOrdinal(jar, ordinal);
-    if (ordinal === 1) header = parseHeader(html);
+    if (ordinal === 1) {
+      header          = parseHeader(html);
+      pointsBreakdown = parsePointsBreakdown(html);
+    }
     allMatches = allMatches.concat(parseMatches(html));
   }
 
@@ -417,6 +479,7 @@ async function main() {
     lastUpdated: today,
     ranking:     header.ranking,
     totalPoints: header.totalPoints,
+    pointsBreakdown,
     matches,
   };
 
@@ -430,7 +493,7 @@ async function main() {
 }
 
 // Export internals for unit testing; only run when invoked directly.
-module.exports = { parseMatches, parseHeader, dedupe, matchKey, loadExisting, stripTags, toISODate, ptsToRanking };
+module.exports = { parseMatches, parseHeader, parsePointsBreakdown, dedupe, matchKey, loadExisting, stripTags, toISODate, ptsToRanking };
 
 if (require.main === module) {
   main().catch(err => {
