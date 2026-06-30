@@ -361,7 +361,6 @@ const TOTAL_RE       = /^Total\s*:?$/i;
 const MOYENNE_RE     = /Moyenne\s+pond[eé]r[eé]e\s*:?/i;
 const TOURNOI_ROW_RE = /^(?:TOURNOIS\s*-\s*)?(.+?)\((\d+)\)\s+(\d{2}\/\d{2}\/\d{4})\s+(.+)$/i;
 const POINTS_RE      = /([\d.]+)\s*pts/i;
-const FINAL_PTS_RE   = /=\s*([\d.]+)\s*pts/i;
 
 /**
  * Parse the "Points obtenus pour le calcul du classement simple" breakdown
@@ -375,6 +374,7 @@ function parsePointsBreakdown(html) {
   const modal = extractDivById(html, 'pointDetailsModalDialog');
   if (!modal) return result;
 
+  // Per-tournament results: <dl class="grid-data-item"><dd>...</dd><dd>...</dd></dl>
   const dlRe = /<dl[^>]*class="grid-data-item"[^>]*>([\s\S]*?)<\/dl>/gi;
   let dlMatch;
   while ((dlMatch = dlRe.exec(modal)) !== null) {
@@ -386,19 +386,6 @@ function parsePointsBreakdown(html) {
     }
     if (dds.length < 2) continue;
 
-    if (TOTAL_RE.test(dds[0])) {
-      const m = dds[1].match(POINTS_RE);
-      result.totalPoints = m ? parseFloat(m[1]) : 0;
-      continue;
-    }
-
-    if (MOYENNE_RE.test(dds[0])) {
-      result.weightedFormula = dds[1];
-      const m = dds[1].match(FINAL_PTS_RE);
-      result.finalPoints = m ? parseFloat(m[1]) : 0;
-      continue;
-    }
-
     const rowMatch = dds[0].match(TOURNOI_ROW_RE);
     if (rowMatch) {
       const ptsMatch = dds[1].match(POINTS_RE);
@@ -409,6 +396,33 @@ function parsePointsBreakdown(html) {
         category:   rowMatch[4].trim(),
         points:     ptsMatch ? parseFloat(ptsMatch[1]) : 0,
       });
+    }
+  }
+
+  // Total / weighted-average rows: plain <dl><dt>...</dt><dd>...</dd></dl>
+  // (no "grid-data-item" class, content may be wrapped in <strong>).
+  const dlDtRe = /<dl(?:\s[^>]*)?>([\s\S]*?)<\/dl>/gi;
+  let dlDtMatch;
+  while ((dlDtMatch = dlDtRe.exec(modal)) !== null) {
+    const block   = dlDtMatch[1];
+    const dtMatch = block.match(/<dt[^>]*>([\s\S]*?)<\/dt>/i);
+    const ddMatch = block.match(/<dd[^>]*>([\s\S]*?)<\/dd>/i);
+    if (!dtMatch || !ddMatch) continue;
+
+    const dt = stripTags(dtMatch[1]);
+    const dd = stripTags(ddMatch[1]);
+
+    if (TOTAL_RE.test(dt)) {
+      const m = dd.match(POINTS_RE);
+      result.totalPoints = m ? parseFloat(m[1]) : 0;
+      continue;
+    }
+
+    if (MOYENNE_RE.test(dt)) {
+      result.weightedFormula = dd;
+      const tail = dd.slice(dd.lastIndexOf('=') + 1).trim();
+      const m = tail.match(POINTS_RE);
+      result.finalPoints = m ? parseFloat(m[1]) : 0;
     }
   }
 
