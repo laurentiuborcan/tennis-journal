@@ -53,6 +53,16 @@
   },
   "matches": [
     {
+      "date": "2026-06-30",
+      "tournament": "OMBRAGE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "NGUYEN Minh-Tue",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "6/3-6/2-0/0",
+      "result": "win"
+    },
+    {
       "date": "2026-06-28",
       "tournament": "OMBRAGE",
       "category": "Simples Messieurs 35 5",
