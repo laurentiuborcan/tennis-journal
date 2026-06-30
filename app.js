@@ -162,6 +162,7 @@ const state = {
   otherEditId:   null,
   otherFormSets: [{ p: '', o: '' }],
   twbFilter:     'all',     // 'all' | 'win' | 'loss'
+  twbPointsModalOpen: false,
 };
 
 // ===== UTILS =====
@@ -732,6 +733,16 @@ function toggleTwbFilter(filter) {
   render();
 }
 
+function openPointsBreakdown() {
+  state.twbPointsModalOpen = true;
+  render();
+}
+
+function closePointsBreakdown() {
+  state.twbPointsModalOpen = false;
+  render();
+}
+
 function renderTWB() {
   if (!twbData) {
     app.innerHTML = `
@@ -743,12 +754,19 @@ function renderTWB() {
     return;
   }
 
-  const { ranking, totalPoints, lastUpdated, matches } = twbData;
+  const { ranking, totalPoints, lastUpdated, matches, pointsBreakdown } = twbData;
   const wins   = matches.filter(m => m.result === 'win').length;
   const losses = matches.filter(m => m.result === 'loss').length;
 
   const filtered = matches.filter(m => state.twbFilter === 'all' || m.result === state.twbFilter);
   const sorted   = [...filtered].sort((a, b) => b.date.localeCompare(a.date));
+
+  const hasBreakdown = !!(pointsBreakdown && pointsBreakdown.bestResults && pointsBreakdown.bestResults.length);
+
+  const ptsContent = `
+    <span class="twb-pts">${fmtPts(totalPoints)}</span>
+    <span class="twb-pts-label">pts</span>
+    ${hasBreakdown ? '<span class="twb-pts-info" aria-hidden="true">i</span>' : ''}`;
 
   app.innerHTML = `
     <div class="twb-view">
@@ -759,10 +777,9 @@ function renderTWB() {
             <div class="twb-ranking">${escHtml(ranking || 'NC')}</div>
             <div class="twb-sub">Tournois TWB · Mis à jour le ${fmtDMY(lastUpdated)}</div>
           </div>
-          <div class="twb-pts-wrap">
-            <span class="twb-pts">${fmtPts(totalPoints)}</span>
-            <span class="twb-pts-label">pts</span>
-          </div>
+          ${hasBreakdown
+            ? `<button type="button" class="twb-pts-wrap twb-pts-wrap--clickable" onclick="openPointsBreakdown()" aria-label="Voir le calcul du classement">${ptsContent}</button>`
+            : `<div class="twb-pts-wrap">${ptsContent}</div>`}
         </div>
         <div class="twb-stats">
           <div class="twb-stat">
@@ -796,6 +813,38 @@ function renderTWB() {
           </div>`}
       </div>
 
+    </div>
+    ${state.twbPointsModalOpen && hasBreakdown ? renderPointsBreakdownModal(pointsBreakdown) : ''}`;
+}
+
+function renderPointsBreakdownModal(pointsBreakdown) {
+  const { bestResults, totalPoints, weightedFormula } = pointsBreakdown;
+  return `
+    <div class="points-breakdown-overlay" onclick="closePointsBreakdown()">
+      <div class="points-breakdown-modal" onclick="event.stopPropagation()">
+        <div class="points-breakdown-header">
+          <h3 class="points-breakdown-title">Calcul du classement</h3>
+          <button type="button" class="points-breakdown-close" onclick="closePointsBreakdown()" aria-label="Fermer">✕</button>
+        </div>
+        <div class="points-breakdown-list">
+          ${bestResults.map(r => `
+            <div class="points-breakdown-row">
+              <div class="points-breakdown-row-main">
+                <span class="points-breakdown-tournament">${escHtml(r.tournament)}</span>
+                <span class="points-breakdown-date">${fmtDMY(r.date)}</span>
+              </div>
+              <div class="points-breakdown-row-sub">
+                <span class="points-breakdown-category">${escHtml(r.category)}</span>
+                <span class="points-breakdown-points">${r.points} pts</span>
+              </div>
+            </div>`).join('')}
+        </div>
+        <div class="points-breakdown-total">
+          <span>Total</span>
+          <span>${totalPoints} pts</span>
+        </div>
+        ${weightedFormula ? `<div class="points-breakdown-formula">${escHtml(weightedFormula)}</div>` : ''}
+      </div>
     </div>`;
 }
 
