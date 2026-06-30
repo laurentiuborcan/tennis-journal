@@ -66,10 +66,6 @@ textarea { resize: vertical; }
 .logo-text { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.3px; }
 
 /* ===== SEASON BAR ===== */
-.season-bar {
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
-}
 .season-bar-inner {
   max-width: 820px;
   margin: 0 auto;
@@ -104,7 +100,6 @@ textarea { resize: vertical; }
 
 /* ===== TABS ===== */
 .tabs-bar {
-  border-bottom: 1px solid var(--border);
   width: 100%;
 }
 .tabs-bar-inner {
@@ -114,9 +109,11 @@ textarea { resize: vertical; }
   margin: 0 auto;
   padding: 0 1.25rem;
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 }
-.tabs-bar-inner::-webkit-scrollbar { height: 0; }
+.tabs-bar-inner::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
 .tab-btn {
   padding: 0.7rem 1.1rem;
