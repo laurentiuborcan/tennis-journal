@@ -2,6 +2,55 @@
   "lastUpdated": "2026-06-30",
   "ranking": "C30.4",
   "totalPoints": 51387,
+  "pointsBreakdown": {
+    "bestResults": [
+      {
+        "tournament": "T.C. MOUNIER",
+        "club": "1099",
+        "date": "2026-05-03",
+        "category": "Messieurs 35 5",
+        "points": 83.85
+      },
+      {
+        "tournament": "EVERE WHITE STAR TENNIS CLUB",
+        "club": "1052",
+        "date": "2026-06-28",
+        "category": "Messieurs 35 6",
+        "points": 38.5
+      },
+      {
+        "tournament": "CASTLE CLUB WEZEMBEEK",
+        "club": "1064",
+        "date": "2025-11-02",
+        "category": "Messieurs 5",
+        "points": 2
+      },
+      {
+        "tournament": "R. OREE T.H.B.",
+        "club": "1033",
+        "date": "2025-11-02",
+        "category": "Messieurs 5",
+        "points": 2
+      },
+      {
+        "tournament": "LES EGLANTIERS T.C.",
+        "club": "1076",
+        "date": "2026-01-04",
+        "category": "Messieurs 35 5",
+        "points": 2
+      },
+      {
+        "tournament": "EVERE WHITE STAR TENNIS CLUB",
+        "club": "1052",
+        "date": "2026-06-28",
+        "category": "Messieurs 35 5",
+        "points": 2
+      }
+    ],
+    "totalPoints": 0,
+    "weightedFormula": "",
+    "finalPoints": 0
+  },
   "matches": [
     {
       "date": "2026-06-28",
