@@ -858,6 +858,31 @@ textarea { resize: vertical; }
 .twb-pts-wrap { display: flex; align-items: baseline; gap: 0.25rem; flex-shrink: 0; }
 .twb-pts       { font-size: 1.7rem; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
 .twb-pts-label { font-size: 0.78rem; color: var(--text-muted); }
+.twb-pts-wrap--clickable {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.3rem;
+  margin: -0.15rem -0.3rem;
+  transition: background var(--transition);
+}
+.twb-pts-wrap--clickable:hover { background: rgba(255,255,255,0.05); }
+.twb-pts-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 0.05rem;
+  align-self: flex-start;
+  border: 1px solid var(--text-muted);
+  border-radius: 50%;
+  font-size: 0.6rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text-muted);
+  transition: border-color var(--transition), color var(--transition);
+}
+.twb-pts-wrap--clickable:hover .twb-pts-info { border-color: var(--green); color: var(--green); }
 
 .twb-stats {
   display: flex;
@@ -959,6 +984,111 @@ textarea { resize: vertical; }
 .twb-opponent     { font-size: 0.85rem; color: var(--text); }
 .twb-opponent-pts { font-size: 0.78rem; color: var(--text-muted); }
 .twb-score { font-size: 0.85rem; font-weight: 600; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+/* ===== POINTS BREAKDOWN MODAL ===== */
+.points-breakdown-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 100;
+  animation: fadeIn 0.15s ease;
+}
+.points-breakdown-modal {
+  width: 100%;
+  max-width: 460px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hl);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+  padding: 1.25rem 1.4rem 1.4rem;
+}
+.points-breakdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.points-breakdown-title { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.points-breakdown-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.points-breakdown-close:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+
+.points-breakdown-list { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 0.9rem; }
+.points-breakdown-row {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+}
+.points-breakdown-row-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.points-breakdown-tournament {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.points-breakdown-date { font-size: 0.75rem; color: var(--text-muted); flex-shrink: 0; }
+.points-breakdown-row-sub {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+.points-breakdown-category { font-size: 0.78rem; color: var(--text-muted); }
+.points-breakdown-points {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.points-breakdown-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.points-breakdown-total span:last-child { color: var(--green); font-variant-numeric: tabular-nums; }
+
+.points-breakdown-formula {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--green-glow);
+  border: 1px solid var(--green-dim);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
