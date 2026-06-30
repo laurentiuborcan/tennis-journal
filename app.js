@@ -156,7 +156,7 @@ let otherMatches = lsGet(KEYS.otherMatches, []);
 let twbData      = null; // fetched on init from ./data/tournaments-twb.json
 
 const state = {
-  tab:           'me',      // 'me' | 'all' | 'other' | 'twb'
+  tab:           'twb',     // 'me' | 'all' | 'other' | 'twb'
   otherView:     'journal', // 'journal' | 'detail' | 'add'
   otherDetailId: null,
   otherEditId:   null,
@@ -219,6 +219,12 @@ function switchSeason(id) {
 function renderSeasonSelector() {
   const bar = document.getElementById('seasonBar');
   if (!bar) return;
+  if (state.tab !== 'me' && state.tab !== 'all') {
+    bar.style.display = 'none';
+    bar.innerHTML = '';
+    return;
+  }
+  bar.style.display = '';
   const options = SEASONS.map(s => {
     const label = s.status === 'active' ? `${s.label} ●` : s.label;
     return `<option value="${escHtml(s.id)}"${s.id === currentSeasonId ? ' selected' : ''}>${escHtml(label)}</option>`;
@@ -851,9 +857,11 @@ async function init() {
     switchTab(btn.dataset.tab);
   });
 
-  // Show loading indicator while fetching active season data
+  // Show loading indicator while fetching active season data (only relevant on Davis League tabs)
   const seasonBar = document.getElementById('seasonBar');
-  seasonBar.innerHTML = `<div class="season-bar-inner"><span class="season-label season-label--loading">Loading…</span></div>`;
+  if (state.tab === 'me' || state.tab === 'all') {
+    seasonBar.innerHTML = `<div class="season-bar-inner"><span class="season-label season-label--loading">Loading…</span></div>`;
+  }
 
   try {
     const res  = await fetch('./data/season-2025-26.json');
