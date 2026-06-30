@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29",
+  "lastUpdated": "2026-06-30",
   "ranking": "C30.4",
   "totalPoints": 51387,
   "matches": [
@@ -9,7 +9,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "SOMERS Matthieu",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "6/2-6/0-0/0",
       "result": "loss"
     },
@@ -19,7 +19,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "SINGH Sandeep Kumar",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/3-6/2-0/0",
       "result": "loss"
     },
@@ -29,7 +29,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "ORANI Stefano",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "4/6-6/1-0/0 Ab.",
       "result": "win"
     },
@@ -39,7 +39,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "Suciu Serban",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "6/1-6/2-0/0",
       "result": "loss"
     },
@@ -49,7 +49,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "ROELANDS Bruno",
       "opponentPts": 30,
-      "opponentRanking": "30 pts",
+      "opponentRanking": "C30.2",
       "score": "6/1-7/5-0/0",
       "result": "loss"
     },
@@ -59,7 +59,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "SMITH OLIVIER",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "6/3-6/4-0/0",
       "result": "win"
     },
@@ -69,7 +69,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "LAMMENS Alexandre",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "6/2-7/5-0/0",
       "result": "loss"
     },
@@ -79,7 +79,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "CATTOIR Amaury",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "6/2-6/2-0/0",
       "result": "loss"
     },
@@ -89,7 +89,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "TIMPERMAN Aurélien",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "5/7-6/3-7/6",
       "result": "loss"
     },
@@ -99,7 +99,7 @@
       "category": "Simples Messieurs 50 4",
       "opponent": "Tatulli Massimo",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "6/4-6/0-0/0",
       "result": "loss"
     },
@@ -109,7 +109,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "VAN MEERBEECK Cédric",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "6/0-6/4-0/0",
       "result": "loss"
     },
@@ -119,7 +119,7 @@
       "category": "Simples Messieurs 50 4",
       "opponent": "SANTORO Enrico",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "6/0-6/3-0/0",
       "result": "loss"
     },
@@ -129,7 +129,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "TIMMERMAN Fabien",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "6/2-6/3-0/0",
       "result": "loss"
     },
@@ -139,7 +139,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "WINDERICKX Dimitri",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/4-6/2-0/0",
       "result": "loss"
     },
@@ -149,7 +149,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "KOGUC Tomasz",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "3/2-0/0-0/0 Ab.",
       "result": "loss"
     },
@@ -159,7 +159,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "DIJKSTRA SALVADOR PABLO",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/2-6/4-0/0",
       "result": "loss"
     },
@@ -169,7 +169,7 @@
       "category": "Simples Messieurs 50 4",
       "opponent": "SANTORO Enrico",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "7/6-6/1-0/0",
       "result": "loss"
     },
@@ -179,7 +179,7 @@
       "category": "Simples Messieurs 50 4",
       "opponent": "NAETS Noel",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "6/4-7/6-0/0",
       "result": "loss"
     },
@@ -189,7 +189,7 @@
       "category": "Simples Messieurs 50 4",
       "opponent": "LECLERCQ Sébastian",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "6/1-6/2-0/0",
       "result": "win"
     },
@@ -199,7 +199,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "NAGEL Mathieu",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "3/6-6/0-6/1",
       "result": "loss"
     },
@@ -209,7 +209,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "GRIMM NIKITA",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "0/0-0/0-0/0 WO",
       "result": "win"
     },
@@ -219,7 +219,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "GAHYLLE-CARUSO Vincent",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "4/6-6/1-6/1",
       "result": "loss"
     },
@@ -229,7 +229,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "JACOBS Rémi",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "2/6-6/1-6/4",
       "result": "loss"
     },
@@ -239,7 +239,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "VAN HOUTE Gabriel",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/4-6/3-0/0",
       "result": "win"
     },
@@ -249,7 +249,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "MANSVELT Louis",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/2-6/4-0/0",
       "result": "win"
     },
@@ -259,7 +259,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "PAINDAVEINE Davy",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "3/6-6/3-6/1",
       "result": "loss"
     },
@@ -269,7 +269,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "BIANCHI Giovanni",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/0-6/2-0/0",
       "result": "win"
     },
@@ -279,7 +279,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "LOOSE Florian",
       "opponentPts": 30,
-      "opponentRanking": "30 pts",
+      "opponentRanking": "C30.2",
       "score": "7/5-6/2-0/0",
       "result": "loss"
     },
@@ -289,7 +289,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "LOOSE Florian",
       "opponentPts": 30,
-      "opponentRanking": "30 pts",
+      "opponentRanking": "C30.2",
       "score": "6/2-6/2-0/0",
       "result": "loss"
     },
@@ -299,7 +299,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "TIMMERMAN Fabien",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/1-6/2-0/0",
       "result": "loss"
     },
@@ -309,7 +309,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "DE REUS Jean-Valery",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "6/4-6/0-0/0",
       "result": "win"
     },
@@ -319,7 +319,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "Gatti Olivier",
       "opponentPts": 30,
-      "opponentRanking": "30 pts",
+      "opponentRanking": "C30.2",
       "score": "7/6-6/0-0/0",
       "result": "win"
     },
@@ -329,7 +329,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "Bruynincx Olivier",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/2-6/2-0/0",
       "result": "win"
     },
@@ -339,7 +339,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "Kaninda Barth",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "6/3-6/2-0/0",
       "result": "win"
     },
@@ -349,7 +349,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "RENARD Frédéric",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "6/4-6/0-0/0",
       "result": "loss"
     },
@@ -359,7 +359,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "DE KERCKHOVE Paul",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "6/0-6/3-0/0",
       "result": "loss"
     },
@@ -369,7 +369,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "Jaffer Zulfikar",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/2-2/6-6/4",
       "result": "win"
     },
@@ -379,7 +379,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "DEBORRE Valery",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/2-6/0-0/0",
       "result": "loss"
     },
@@ -389,7 +389,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "Maquenne Olivier",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "6/0-6/0-0/0",
       "result": "loss"
     },
@@ -399,7 +399,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "JONCKHEERE Christophe",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "5/7-6/4-6/3",
       "result": "loss"
     },
@@ -409,7 +409,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "FERON Bernard",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "6/0-1/0-0/0 Ab.",
       "result": "loss"
     },
@@ -419,7 +419,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "KESZEI ETIENNE",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/1-6/0-0/0",
       "result": "win"
     },
@@ -429,7 +429,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "PAILLET Matthieu",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/3-6/2-0/0",
       "result": "win"
     },
@@ -439,7 +439,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "Ionescu Filip",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "6/2-6/1-0/0",
       "result": "loss"
     },
@@ -449,7 +449,7 @@
       "category": "Simples Messieurs 5",
       "opponent": "RANSBOTYN Timoté",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "7/6-6/4-0/0",
       "result": "win"
     },
@@ -459,7 +459,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "HUYNH HUU Phi-Long",
       "opponentPts": 25,
-      "opponentRanking": "25 pts",
+      "opponentRanking": "C30.3",
       "score": "5/7-6/3-7/5",
       "result": "loss"
     },
@@ -469,7 +469,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "Mo Dennis",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "2/6-6/3-6/4",
       "result": "win"
     },
@@ -479,7 +479,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "CRUCIFIX Mikaël",
       "opponentPts": 30,
-      "opponentRanking": "30 pts",
+      "opponentRanking": "C30.2",
       "score": "6/2-6/1-0/0",
       "result": "loss"
     },
@@ -489,7 +489,7 @@
       "category": "Simples Messieurs 45 4",
       "opponent": "WOONKON Suwatchai",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "2/6-0/4-0/0 Ab.",
       "result": "loss"
     },
@@ -499,7 +499,7 @@
       "category": "Simples Messieurs 45 5",
       "opponent": "WANG Tien-Sing",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/3-7/5-0/0",
       "result": "loss"
     },
@@ -509,7 +509,7 @@
       "category": "Simples Messieurs 45 5",
       "opponent": "TABURY Joel",
       "opponentPts": 10,
-      "opponentRanking": "10 pts",
+      "opponentRanking": "C30.4",
       "score": "6/4-7/5-0/0",
       "result": "win"
     },
@@ -519,7 +519,7 @@
       "category": "Simples Messieurs 45 4",
       "opponent": "VAN GILS Pierre-Yves",
       "opponentPts": 30,
-      "opponentRanking": "30 pts",
+      "opponentRanking": "C30.2",
       "score": "6/3-6/0-0/0",
       "result": "loss"
     },
@@ -529,7 +529,7 @@
       "category": "Simples Messieurs 45 5",
       "opponent": "WITSCHKE TOBIAS",
       "opponentPts": 5,
-      "opponentRanking": "5 pts",
+      "opponentRanking": "C30.5",
       "score": "6/0-6/3-0/0",
       "result": "win"
     },
@@ -539,7 +539,7 @@
       "category": "Simples Messieurs 45 5",
       "opponent": "LE MARCHAND Philippe",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/3-6/0-0/0",
       "result": "win"
     },
@@ -549,7 +549,7 @@
       "category": "Simples Messieurs 45 4",
       "opponent": "Kaninda Barth",
       "opponentPts": 20,
-      "opponentRanking": "20 pts",
+      "opponentRanking": "C30.2",
       "score": "6/4-6/0-0/0",
       "result": "win"
     },
@@ -559,7 +559,7 @@
       "category": "Simples Messieurs 45 5",
       "opponent": "ARIU Lorenzo",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/3-7/5-0/0",
       "result": "loss"
     },
@@ -569,7 +569,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "COUY JOAO",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/4-6/1-0/0",
       "result": "loss"
     },
@@ -579,7 +579,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "Ottoz Benjamin",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/1-6/3-0/0",
       "result": "loss"
     },
@@ -589,7 +589,7 @@
       "category": "Simples Messieurs 35 5",
       "opponent": "SCLEP GUY",
       "opponentPts": 15,
-      "opponentRanking": "15 pts",
+      "opponentRanking": "C30.3",
       "score": "6/2-6/0-0/0",
       "result": "loss"
     },
@@ -599,7 +599,7 @@
       "category": "Simples Messieurs 35 6",
       "opponent": "COUY JOAO",
       "opponentPts": 3,
-      "opponentRanking": "3 pts",
+      "opponentRanking": "C30.6",
       "score": "6/2-6/1-0/0",
       "result": "loss"
     }
