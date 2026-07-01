@@ -143,6 +143,102 @@ const SEASONS = [
   },
 ];
 
+// ── Other Matches — seeded from opponent notes history ──────────────────────
+// One entry per opponent. date/score/result reflect the most recent meeting;
+// notes summarize the full head-to-head history when there were several.
+const OTHER_MATCHES_SEED = [
+  {
+    id: 'om-la-jisse', date: '2024-02-14', opponent: 'La Jisse', location: '',
+    sets: [{ p: 4, o: 10 }], result: 'loss', createdAt: 1,
+    notes: "Lost 4-10, fell behind 1-7 early. He has a strong two-handed backhand — early, flat, deep, with good angles — and hit to my backhand 80% of the time. Quick feet, sharp angled short balls, weak serve that I didn't punish enough. Too many unforced errors and a rushed first serve.\n\nTakeaway: attack his weak second serve, respect the backhand depth/angle, don't hurry the first serve."
+  },
+  {
+    id: 'om-xavier-naegel', date: '2024-02-17', opponent: 'Xavier Naegel', location: '',
+    sets: [{ p: 3, o: 6 }], result: 'loss', createdAt: 2,
+    notes: "Lost 3-6 after a rough start (0-5), too many unforced errors. His forehand cross-court in long rallies was solid, and he preys on short/easy balls. Backhand was clearly weaker — go back and turn more when he plays it. Return of serve was good and he moves well while waiting.\n\nTakeaway: slow down, play higher-margin cross-court tennis, use more first-serve placement instead of rushing."
+  },
+  {
+    id: 'om-jv-de-reus', date: '2024-03-31', opponent: 'JV De Reus', location: '',
+    sets: [{ p: 6, o: 8 }], result: 'loss', createdAt: 3,
+    notes: "Lost 6-8 after underestimating the opponent — low energy and focus from the start, stiff, no movement before shots. Backhand (especially the slice) was actually better than usual, but the forehand was rushed and lacked confidence all match, and the drop shot was predictable and lost every point. He's an all-court player with soft, all-round shots who attacks the backhand; his weak points are the serve and body shots.\n\nTakeaway: treat every opponent seriously regardless of reputation, and trust the forehand instead of playing tentatively."
+  },
+  {
+    id: 'om-christopher', date: '2024-04-02', opponent: 'Christopher', location: '',
+    sets: [{ p: 7, o: 5 }], result: 'win', createdAt: 4,
+    notes: "Won 7-5 despite a stiff, tight start with a forced forehand. Long cross-court rallies (both forehand and backhand) worked well, backhand slice was a highlight, and staying low helped across the board. He's a fit baseliner who rarely misses and attacks short balls to the backhand, but is vulnerable on serve and at net. Lost focus at key moments and volleys were shaky.\n\nTakeaway: more movement and rhythm at the start, don't crowd the net, add spin on the inside-out forehand instead of going for too much width."
+  },
+  {
+    id: 'om-geoffroy', date: '2024-04-06', opponent: 'Geoffroy', location: '',
+    sets: [{ p: 3, o: 14 }], result: 'loss', createdAt: 5,
+    notes: "Lopsided loss, 3-14. Stood too close to the ball and to the baseline all match, and leaned back too much on the backhand (the slice was fine). Serve was fine on the few I got in. Only won points when locked in and putting in effort.\n\nTakeaway: create more distance/time by standing further back, and bring the same focus/effort level from the start."
+  },
+  {
+    id: 'om-jilles', date: '2024-04-14', opponent: 'Jilles', location: '',
+    sets: [{ p: 3, o: 4 }], result: 'loss', createdAt: 6,
+    notes: "Close loss, 3-4. He kept his cool and recovered after falling behind early against an opponent who hits hard and attacks the backhand with power. Forehand cross-court and patience for the short ball worked, backhand slice was a plus, but the second serve was consistently too short and the backhand leaked when leaning back.\n\nTakeaway: longer forehand cross-court rallies, harder cross and slice on the backhand, get to net more, and serve-and-attack when possible given his tendency to overhit and miss."
+  },
+  {
+    id: 'om-denis', date: '2024-04-26', opponent: 'Denis', location: '',
+    sets: [{ p: 2, o: 6 }, { p: 6, o: 3 }, { p: 6, o: 3 }], result: 'win', createdAt: 7,
+    notes: "Strong comeback win, 2-6 6-3 6-3, after a rough, stiff start with mental lows in set one. Turned it around by resetting between points (breath/ball/feet) and committing to the left-right cross-court pattern, which worked well from set two onward. He's a solid baseline player with a good backhand, but his second serve is a clear weakness (many double faults) and he loses consistency under pressure.\n\nTakeaway: keep the reset-between-points routine ready for slow starts, and lean on the same left-right, attack-the-backhand game plan."
+  },
+  {
+    id: 'om-phi-long', date: '2024-04-27', opponent: 'Phi-Long', location: '',
+    sets: [{ p: 7, o: 5 }, { p: 3, o: 6 }, { p: 5, o: 7 }], result: 'loss', createdAt: 8,
+    notes: "Tough three-set loss, 7-5 3-6 5-7, after leading throughout — lost focus late in the second set, and in the third couldn't convert break chances at 5-4 and 5-5. Played some of my best tennis when confident and committed: forehand, backhand (including wide-angle backhand slice), and serve were all good. He's a patient, all-back baseliner with real resilience and few unforced errors, but a shaky second serve.\n\nTakeaway: same patient left-right game plan, but manage critical points and closing out sets better."
+  },
+  {
+    id: 'om-timote-r', date: '2024-05-04', opponent: 'Timote R.', location: '',
+    sets: [{ p: 7, o: 6 }, { p: 6, o: 4 }], result: 'win', createdAt: 9,
+    notes: "One of the best matches so far, won 7-6 6-4. Forehand acceleration and depth were on point, backhand was stable, and I stayed patient and mentally strong, coming back when behind. He's a resilient baseliner who doesn't hit hard but gets everything back with deep, high balls, and his serve is a weak point. Only real blemish was the backhand slice opening up short at times.\n\nTakeaway: keep the same patient, high-percentage game plan; look to attack the slice more with topspin down the line."
+  },
+  {
+    id: 'om-filip-i', date: '2024-05-05', opponent: 'Filip I.', location: '',
+    sets: [{ p: 2, o: 6 }, { p: 1, o: 6 }], result: 'loss', createdAt: 10,
+    notes: "Lost 2-6 1-6 to a resilient, technically strong two-handed-backhand baseliner who plays almost everything cross-court and rarely overhits. Forehand acceleration and inside-out forehand were good when I could get into rallies, but I couldn't sustain long enough exchanges and confidence dropped after early mistakes. His second serve is clearly the weak link.\n\nTakeaway: build more confidence in the ability to win these longer rallies, and attack the second serve harder."
+  },
+  {
+    id: 'om-seppo', date: '2024-05-03', opponent: 'Seppo', location: '',
+    sets: [], result: 'draw', createdAt: 11,
+    notes: "Practice session, not a competitive score. Long, fast rallies with good depth; backhand slice worked well though the topspin backhand was sometimes late/leaning back. He's fast with good spin off the baseline and likes to work the backhand until he gets a short ball to go inside-in/inside-out.\n\nTakeaway: stay more relaxed, especially in the warm-up, and work on hand separation on the forehand to reduce over-rotation."
+  },
+  {
+    id: 'om-david', date: '2024-05-10', opponent: 'David', location: '',
+    sets: [], result: 'draw', createdAt: 12,
+    notes: "Score wasn't recorded for this one. All-court player with a very good backhand — he found width off my forehand into short balls, then attacked my backhand down the line; backhand slice and backhand down the line were his other main patterns. My forehand worked when the basics were there (hand separation), backhand slice was solid, but my backhand side was left uncovered too often, and lower/shorter balls gave me trouble.\n\nTakeaway: cover the backhand side better, play higher-percentage tennis on shorter balls, more net approaches."
+  },
+  {
+    id: 'om-fabio', date: '2024-05-20', opponent: 'Fabio', location: '',
+    sets: [{ p: 2, o: 2 }], result: 'draw', createdAt: 13,
+    notes: "Ended 2-2 (session cut short). A similar style to my own — forehand cross-court, attack the backhand — so the match came down to who executed better. His forehand is the strength, backhand and over-hitting shorter balls the weakness. My own forehand and volleys were solid; focus lapses were the main issue on my side.\n\nTakeaway: stay patient cross-court without forcing the point, keep focus consistent throughout rather than just in patches."
+  },
+  {
+    id: 'om-guillaume', date: '2024-06-06', opponent: 'Guillaume', location: '',
+    sets: [{ p: 3, o: 4 }], result: 'loss', createdAt: 14,
+    notes: "Long history, mostly favorable overall (6W-2L): 15/02 W 5-2, 01/03 W 5-2, 15/03 L 1-7, 22/03 W 4-3, 18/04 W 5-4, 19/05 W 4-2, 30/05 W 5-2, 06/06 L 3-4. He's a defensive, counter-punching player who lobs and defends well off the ground — left-right cross-court plus attacking his backhand is the strategy that keeps working. Losses have come from too many unforced errors and going to net without a split step.\n\nTakeaway: keep the same left-right game plan, add more volleys/net play, and don't get careless with shot selection once ahead."
+  },
+  {
+    id: 'om-george', date: '2024-06-05', opponent: 'George', location: '',
+    sets: [{ p: 0, o: 2 }], result: 'loss', createdAt: 15,
+    notes: "Results have trended the wrong way: W 3-0, then a split 1-1 (24/05), then L 0-2 (05/06). He's an attacking baseliner, likes to go cross-court and to the backhand down the line, and is comfortable at net with flat shots — his weaknesses are the high backhand and coming forward. My own basics (footwork, distance to ball) broke down on both wings in the more recent matches.\n\nTakeaway: get the fundamentals back on both forehand and backhand before worrying about tactics against him."
+  },
+  {
+    id: 'om-alberto', date: '2024-05-01', opponent: 'Alberto', location: '',
+    sets: [{ p: 5, o: 2 }], result: 'win', createdAt: 16,
+    notes: "Head-to-head this stretch: 16/02 D 6-6, 25/02 L 3-5, 11/04 L 1-5, 01/05 W 5-2 (1W-1D-2L overall). A defensive counter-punching opponent who makes everything come back, so patience and not overhitting matters. The best win came from a fast, focused start and attacking short balls on his backhand. Critical points have been the recurring problem against him — confidence dips and unforced errors creep in right when the score tightens.\n\nTakeaway: focus on point-by-point discipline in tight moments rather than technique changes."
+  },
+  {
+    id: 'om-bruno', date: '2024-05-31', opponent: 'Bruno', location: '',
+    sets: [{ p: 1, o: 7 }], result: 'loss', createdAt: 17,
+    notes: "Tough matchup overall: 19/04 W 6-2 6-3, 25/04 up 6-0 then lost focus and dropped the next set 2-4, 02/05 down 1-6 2-2, 31/05 L 1-7. Bruno plays quick, early-ball tennis and volleys when he can — regularity is his weak point, but overpowering him doesn't work; he handles pace well. The pattern that's hurt most: getting complacent after building a lead and mentally checking out.\n\nTakeaway: keep playing the game plan regardless of the score, don't try to end points with raw power against him."
+  },
+  {
+    id: 'om-jari', date: '2024-06-12', opponent: 'Jari', location: '',
+    sets: [{ p: 4, o: 2 }], result: 'win', createdAt: 18,
+    notes: "Regular hitting/practice partner with a strong overall record: 21/02 W 2-1, 27/03 split 0-2/2-0, 29/03 W 4-1, 03/04 W 2-0, 10/04 split 1-1, 08/05 W 3-0, plus practice sessions on 07/06 and 12/06 (W 4-2). His patterns: hard cross-court, attacks the backhand, generally solid defense. Forehand and slice backhand have been the most reliable tools against him; focus/concentration lapses mid-match are the recurring issue, not technique.\n\nTakeaway: keep the left-right cross-court pattern, stay patient, and guard against mental letdowns that cost sets already won."
+  },
+];
+
 // ── Season accessor ──────────────────────────────────────────────────────────
 let currentSeasonId = '2025-26';
 
@@ -152,7 +248,7 @@ function getSeason(id) {
 
 // ===== STATE =====
 let leagueNotes  = lsGet(KEYS.leagueNotes,  {});
-let otherMatches = lsGet(KEYS.otherMatches, []);
+let otherMatches = lsGet(KEYS.otherMatches, OTHER_MATCHES_SEED);
 let twbData      = null; // fetched on init from ./data/tournaments-twb.json
 
 const state = {
