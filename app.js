@@ -815,6 +815,13 @@ function renderTWB() {
 
     </div>
     ${state.twbPointsModalOpen && hasBreakdown ? renderPointsBreakdownModal(pointsBreakdown) : ''}`;
+
+  // Wire note auto-save
+  app.querySelectorAll('.twb-match-list .note-area').forEach(el => {
+    el.addEventListener('input', () => {
+      localStorage.setItem(el.dataset.storageKey, el.value);
+    });
+  });
 }
 
 function renderPointsBreakdownModal(pointsBreakdown) {
@@ -877,10 +884,23 @@ function ptsToRanking(pts) {
   return 'NC';
 }
 
+/** Sanitize a string for use as an id/localStorage-key segment. */
+function sanitizeKeyPart(s) {
+  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 function renderTwbMatchCard(m) {
   const isWin = m.result === 'win';
   const oppMatch = m.opponent.match(/title="Plus d.info sur ([^(]+?)\s*\((\d+)\s*pts\)"/);
   const opponent = oppMatch ? oppMatch[1].trim() : m.opponent;
+
+  const keyDate       = sanitizeKeyPart(m.date);
+  const keyTournament = sanitizeKeyPart(m.tournament);
+  const keyOpponent   = sanitizeKeyPart(opponent);
+  const noteId         = `twb-note-${keyDate}-${keyTournament}-${keyOpponent}`;
+  const noteStorageKey = `twb_note_${keyDate}_${keyTournament}_${keyOpponent}`;
+  const note = localStorage.getItem(noteStorageKey) || '';
+
   return `
     <div class="twb-match-card">
       <div class="twb-badge twb-badge--${m.result}">${isWin ? 'V' : 'D'}</div>
@@ -894,6 +914,13 @@ function renderTwbMatchCard(m) {
           <span class="twb-opponent">${escHtml(opponent)} <span class="twb-opponent-pts">(${escHtml(ptsToRanking(m.opponentPts))} / ${m.opponentPts} pts)</span></span>
         </div>
         <div class="twb-score">${escHtml(m.score)}</div>
+        <textarea
+          class="note-area"
+          id="${noteId}"
+          data-storage-key="${noteStorageKey}"
+          placeholder="Add notes for this match..."
+          rows="2"
+        >${escHtml(note)}</textarea>
       </div>
     </div>`;
 }
