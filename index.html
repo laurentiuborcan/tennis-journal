@@ -30,6 +30,33 @@
 
   <main class="main" id="app"></main>
 
+  <button type="button" class="save-to-repo-btn" id="saveToRepoBtn" aria-label="Save to repo">
+    <span class="save-to-repo-icon" aria-hidden="true">⇪</span>
+    <span class="save-to-repo-label">Save to repo</span>
+    <span class="save-to-repo-badge" id="saveToRepoBadge" hidden></span>
+  </button>
+
+  <div class="token-modal-overlay" id="tokenModalOverlay" hidden>
+    <div class="token-modal">
+      <div class="token-modal-header">
+        <h3 class="token-modal-title">GitHub Access Token</h3>
+        <button type="button" class="token-modal-close" id="tokenModalClose" aria-label="Fermer">✕</button>
+      </div>
+      <p class="token-modal-desc">
+        Paste a fine-grained GitHub PAT with <strong>Contents: Read and write</strong> access scoped
+        to this repo only. It's stored in this browser's localStorage and sent directly to the
+        GitHub API — nowhere else.
+      </p>
+      <textarea id="tokenModalInput" class="token-modal-input" rows="3" placeholder="github_pat_..."></textarea>
+      <div class="token-modal-actions">
+        <button type="button" class="token-modal-cancel" id="tokenModalCancel">Cancel</button>
+        <button type="button" class="token-modal-submit" id="tokenModalSubmit">Save &amp; Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
   <script src="app.js"></script>
 </body>
 </html>

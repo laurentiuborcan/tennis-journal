@@ -1090,6 +1090,163 @@ textarea { resize: vertical; }
   text-align: center;
 }
 
+/* ===== SAVE TO REPO ===== */
+.save-to-repo-btn {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1rem;
+  background: var(--green-dim);
+  color: #fff;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45), 0 0 0 1px var(--border);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
+}
+.save-to-repo-btn:hover { background: var(--green); }
+.save-to-repo-btn:active { transform: scale(0.97); }
+.save-to-repo-btn--busy { opacity: 0.6; pointer-events: none; }
+.save-to-repo-icon { font-size: 1rem; line-height: 1; }
+.save-to-repo-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid var(--bg);
+}
+
+/* ===== TOKEN MODAL ===== */
+.token-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 110;
+  animation: fadeIn 0.15s ease;
+}
+.token-modal {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hl);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+  padding: 1.25rem 1.4rem 1.4rem;
+}
+.token-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+.token-modal-title { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.token-modal-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.token-modal-close:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+.token-modal-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.9rem;
+}
+.token-modal-desc strong { color: var(--text); }
+.token-modal-input {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.7rem;
+  resize: none;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.token-modal-input::placeholder { color: var(--text-dim); font-style: italic; }
+.token-modal-input:focus {
+  border-color: var(--green-dim);
+  box-shadow: 0 0 0 2px var(--green-glow);
+}
+.token-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.token-modal-cancel, .token-modal-submit {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background var(--transition), color var(--transition);
+}
+.token-modal-cancel {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.token-modal-cancel:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+.token-modal-submit {
+  background: var(--green-dim);
+  color: #fff;
+  border: 1px solid var(--green);
+}
+.token-modal-submit:hover { background: var(--green); }
+
+/* ===== TOASTS ===== */
+.toast-container {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 4.5rem;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.toast {
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border-hl);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.toast--visible { opacity: 1; transform: translateY(0); }
+.toast--success { border-color: var(--green-dim); }
+.toast--error   { border-color: var(--red); color: var(--red); }
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

@@ -5,10 +5,15 @@
 // ===== CONSTANTS =====
 const MY_NAME = 'Laurentiu B.';
 
+const GH_OWNER     = 'laurentiuborcan';
+const GH_REPO      = 'tennis-journal';
+const GH_FILE_PATH = 'data/user-data.json';
+
 // ===== STORAGE =====
 const KEYS = {
   leagueNotes:  'tj_league_notes',
   otherMatches: 'tj_other_matches',
+  ghToken:      'gh_token',
 };
 
 function lsGet(k, def) {
@@ -250,6 +255,8 @@ function getSeason(id) {
 let leagueNotes  = lsGet(KEYS.leagueNotes,  {});
 let otherMatches = lsGet(KEYS.otherMatches, OTHER_MATCHES_SEED);
 let twbData      = null; // fetched on init from ./data/tournaments-twb.json
+let userData     = { twbNotes: {}, davisNotes: {}, otherMatchesExtra: [] }; // fetched on init from ./data/user-data.json
+let twbNoteIndex = {}; // localStorage key -> raw "date|tournament|opponent" key, built from twbData
 
 const state = {
   tab:           'twb',     // 'me' | 'all' | 'other' | 'twb'
@@ -416,6 +423,7 @@ function renderMe() {
       el.addEventListener('input', () => {
         leagueNotes[el.dataset.id] = el.value;
         lsSet(KEYS.leagueNotes, leagueNotes);
+        updateSaveBadge();
       });
     });
   }
@@ -437,7 +445,7 @@ function renderMyMatchCard(m, archived = false) {
   }
 
   const label = m.result === 'win' ? 'W' : m.result === 'draw' ? 'D' : 'L';
-  const note  = leagueNotes[m.id] || '';
+  const note  = (userData.davisNotes && userData.davisNotes[m.id]) || leagueNotes[m.id] || '';
 
   return `
     <div class="lm-card">
@@ -916,6 +924,7 @@ function renderTWB() {
   app.querySelectorAll('.twb-match-list .note-area').forEach(el => {
     el.addEventListener('input', () => {
       localStorage.setItem(el.dataset.storageKey, el.value);
+      updateSaveBadge();
     });
   });
 }
@@ -985,17 +994,34 @@ function sanitizeKeyPart(s) {
   return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+/** Extract the plain opponent name out of the scraped title-attribute markup, if present. */
+function twbOpponentName(m) {
+  const oppMatch = m.opponent.match(/title="Plus d.info sur ([^(]+?)\s*\((\d+)\s*pts\)"/);
+  return oppMatch ? oppMatch[1].trim() : m.opponent;
+}
+
+/** Rebuild the map from localStorage note key -> raw "date|tournament|opponent" key used in user-data.json. */
+function buildTwbNoteIndex() {
+  twbNoteIndex = {};
+  if (!twbData || !twbData.matches) return;
+  twbData.matches.forEach(m => {
+    const opponent = twbOpponentName(m);
+    const storageKey = `twb_note_${sanitizeKeyPart(m.date)}_${sanitizeKeyPart(m.tournament)}_${sanitizeKeyPart(opponent)}`;
+    twbNoteIndex[storageKey] = `${m.date}|${m.tournament}|${opponent}`;
+  });
+}
+
 function renderTwbMatchCard(m) {
   const isWin = m.result === 'win';
-  const oppMatch = m.opponent.match(/title="Plus d.info sur ([^(]+?)\s*\((\d+)\s*pts\)"/);
-  const opponent = oppMatch ? oppMatch[1].trim() : m.opponent;
+  const opponent = twbOpponentName(m);
 
   const keyDate       = sanitizeKeyPart(m.date);
   const keyTournament = sanitizeKeyPart(m.tournament);
   const keyOpponent   = sanitizeKeyPart(opponent);
   const noteId         = `twb-note-${keyDate}-${keyTournament}-${keyOpponent}`;
   const noteStorageKey = `twb_note_${keyDate}_${keyTournament}_${keyOpponent}`;
-  const note = localStorage.getItem(noteStorageKey) || '';
+  const rawNoteKey     = `${m.date}|${m.tournament}|${opponent}`;
+  const note = (userData.twbNotes && userData.twbNotes[rawNoteKey]) || localStorage.getItem(noteStorageKey) || '';
 
   return `
     <div class="twb-match-card">
@@ -1019,6 +1045,134 @@ function renderTwbMatchCard(m) {
         >${escHtml(note)}</textarea>
       </div>
     </div>`;
+}
+
+// ===== SAVE TO REPO =====
+
+/** Overlay all locally-saved notes on top of the last-loaded user-data.json. */
+function collectMergedUserData() {
+  const merged = {
+    twbNotes:          { ...(userData.twbNotes          || {}) },
+    davisNotes:        { ...(userData.davisNotes        || {}) },
+    otherMatchesExtra: [ ...(userData.otherMatchesExtra  || []) ],
+  };
+
+  Object.keys(localStorage).forEach(k => {
+    if (!k.startsWith('twb_note_')) return;
+    const rawKey = twbNoteIndex[k];
+    if (!rawKey) return;
+    const val = localStorage.getItem(k);
+    if (val) merged.twbNotes[rawKey] = val;
+  });
+
+  Object.entries(leagueNotes).forEach(([id, val]) => {
+    if (val) merged.davisNotes[id] = val;
+  });
+
+  return merged;
+}
+
+function hasUnsavedChanges() {
+  const merged = collectMergedUserData();
+  return JSON.stringify(merged.twbNotes)   !== JSON.stringify(userData.twbNotes   || {})
+      || JSON.stringify(merged.davisNotes) !== JSON.stringify(userData.davisNotes || {});
+}
+
+function updateSaveBadge() {
+  const badge = document.getElementById('saveToRepoBadge');
+  if (badge) badge.hidden = !hasUnsavedChanges();
+}
+
+function showToast(message, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+  const toast = document.createElement('div');
+  toast.className = `toast toast--${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => toast.classList.add('toast--visible'), 10);
+  setTimeout(() => {
+    toast.classList.remove('toast--visible');
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
+function openTokenModal() {
+  const overlay = document.getElementById('tokenModalOverlay');
+  const input   = document.getElementById('tokenModalInput');
+  overlay.hidden = false;
+  input.value = '';
+  input.focus();
+}
+
+function closeTokenModal() {
+  document.getElementById('tokenModalOverlay').hidden = true;
+}
+
+async function submitTokenModal() {
+  const input = document.getElementById('tokenModalInput');
+  const token = input.value.trim();
+  if (!token) return;
+  localStorage.setItem(KEYS.ghToken, token);
+  closeTokenModal();
+  await performSaveToRepo(token);
+}
+
+async function onSaveToRepoClick() {
+  const token = localStorage.getItem(KEYS.ghToken);
+  if (!token) { openTokenModal(); return; }
+  await performSaveToRepo(token);
+}
+
+async function performSaveToRepo(token) {
+  const btn = document.getElementById('saveToRepoBtn');
+  if (btn) btn.classList.add('save-to-repo-btn--busy');
+
+  try {
+    const merged  = collectMergedUserData();
+    const apiUrl  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE_PATH}`;
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Accept':        'application/vnd.github+json',
+    };
+
+    let sha = null;
+    const getRes = await fetch(apiUrl, { headers });
+    if (getRes.ok) {
+      sha = (await getRes.json()).sha;
+    } else if (getRes.status !== 404) {
+      throw new Error(`couldn't read current file (HTTP ${getRes.status})`);
+    }
+
+    const contentStr = JSON.stringify(merged, null, 2) + '\n';
+    const contentB64 = btoa(unescape(encodeURIComponent(contentStr)));
+
+    const body = {
+      message: 'data: update user notes and data',
+      content: contentB64,
+      branch:  'main',
+    };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(apiUrl, {
+      method:  'PUT',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body:    JSON.stringify(body),
+    });
+
+    if (!putRes.ok) {
+      const errJson = await putRes.json().catch(() => ({}));
+      throw new Error(errJson.message || `GitHub API error (HTTP ${putRes.status})`);
+    }
+
+    userData = merged;
+    updateSaveBadge();
+    showToast('Saved to repo.', 'success');
+  } catch (err) {
+    showToast(`Save failed: ${err.message}`, 'error');
+  } finally {
+    if (btn) btn.classList.remove('save-to-repo-btn--busy');
+  }
 }
 
 // ===== INIT =====
@@ -1055,9 +1209,32 @@ async function init() {
     const twbRes = await fetch('./data/tournaments-twb.json');
     if (!twbRes.ok) throw new Error(`HTTP ${twbRes.status}`);
     twbData = await twbRes.json();
+    buildTwbNoteIndex();
   } catch {
     // Network or parse error — TWB tab will show an unavailable state
   }
+
+  try {
+    const userDataRes = await fetch('./data/user-data.json');
+    if (!userDataRes.ok) throw new Error(`HTTP ${userDataRes.status}`);
+    const data = await userDataRes.json();
+    userData = {
+      twbNotes:          data.twbNotes          || {},
+      davisNotes:        data.davisNotes        || {},
+      otherMatchesExtra: data.otherMatchesExtra || [],
+    };
+  } catch {
+    // Network or parse error — fall back to the empty structure, localStorage notes still work
+  }
+
+  document.getElementById('saveToRepoBtn').addEventListener('click', onSaveToRepoClick);
+  document.getElementById('tokenModalCancel').addEventListener('click', closeTokenModal);
+  document.getElementById('tokenModalClose').addEventListener('click', closeTokenModal);
+  document.getElementById('tokenModalSubmit').addEventListener('click', submitTokenModal);
+  document.getElementById('tokenModalOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeTokenModal();
+  });
+  updateSaveBadge();
 
   render();
 }
