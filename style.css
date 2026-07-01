@@ -1138,6 +1138,7 @@ textarea { resize: vertical; }
   z-index: 110;
   animation: fadeIn 0.15s ease;
 }
+.token-modal-overlay[hidden] { display: none; }
 .token-modal {
   width: 100%;
   max-width: 420px;
