@@ -1106,7 +1106,11 @@ function openTokenModal() {
 }
 
 function closeTokenModal() {
-  document.getElementById('tokenModalOverlay').hidden = true;
+  console.log('Cancel clicked, closing modal');
+  console.log('token modal overlay instances in DOM:', document.querySelectorAll('#tokenModalOverlay').length);
+  const overlayElement = document.getElementById('tokenModalOverlay');
+  overlayElement.hidden = true;
+  console.log('Modal hidden attribute:', overlayElement.hidden);
 }
 
 async function submitTokenModal() {
