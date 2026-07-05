@@ -53,6 +53,16 @@
   },
   "matches": [
     {
+      "date": "2026-07-05",
+      "tournament": "OREE",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "Perrier Florian",
+      "opponentPts": 3,
+      "opponentRanking": "C30.6",
+      "score": "6/2-6/3-0/0",
+      "result": "win"
+    },
+    {
       "date": "2026-07-01",
       "tournament": "OMBRAGE",
       "category": "Simples Messieurs 35 6",
