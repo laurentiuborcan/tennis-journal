@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-05",
+  "lastUpdated": "2026-07-06",
   "ranking": "C30.4",
-  "totalPoints": 51387,
+  "totalPoints": 47769,
   "pointsBreakdown": {
     "bestResults": [
       {
@@ -10,6 +10,13 @@
         "date": "2026-05-03",
         "category": "Messieurs 35 5",
         "points": 83.85
+      },
+      {
+        "tournament": "ROYAL OMBRAGE TENNIS CLUB",
+        "club": "1050",
+        "date": "2026-07-05",
+        "category": "Messieurs 35 6",
+        "points": 40.5
       },
       {
         "tournament": "EVERE WHITE STAR TENNIS CLUB",
@@ -38,18 +45,11 @@
         "date": "2026-01-04",
         "category": "Messieurs 35 5",
         "points": 2
-      },
-      {
-        "tournament": "EVERE WHITE STAR TENNIS CLUB",
-        "club": "1052",
-        "date": "2026-06-28",
-        "category": "Messieurs 35 5",
-        "points": 2
       }
     ],
-    "totalPoints": 122.35,
-    "weightedFormula": "84.00% * 122.350 / 2 = 51.387 pts",
-    "finalPoints": 51.387
+    "totalPoints": 162.85,
+    "weightedFormula": "88.00% * 162.850 / 3 = 47.769 pts",
+    "finalPoints": 47.769
   },
   "matches": [
     {
