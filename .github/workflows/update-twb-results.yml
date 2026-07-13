@@ -2,7 +2,7 @@ name: Update TWB Tournament Results
 
 on:
   schedule:
-    - cron: '0 6 * * *'   # daily at 06:00 UTC (before the DVL scraper at 07:00)
+    - cron: '0 5,12,19 * * *'   # 3x daily: 05:00, 12:00, 19:00 UTC (morning, after lunch, evening)
   workflow_dispatch:        # manual trigger from GitHub UI
 
 permissions:
