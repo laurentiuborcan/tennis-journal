@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-12",
+  "lastUpdated": "2026-07-13",
   "ranking": "C30.4",
-  "totalPoints": 47769,
+  "totalPoints": 45966,
   "pointsBreakdown": {
     "bestResults": [
       {
@@ -26,6 +26,13 @@
         "points": 38.5
       },
       {
+        "tournament": "R. OREE T.H.B.",
+        "club": "1033",
+        "date": "2026-07-12",
+        "category": "Messieurs 35 6",
+        "points": 37
+      },
+      {
         "tournament": "CASTLE CLUB WEZEMBEEK",
         "club": "1064",
         "date": "2025-11-02",
@@ -38,20 +45,23 @@
         "date": "2025-11-02",
         "category": "Messieurs 5",
         "points": 2
-      },
-      {
-        "tournament": "LES EGLANTIERS T.C.",
-        "club": "1076",
-        "date": "2026-01-04",
-        "category": "Messieurs 35 5",
-        "points": 2
       }
     ],
-    "totalPoints": 162.85,
-    "weightedFormula": "88.00% * 162.850 / 3 = 47.769 pts",
-    "finalPoints": 47.769
+    "totalPoints": 199.85,
+    "weightedFormula": "92.00% * 199.850 / 4 = 45.966 pts",
+    "finalPoints": 45.966
   },
   "matches": [
+    {
+      "date": "2026-07-12",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "BETTENS Frédéric",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "6/1-6/0-0/0",
+      "result": "loss"
+    },
     {
       "date": "2026-07-09",
       "tournament": "OREE",
