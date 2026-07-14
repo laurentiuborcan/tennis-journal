@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-13",
+  "lastUpdated": "2026-07-14",
   "ranking": "C30.4",
   "totalPoints": 45966,
   "pointsBreakdown": {
@@ -52,6 +52,16 @@
     "finalPoints": 45.966
   },
   "matches": [
+    {
+      "date": "2026-07-13",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "De Pauw Selwyn",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "7/5-0/0-0/0 Ab.",
+      "result": "win"
+    },
     {
       "date": "2026-07-12",
       "tournament": "DAVIS",
