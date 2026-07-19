@@ -797,7 +797,7 @@
       "tournament": "Les eglantiers",
       "category": "Simples Messieurs 35 5",
       "opponent": "Olivier Gatti",
-      "opponentPts": 32,
+      "opponentPts": 20,
       "opponentRanking": "C30.2",
       "score": "0/6 0/6",
       "result": "loss"
@@ -817,7 +817,7 @@
       "tournament": "La Reserve du Roseau",
       "category": "Simples Messieurs 50 4",
       "opponent": "Eric Dory",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "W.O.",
       "result": "loss"
@@ -827,7 +827,7 @@
       "tournament": "T.C. Davis",
       "category": "Simples Messieurs 50 4",
       "opponent": "Fabrice Colpaert",
-      "opponentPts": 42,
+      "opponentPts": 30,
       "opponentRanking": "C30",
       "score": "3/6 6/7",
       "result": "loss"
@@ -837,7 +837,7 @@
       "tournament": "T.C. Davis",
       "category": "Simples Messieurs 50 4",
       "opponent": "Abdelhakim Hajaoui",
-      "opponentPts": 32,
+      "opponentPts": 20,
       "opponentRanking": "C30.2",
       "score": "6/2 6/1",
       "result": "win"
@@ -1037,7 +1037,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Mathieu Nagel",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "1/6 3/6",
       "result": "loss"
@@ -1047,7 +1047,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Luca Fossati",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "1/6 0/6",
       "result": "loss"
@@ -1077,7 +1077,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Olivier Noel",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "0/6 0/6",
       "result": "loss"
@@ -1097,7 +1097,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Xavier Landrain",
-      "opponentPts": 32,
+      "opponentPts": 20,
       "opponentRanking": "C30.2",
       "score": "0/6 0/6",
       "result": "loss"
@@ -1107,7 +1107,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Olivier Goffe",
-      "opponentPts": 37,
+      "opponentPts": 25,
       "opponentRanking": "C30.1",
       "score": "0/0 0/0",
       "result": "loss"
@@ -1137,7 +1137,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Thomas Kok",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "0/6 0/6",
       "result": "loss"
@@ -1197,7 +1197,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Liviu Alexandru",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "1/6 0/6",
       "result": "loss"
@@ -1217,7 +1217,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Stéphane Knorr",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "1/6 2/6",
       "result": "loss"
@@ -1227,7 +1227,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Thierry De Penaranda",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "1/6 0/6",
       "result": "loss"
@@ -1237,7 +1237,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Thomas Grignard",
-      "opponentPts": 42,
+      "opponentPts": 30,
       "opponentRanking": "C30",
       "score": "0/6 0/6",
       "result": "loss"
@@ -1257,7 +1257,7 @@
       "tournament": "Tournament",
       "category": "Simples Messieurs 35 6",
       "opponent": "Nicolas Andre",
-      "opponentPts": 27,
+      "opponentPts": 15,
       "opponentRanking": "C30.3",
       "score": "1/6 1/6",
       "result": "loss"
