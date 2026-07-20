@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-07-19",
+  "lastUpdated": "2026-07-20",
   "ranking": "C30.4",
-  "totalPoints": 45966,
+  "totalPoints": 46147,
   "pointsBreakdown": {
     "bestResults": [
       {
@@ -15,6 +15,13 @@
         "tournament": "ROYAL OMBRAGE TENNIS CLUB",
         "club": "1050",
         "date": "2026-07-05",
+        "category": "Messieurs 35 6",
+        "points": 40.5
+      },
+      {
+        "tournament": "T.C. DAVIS",
+        "club": "1420",
+        "date": "2026-07-19",
         "category": "Messieurs 35 6",
         "points": 40.5
       },
@@ -38,18 +45,11 @@
         "date": "2025-11-02",
         "category": "Messieurs 5",
         "points": 2
-      },
-      {
-        "tournament": "R. OREE T.H.B.",
-        "club": "1033",
-        "date": "2025-11-02",
-        "category": "Messieurs 5",
-        "points": 2
       }
     ],
-    "totalPoints": 199.85,
-    "weightedFormula": "92.00% * 199.850 / 4 = 45.966 pts",
-    "finalPoints": 45.966
+    "totalPoints": 240.35,
+    "weightedFormula": "96.00% * 240.350 / 5 = 46.147 pts",
+    "finalPoints": 46.147
   },
   "matches": [
     {
