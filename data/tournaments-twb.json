@@ -53,6 +53,16 @@
   },
   "matches": [
     {
+      "date": "2026-07-23",
+      "tournament": "LE BOSQUET",
+      "category": "Simples Messieurs 6",
+      "opponent": "DE POTTER Laurent",
+      "opponentPts": 3,
+      "opponentRanking": "C30.6",
+      "score": "3/6-6/1-3/1 Ab.",
+      "result": "loss"
+    },
+    {
       "date": "2026-07-19",
       "tournament": "BOIS CAMBRE",
       "category": "Simples Messieurs 35 5",
