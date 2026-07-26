@@ -1,13 +1,20 @@
 {
   "lastUpdated": "2026-07-26",
   "ranking": "C30.4",
-  "totalPoints": 46147,
+  "totalPoints": 54033,
   "pointsBreakdown": {
     "bestResults": [
       {
         "tournament": "T.C. MOUNIER",
         "club": "1099",
         "date": "2026-05-03",
+        "category": "Messieurs 35 5",
+        "points": 83.85
+      },
+      {
+        "tournament": "TENNIS CLUB BOIS DE LA CAMBRE",
+        "club": "1040",
+        "date": "2026-07-26",
         "category": "Messieurs 35 5",
         "points": 83.85
       },
@@ -38,18 +45,11 @@
         "date": "2026-07-12",
         "category": "Messieurs 35 6",
         "points": 37
-      },
-      {
-        "tournament": "CASTLE CLUB WEZEMBEEK",
-        "club": "1064",
-        "date": "2025-11-02",
-        "category": "Messieurs 5",
-        "points": 2
       }
     ],
-    "totalPoints": 240.35,
-    "weightedFormula": "96.00% * 240.350 / 5 = 46.147 pts",
-    "finalPoints": 46.147
+    "totalPoints": 324.2,
+    "weightedFormula": "100.00% * 324.200 / 6 = 54.033 pts",
+    "finalPoints": 54.033
   },
   "matches": [
     {
