@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-06",
+  "lastUpdated": "2026-08-07",
   "ranking": "C30.4",
   "totalPoints": 54033,
   "pointsBreakdown": {
@@ -52,6 +52,16 @@
     "finalPoints": 54.033
   },
   "matches": [
+    {
+      "date": "2026-08-06",
+      "tournament": "OMBRAGE",
+      "category": "Simples Messieurs 5",
+      "opponent": "BARBELLION Alexandre",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "6/2-6/2-0/0",
+      "result": "win"
+    },
     {
       "date": "2026-07-23",
       "tournament": "LE BOSQUET",
