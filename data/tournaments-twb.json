@@ -1,9 +1,16 @@
 {
-  "lastUpdated": "2026-08-16",
+  "lastUpdated": "2026-08-17",
   "ranking": "C30.4",
-  "totalPoints": 54033,
+  "totalPoints": 67417,
   "pointsBreakdown": {
     "bestResults": [
+      {
+        "tournament": "ROYAL OMBRAGE TENNIS CLUB",
+        "club": "1050",
+        "date": "2026-08-16",
+        "category": "Messieurs 5",
+        "points": 117.3
+      },
       {
         "tournament": "T.C. MOUNIER",
         "club": "1099",
@@ -38,18 +45,11 @@
         "date": "2026-06-28",
         "category": "Messieurs 35 6",
         "points": 38.5
-      },
-      {
-        "tournament": "R. OREE T.H.B.",
-        "club": "1033",
-        "date": "2026-07-12",
-        "category": "Messieurs 35 6",
-        "points": 37
       }
     ],
-    "totalPoints": 324.2,
-    "weightedFormula": "100.00% * 324.200 / 6 = 54.033 pts",
-    "finalPoints": 54.033
+    "totalPoints": 404.5,
+    "weightedFormula": "100.00% * 404.500 / 6 = 67.417 pts",
+    "finalPoints": 67.417
   },
   "matches": [
     {
