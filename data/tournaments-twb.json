@@ -53,6 +53,16 @@
   },
   "matches": [
     {
+      "date": "2026-08-21",
+      "tournament": "LES EGLANTIERS",
+      "category": "Simples Messieurs 35 5",
+      "opponent": "DEBOUCHE Frédéric",
+      "opponentPts": 10,
+      "opponentRanking": "C30.4",
+      "score": "7/5-6/1-0/0",
+      "result": "win"
+    },
+    {
       "date": "2026-08-10",
       "tournament": "OMBRAGE",
       "category": "Simples Messieurs 5",
