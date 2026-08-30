@@ -1,9 +1,16 @@
 {
   "lastUpdated": "2026-08-30",
   "ranking": "C30.4",
-  "totalPoints": 67417,
+  "totalPoints": 84846,
   "pointsBreakdown": {
     "bestResults": [
+      {
+        "tournament": "LES EGLANTIERS T.C.",
+        "club": "1076",
+        "date": "2026-08-30",
+        "category": "Messieurs 35 5",
+        "points": 127.25
+      },
       {
         "tournament": "ROYAL OMBRAGE TENNIS CLUB",
         "club": "1050",
@@ -26,30 +33,23 @@
         "points": 83.85
       },
       {
+        "tournament": "LES EGLANTIERS T.C.",
+        "club": "1076",
+        "date": "2026-08-30",
+        "category": "Messieurs 35 6",
+        "points": 56.325
+      },
+      {
         "tournament": "ROYAL OMBRAGE TENNIS CLUB",
         "club": "1050",
         "date": "2026-07-05",
         "category": "Messieurs 35 6",
         "points": 40.5
-      },
-      {
-        "tournament": "T.C. DAVIS",
-        "club": "1420",
-        "date": "2026-07-19",
-        "category": "Messieurs 35 6",
-        "points": 40.5
-      },
-      {
-        "tournament": "EVERE WHITE STAR TENNIS CLUB",
-        "club": "1052",
-        "date": "2026-06-28",
-        "category": "Messieurs 35 6",
-        "points": 38.5
       }
     ],
-    "totalPoints": 404.5,
-    "weightedFormula": "100.00% * 404.500 / 6 = 67.417 pts",
-    "finalPoints": 67.417
+    "totalPoints": 509.075,
+    "weightedFormula": "100.00% * 509.075 / 6 = 84.846 pts",
+    "finalPoints": 84.846
   },
   "matches": [
     {
