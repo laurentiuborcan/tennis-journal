@@ -873,6 +873,46 @@
       "result": "loss"
     },
     {
+      "date": "2022-07-30",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "NAETS Noel",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "6/2-2/6-6/1",
+      "result": "loss"
+    },
+    {
+      "date": "2022-07-28",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "HELLEMANS Luc",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "6/2-7/5-0/0",
+      "result": "win"
+    },
+    {
+      "date": "2022-07-24",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 35 6",
+      "opponent": "Van Hecke Alexis",
+      "opponentPts": 3,
+      "opponentRanking": "C30.6",
+      "score": "6/3-6/2-0/0",
+      "result": "loss"
+    },
+    {
+      "date": "2022-07-23",
+      "tournament": "DAVIS",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "WOONKON Suwatchai",
+      "opponentPts": 5,
+      "opponentRanking": "C30.5",
+      "score": "6/3-6/0-0/0",
+      "result": "win"
+    },
+    {
       "date": "2022-07-21",
       "tournament": "T.C. Davis",
       "category": "Simples Messieurs 50 5",
@@ -910,6 +950,16 @@
       "opponentPts": 4,
       "opponentRanking": "C30.6",
       "score": "3/6 2/6",
+      "result": "loss"
+    },
+    {
+      "date": "2022-07-10",
+      "tournament": "OMBRAGE",
+      "category": "Simples Messieurs 45 5",
+      "opponent": "LAZAR Liviu Alexandru",
+      "opponentPts": 10,
+      "opponentRanking": "C30.4",
+      "score": "0/0-0/0-0/0 WO",
       "result": "loss"
     },
     {
