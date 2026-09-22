@@ -2,131 +2,131 @@
   "id": "2025-26",
   "label": "2025/26",
   "status": "active",
-  "lastUpdated": "2026-05-12",
+  "lastUpdated": "2026-09-22",
   "standings": [
     {
-      "name": "Gilles Petit",
-      "ranking": "C15.5",
-      "pts": 18,
-      "played": 10,
-      "wins": 9,
+      "name": "Alain Braem",
+      "ranking": "C30.4",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 1,
-      "diff": 70
+      "losses": 0,
+      "diff": 0
     },
     {
-      "name": "Louis Herbert",
-      "ranking": "NC",
-      "pts": 16,
-      "played": 11,
-      "wins": 8,
+      "name": "Bruno Ingrassia",
+      "ranking": "C30.6",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 3,
-      "diff": 41
-    },
-    {
-      "name": "Laurentiu Borcan",
-      "ranking": "C30.3",
-      "pts": 16,
-      "played": 11,
-      "wins": 7,
-      "draws": 2,
-      "losses": 2,
-      "diff": 12
+      "losses": 0,
+      "diff": 0
     },
     {
       "name": "Christopher Debuyst",
       "ranking": "C30.2",
-      "pts": 14,
-      "played": 11,
-      "wins": 7,
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 4,
-      "diff": 8
+      "losses": 0,
+      "diff": 0
     },
     {
       "name": "Franco Gueli",
       "ranking": "NC",
-      "pts": 14,
-      "played": 11,
-      "wins": 7,
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 4,
-      "diff": 7
+      "losses": 0,
+      "diff": 0
     },
     {
       "name": "Georges Mensah",
       "ranking": "C30.1",
-      "pts": 12,
-      "played": 11,
-      "wins": 6,
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 5,
+      "losses": 0,
       "diff": 0
-    },
-    {
-      "name": "Alain Braem",
-      "ranking": "C30.5",
-      "pts": 11,
-      "played": 11,
-      "wins": 5,
-      "draws": 1,
-      "losses": 5,
-      "diff": -8
-    },
-    {
-      "name": "Olivier Gatti",
-      "ranking": "C30.1",
-      "pts": 10,
-      "played": 11,
-      "wins": 4,
-      "draws": 2,
-      "losses": 5,
-      "diff": 2
     },
     {
       "name": "Guillaume Lainé",
       "ranking": "NC",
-      "pts": 8,
-      "played": 11,
-      "wins": 4,
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 7,
-      "diff": -7
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Jean-Valéry De Reus",
+      "ranking": "NC",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Julian Van Hille",
+      "ranking": "C30.5",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
     },
     {
       "name": "Laurent Gunsbourg",
       "ranking": "C30.2",
-      "pts": 4,
-      "played": 11,
-      "wins": 2,
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 9,
-      "diff": -32
+      "losses": 0,
+      "diff": 0
     },
     {
-      "name": "Christophe Jonckheere",
+      "name": "Laurentiu Borcan",
       "ranking": "C30.4",
-      "pts": 3,
-      "played": 9,
-      "wins": 1,
-      "draws": 1,
-      "losses": 7,
-      "diff": -25
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
     },
     {
-      "name": "Jan Vavrovec",
-      "ranking": "C30.6",
-      "pts": 2,
-      "played": 10,
-      "wins": 1,
+      "name": "Olivier Gatti",
+      "ranking": "C30",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
       "draws": 0,
-      "losses": 9,
-      "diff": -68
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Olivier Kasiers",
+      "ranking": "C30.6",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
     },
     {
       "name": "Xavier Naegel",
-      "ranking": "C30.4",
+      "ranking": "C30.2",
       "pts": 0,
       "played": 0,
       "wins": 0,
@@ -135,479 +135,23 @@
       "diff": 0
     }
   ],
-  "allMatches": [
+  "allMatches": [],
+  "upcoming": [
     {
-      "p1": "Guillaume Lainé",
-      "s1": 7,
-      "p2": "Georges Mensah",
-      "s2": 9
-    },
-    {
-      "p1": "Christophe Jonckheere",
-      "s1": 4,
-      "p2": "Georges Mensah",
-      "s2": 7
-    },
-    {
-      "p1": "Olivier Gatti",
-      "s1": 15,
-      "p2": "Jan Vavrovec",
-      "s2": 4
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 16,
-      "p2": "Laurent Gunsbourg",
-      "s2": 4
-    },
-    {
-      "p1": "Laurentiu Borcan",
-      "s1": 8,
-      "p2": "Franco Gueli",
-      "s2": 6
-    },
-    {
-      "p1": "Laurentiu Borcan",
-      "s1": 9,
-      "p2": "Laurent Gunsbourg",
-      "s2": 7
-    },
-    {
-      "p1": "Christopher Debuyst",
-      "s1": 7,
-      "p2": "Christophe Jonckheere",
-      "s2": 5
-    },
-    {
-      "p1": "Laurent Gunsbourg",
-      "s1": 4,
-      "p2": "Christopher Debuyst",
-      "s2": 11
-    },
-    {
-      "p1": "Olivier Gatti",
-      "s1": 6,
-      "p2": "Georges Mensah",
-      "s2": 8
-    },
-    {
-      "p1": "Guillaume Lainé",
-      "s1": 6,
-      "p2": "Laurentiu Borcan",
-      "s2": 9
-    },
-    {
-      "p1": "Christophe Jonckheere",
-      "s1": 7,
-      "p2": "Olivier Gatti",
-      "s2": 7
-    },
-    {
-      "p1": "Laurent Gunsbourg",
-      "s1": 5,
-      "p2": "Georges Mensah",
-      "s2": 8
-    },
-    {
-      "p1": "Guillaume Lainé",
-      "s1": 11,
-      "p2": "Alain Braem",
-      "s2": 6
-    },
-    {
-      "p1": "Georges Mensah",
-      "s1": 6,
-      "p2": "Laurentiu Borcan",
-      "s2": 8
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 13,
-      "p2": "Christopher Debuyst",
-      "s2": 4
-    },
-    {
+      "date": "25/09/2026",
+      "time": "21:00",
       "p1": "Franco Gueli",
-      "s1": 8,
-      "p2": "Guillaume Lainé",
-      "s2": 7
-    },
-    {
-      "p1": "Alain Braem",
-      "s1": 11,
-      "p2": "Laurent Gunsbourg",
-      "s2": 6
-    },
-    {
-      "p1": "Jan Vavrovec",
-      "s1": 4,
-      "p2": "Alain Braem",
-      "s2": 10
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 13,
-      "p2": "Jan Vavrovec",
-      "s2": 4
-    },
-    {
-      "p1": "Louis Herbert",
-      "s1": 17,
-      "p2": "Alain Braem",
-      "s2": 4
-    },
-    {
-      "p1": "Guillaume Lainé",
-      "s1": 4,
-      "p2": "Gilles Petit",
-      "s2": 9
-    },
-    {
-      "p1": "Christophe Jonckheere",
-      "s1": 9,
-      "p2": "Franco Gueli",
-      "s2": 6
-    },
-    {
-      "p1": "Franco Gueli",
-      "s1": 9,
-      "p2": "Alain Braem",
-      "s2": 7
-    },
-    {
-      "p1": "Laurentiu Borcan",
-      "s1": 9,
-      "p2": "Christophe Jonckheere",
-      "s2": 7
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 11,
-      "p2": "Franco Gueli",
-      "s2": 3
-    },
-    {
-      "p1": "Alain Braem",
-      "s1": 7,
-      "p2": "Laurentiu Borcan",
-      "s2": 7
-    },
-    {
-      "p1": "Jan Vavrovec",
-      "s1": 5,
-      "p2": "Georges Mensah",
-      "s2": 11
-    },
-    {
-      "p1": "Guillaume Lainé",
-      "s1": 10,
-      "p2": "Christophe Jonckheere",
-      "s2": 5
-    },
-    {
-      "p1": "Louis Herbert",
-      "s1": 12,
-      "p2": "Jan Vavrovec",
-      "s2": 7
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 13,
-      "p2": "Olivier Gatti",
-      "s2": 3
-    },
-    {
-      "p1": "Georges Mensah",
-      "s1": 4,
-      "p2": "Gilles Petit",
-      "s2": 14
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 7,
-      "p2": "Laurentiu Borcan",
-      "s2": 12
-    },
-    {
-      "p1": "Franco Gueli",
-      "s1": 12,
-      "p2": "Louis Herbert",
-      "s2": 7
-    },
-    {
-      "p1": "Laurent Gunsbourg",
-      "s1": 7,
-      "p2": "Guillaume Lainé",
-      "s2": 8
-    },
-    {
-      "p1": "Laurent Gunsbourg",
-      "s1": 6,
-      "p2": "Louis Herbert",
-      "s2": 10
-    },
-    {
-      "p1": "Alain Braem",
-      "s1": 10,
-      "p2": "Christophe Jonckheere",
-      "s2": 6
-    },
-    {
-      "p1": "Guillaume Lainé",
-      "s1": 5,
-      "p2": "Olivier Gatti",
-      "s2": 6
-    },
-    {
-      "p1": "Georges Mensah",
-      "s1": 5,
-      "p2": "Alain Braem",
-      "s2": 10
-    },
-    {
-      "p1": "Jan Vavrovec",
-      "s1": 4,
-      "p2": "Franco Gueli",
-      "s2": 11
-    },
-    {
-      "p1": "Olivier Gatti",
-      "s1": 7,
-      "p2": "Laurentiu Borcan",
-      "s2": 7
-    },
-    {
-      "p1": "Louis Herbert",
-      "s1": 4,
-      "p2": "Georges Mensah",
-      "s2": 10
-    },
-    {
-      "p1": "Alain Braem",
-      "s1": 9,
-      "p2": "Olivier Gatti",
-      "s2": 4
-    },
-    {
-      "p1": "Christopher Debuyst",
-      "s1": 4,
-      "p2": "Louis Herbert",
-      "s2": 10
-    },
-    {
-      "p1": "Laurentiu Borcan",
-      "s1": 12,
-      "p2": "Christopher Debuyst",
-      "s2": 5
-    },
-    {
-      "p1": "Louis Herbert",
-      "s1": 6,
-      "p2": "Gilles Petit",
-      "s2": 8
-    },
-    {
-      "p1": "Christopher Debuyst",
-      "s1": 8,
-      "p2": "Olivier Gatti",
-      "s2": 5
-    },
-    {
-      "p1": "Laurentiu Borcan",
-      "s1": 7,
-      "p2": "Jan Vavrovec",
-      "s2": 8
-    },
-    {
-      "p1": "Georges Mensah",
-      "s1": 5,
-      "p2": "Christopher Debuyst",
-      "s2": 6
-    },
-    {
-      "p1": "Franco Gueli",
-      "s1": 10,
-      "p2": "Laurent Gunsbourg",
-      "s2": 9
-    },
-    {
-      "p1": "Olivier Gatti",
-      "s1": 7,
-      "p2": "Louis Herbert",
-      "s2": 8
-    },
-    {
-      "p1": "Jan Vavrovec",
-      "s1": 3,
-      "p2": "Christopher Debuyst",
-      "s2": 13
-    },
-    {
-      "p1": "Franco Gueli",
-      "s1": 8,
-      "p2": "Georges Mensah",
-      "s2": 4
-    },
-    {
-      "p1": "Christophe Jonckheere",
-      "s1": 3,
-      "p2": "Laurent Gunsbourg",
-      "s2": 7
-    },
-    {
-      "p1": "Gilles Petit",
-      "s1": 14,
-      "p2": "Alain Braem",
-      "s2": 4
-    },
-    {
-      "p1": "Christopher Debuyst",
-      "s1": 10,
-      "p2": "Guillaume Lainé",
-      "s2": 5
-    },
-    {
-      "p1": "Christopher Debuyst",
-      "s1": 8,
-      "p2": "Alain Braem",
-      "s2": 5
-    },
-    {
-      "p1": "Jan Vavrovec",
-      "s1": 5,
-      "p2": "Guillaume Lainé",
-      "s2": 11
-    },
-    {
-      "p1": "Franco Gueli",
-      "s1": 8,
-      "p2": "Christopher Debuyst",
-      "s2": 7
-    },
-    {
-      "p1": "Louis Herbert",
-      "s1": 12,
-      "p2": "Laurentiu Borcan",
-      "s2": 2
-    },
-    {
-      "p1": "Jan Vavrovec",
-      "s1": 5,
-      "p2": "Laurent Gunsbourg",
-      "s2": 14
-    },
-    {
-      "p1": "Olivier Gatti",
-      "s1": 15,
-      "p2": "Laurent Gunsbourg",
-      "s2": 5
-    },
-    {
-      "p1": "Guillaume Lainé",
-      "s1": 2,
-      "p2": "Louis Herbert",
-      "s2": 9
-    },
-    {
-      "p1": "Christophe Jonckheere",
-      "s1": 3,
-      "p2": "Louis Herbert",
-      "s2": 11
-    },
-    {
-      "p1": "Olivier Gatti",
-      "s1": 8,
-      "p2": "Franco Gueli",
-      "s2": 7
+      "p2": "Christopher Debuyst"
     }
   ],
-  "upcoming": [],
-  "myMatches": [
-    {
-      "id": "lm1",
-      "opponent": "Franco Gueli",
-      "my": 8,
-      "opp": 6,
-      "result": "win"
-    },
-    {
-      "id": "lm2",
-      "opponent": "Laurent Gunsbourg",
-      "my": 9,
-      "opp": 7,
-      "result": "win"
-    },
-    {
-      "id": "lm3",
-      "opponent": "Guillaume Lainé",
-      "my": 9,
-      "opp": 6,
-      "result": "win"
-    },
-    {
-      "id": "lm4",
-      "opponent": "Georges Mensah",
-      "my": 8,
-      "opp": 6,
-      "result": "win"
-    },
-    {
-      "id": "lm5",
-      "opponent": "Christophe Jonckheere",
-      "my": 9,
-      "opp": 7,
-      "result": "win"
-    },
-    {
-      "id": "lm6",
-      "opponent": "Alain Braem",
-      "my": 7,
-      "opp": 7,
-      "result": "draw"
-    },
-    {
-      "id": "lm7",
-      "opponent": "Gilles Petit",
-      "my": 12,
-      "opp": 7,
-      "result": "win"
-    },
-    {
-      "id": "lm8",
-      "opponent": "Olivier Gatti",
-      "my": 7,
-      "opp": 7,
-      "result": "draw"
-    },
-    {
-      "id": "lm9",
-      "opponent": "Christopher Debuyst",
-      "my": 12,
-      "opp": 5,
-      "result": "win"
-    },
-    {
-      "id": "lm10",
-      "opponent": "Jan Vavrovec",
-      "my": 7,
-      "opp": 8,
-      "result": "loss"
-    },
-    {
-      "id": "lm11",
-      "opponent": "Louis Herbert",
-      "my": 2,
-      "opp": 12,
-      "result": "loss"
-    }
-  ],
+  "myMatches": [],
   "myStats": {
-    "points": 16,
-    "played": 11,
-    "wins": 7,
-    "draws": 2,
-    "losses": 2,
-    "diff": 12,
-    "ranking": "C30.3"
+    "points": 0,
+    "played": 0,
+    "wins": 0,
+    "draws": 0,
+    "losses": 0,
+    "diff": 0,
+    "ranking": "C30.4"
   }
 }
