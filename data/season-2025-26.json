@@ -2,7 +2,7 @@
   "id": "2025-26",
   "label": "2025/26",
   "status": "active",
-  "lastUpdated": "2026-09-23",
+  "lastUpdated": "2026-09-24",
   "standings": [
     {
       "name": "Alain Braem",
@@ -142,6 +142,18 @@
       "time": "21:00",
       "p1": "Franco Gueli",
       "p2": "Christopher Debuyst"
+    },
+    {
+      "date": "26/09/2026",
+      "time": "19:00",
+      "p1": "Georges Mensah",
+      "p2": "Jean-Valéry De Reus"
+    },
+    {
+      "date": "27/09/2026",
+      "time": "14:30",
+      "p1": "Xavier Naegel",
+      "p2": "Laurentiu Borcan"
     }
   ],
   "myMatches": [],
