@@ -446,14 +446,33 @@ function dedupe(matches) {
   return out;
 }
 
-/** Load previously saved matches from OUT, if the file exists and is valid. */
+/** Load previously saved matches from OUT. Returns [] only when the file genuinely doesn't exist;
+ *  any other failure (unreadable, unparseable, missing matches array) aborts the run rather than
+ *  silently treating existing history as empty. */
 function loadExisting() {
+  let raw;
   try {
-    const data = JSON.parse(fs.readFileSync(OUT, 'utf8'));
-    return Array.isArray(data.matches) ? data.matches : [];
-  } catch {
-    return [];
+    raw = fs.readFileSync(OUT, 'utf8');
+  } catch (err) {
+    if (err.code === 'ENOENT') return [];
+    console.error(`Refusing to continue: couldn't read ${OUT}: ${err.message}`);
+    process.exit(1);
   }
+
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch (err) {
+    console.error(`Refusing to continue: ${OUT} exists but failed to parse as JSON: ${err.message}`);
+    process.exit(1);
+  }
+
+  if (!Array.isArray(data.matches)) {
+    console.error(`Refusing to continue: ${OUT} exists but has no "matches" array.`);
+    process.exit(1);
+  }
+
+  return data.matches;
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -483,6 +502,14 @@ async function main() {
 
   const matches = dedupe(scraped.concat(existing))
     .sort((a, b) => b.date.localeCompare(a.date));
+
+  if (matches.length < existing.length) {
+    console.error(
+      `Refusing to write: merged match count (${matches.length}) is lower than existing count ` +
+      `(${existing.length}). This would lose history — aborting without writing ${OUT}.`
+    );
+    process.exit(1);
+  }
 
   const wins   = matches.filter(x => x.result === 'win').length;
   const losses = matches.filter(x => x.result === 'loss').length;
