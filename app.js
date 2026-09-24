@@ -25,11 +25,11 @@ function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch
 // ===== PRE-LOADED DATA =====
 
 const SEASONS = [
-  // ── 2025/26 (active) ────────────────────────────────────────────────────
+  // ── 2025/26 (archived) ──────────────────────────────────────────────────
   {
     id: '2025-26',
     label: '2025/26',
-    status: 'active',
+    status: 'archived',
 
     myStats: { points: 16, played: 10, wins: 7, draws: 2, losses: 1, diff: 22, ranking: 'C30.3' },
 
@@ -134,11 +134,11 @@ const SEASONS = [
     ],
   },
 
-  // ── 2026/27 (upcoming) ───────────────────────────────────────────────────
+  // ── 2026/27 (active) ─────────────────────────────────────────────────────
   {
     id: '2026-27',
     label: '2026/27',
-    status: 'upcoming',
+    status: 'active',
 
     myStats: { points: 0, played: 0, wins: 0, draws: 0, losses: 0, diff: 0, ranking: '' },
     myMatches: [],
@@ -245,7 +245,7 @@ const OTHER_MATCHES_SEED = [
 ];
 
 // ── Season accessor ──────────────────────────────────────────────────────────
-let currentSeasonId = '2025-26';
+let currentSeasonId = '2026-27';
 
 function getSeason(id) {
   return SEASONS.find(s => s.id === id);
@@ -1189,21 +1189,23 @@ async function init() {
     seasonBar.innerHTML = `<div class="season-bar-inner"><span class="season-label season-label--loading">Loading…</span></div>`;
   }
 
-  try {
-    const res  = await fetch('./data/season-2025-26.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    const season = SEASONS.find(s => s.id === data.id);
-    if (season) {
+  // Load each season's own data file (derived from its id) — never a single hardcoded path,
+  // so archived seasons keep their own history instead of being overwritten by newer ones.
+  await Promise.all(SEASONS.map(async season => {
+    try {
+      const res = await fetch(`./data/season-${season.id}.json`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (data.id !== season.id) return; // file doesn't match its own season — skip
       season.myStats    = data.myStats;
       season.myMatches  = data.myMatches;
       season.standings  = data.standings;
       season.allMatches = data.allMatches;
       season.upcoming   = data.upcoming;
+    } catch {
+      // Network or parse error for this season — fall back to hardcoded data silently
     }
-  } catch {
-    // Network or parse error — fall back to hardcoded data silently
-  }
+  }));
 
   try {
     const twbRes = await fetch('./data/tournaments-twb.json');

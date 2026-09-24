@@ -4,7 +4,8 @@
 /**
  * scrape-league.js
  * Fetches https://dvl.webismagic.net/classement/4, parses standings,
- * completed matches, and upcoming matches, then writes data/season-2025-26.json.
+ * completed matches, and upcoming matches, then writes data/season-<active>.json,
+ * where <active> is the season id from data/seasons.json.
  *
  * Uses only Node.js built-ins — no npm packages required.
  */
@@ -13,9 +14,16 @@ const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
 
-const MY_NAME = 'Laurentiu Borcan';
-const SOURCE  = 'https://dvl.webismagic.net/classement/4';
-const OUT     = path.join(__dirname, '..', 'data', 'season-2025-26.json');
+const MY_NAME        = 'Laurentiu Borcan';
+const SOURCE         = 'https://dvl.webismagic.net/classement/4';
+const SEASONS_CONFIG = path.join(__dirname, '..', 'data', 'seasons.json');
+
+/** Read the active season id from data/seasons.json — the single source of truth for which file to write. */
+function getActiveSeasonId() {
+  const config = JSON.parse(fs.readFileSync(SEASONS_CONFIG, 'utf8'));
+  if (!config.active) throw new Error(`${SEASONS_CONFIG} is missing an "active" season id`);
+  return config.active;
+}
 
 // ── HTTP fetch ───────────────────────────────────────────────────────────────
 
@@ -234,6 +242,22 @@ function deriveMyData(standings, allMatches) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
+  const activeId = getActiveSeasonId();
+  const label    = activeId.replace('-', '/');
+  const out      = path.join(__dirname, '..', 'data', `season-${activeId}.json`);
+
+  // Safety guard: never overwrite a season that's been archived.
+  if (fs.existsSync(out)) {
+    const existing = JSON.parse(fs.readFileSync(out, 'utf8'));
+    if (existing.status === 'archived') {
+      console.error(
+        `Refusing to write: season "${activeId}" (${out}) is archived. ` +
+        `Update data/seasons.json's "active" field to the current season before running the scraper.`
+      );
+      process.exit(1);
+    }
+  }
+
   console.log(`Fetching ${SOURCE} ...`);
   const html = await fetchUrl(SOURCE);
 
@@ -244,8 +268,8 @@ async function main() {
   const today  = new Date().toISOString().slice(0, 10);
 
   const output = {
-    id:          '2025-26',
-    label:       '2025/26',
+    id:          activeId,
+    label,
     status:      'active',
     lastUpdated: today,
     standings,
@@ -255,13 +279,13 @@ async function main() {
     myStats,
   };
 
-  fs.writeFileSync(OUT, JSON.stringify(output, null, 2) + '\n');
+  fs.writeFileSync(out, JSON.stringify(output, null, 2) + '\n');
 
   console.log(`✓ standings:         ${standings.length}`);
   console.log(`✓ completed matches: ${allMatches.length}`);
   console.log(`✓ upcoming:          ${upcoming.length}`);
   console.log(`✓ my matches:        ${myMatches.length}`);
-  console.log(`✓ written to        ${OUT}`);
+  console.log(`✓ written to        ${out}`);
 }
 
 main().catch(err => {
