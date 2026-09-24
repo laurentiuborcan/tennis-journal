@@ -1,0 +1,169 @@
+{
+  "id": "2026-27",
+  "label": "2026/27",
+  "status": "active",
+  "lastUpdated": "2026-09-24",
+  "standings": [
+    {
+      "name": "Alain Braem",
+      "ranking": "C30.4",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Bruno Ingrassia",
+      "ranking": "C30.6",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Christopher Debuyst",
+      "ranking": "C30.2",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Franco Gueli",
+      "ranking": "NC",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Georges Mensah",
+      "ranking": "C30.1",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Guillaume Lainé",
+      "ranking": "NC",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Jean-Valéry De Reus",
+      "ranking": "NC",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Julian Van Hille",
+      "ranking": "C30.5",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Laurent Gunsbourg",
+      "ranking": "C30.2",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Laurentiu Borcan",
+      "ranking": "C30.4",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Olivier Gatti",
+      "ranking": "C30",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Olivier Kasiers",
+      "ranking": "C30.6",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    },
+    {
+      "name": "Xavier Naegel",
+      "ranking": "C30.2",
+      "pts": 0,
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "diff": 0
+    }
+  ],
+  "allMatches": [],
+  "upcoming": [
+    {
+      "date": "25/09/2026",
+      "time": "21:00",
+      "p1": "Franco Gueli",
+      "p2": "Christopher Debuyst"
+    },
+    {
+      "date": "26/09/2026",
+      "time": "19:00",
+      "p1": "Georges Mensah",
+      "p2": "Jean-Valéry De Reus"
+    },
+    {
+      "date": "27/09/2026",
+      "time": "14:30",
+      "p1": "Xavier Naegel",
+      "p2": "Laurentiu Borcan"
+    }
+  ],
+  "myMatches": [],
+  "myStats": {
+    "points": 0,
+    "played": 0,
+    "wins": 0,
+    "draws": 0,
+    "losses": 0,
+    "diff": 0,
+    "ranking": "C30.4"
+  }
+}
