@@ -258,6 +258,20 @@ let twbData      = null; // fetched on init from ./data/tournaments-twb.json
 let userData     = { twbNotes: {}, davisNotes: {}, otherMatchesExtra: [] }; // fetched on init from ./data/user-data.json
 let twbNoteIndex = {}; // localStorage key -> raw "date|tournament|opponent" key, built from twbData
 
+/** One-time migration: Davis notes saved before notes were season-scoped were all written
+ *  while 2025-26 was the only season, so bare "<matchId>" keys get re-keyed to "2025-26|<matchId>". */
+function migrateLegacyDavisNotes() {
+  let changed = false;
+  Object.keys(leagueNotes).forEach(key => {
+    if (key.includes('|')) return; // already season-scoped
+    const newKey = `2025-26|${key}`;
+    if (!(newKey in leagueNotes)) leagueNotes[newKey] = leagueNotes[key];
+    delete leagueNotes[key];
+    changed = true;
+  });
+  if (changed) lsSet(KEYS.leagueNotes, leagueNotes);
+}
+
 const state = {
   tab:           'twb',     // 'me' | 'all' | 'other' | 'twb'
   otherView:     'journal', // 'journal' | 'detail' | 'add'
@@ -413,7 +427,7 @@ function renderMe() {
 
       <div class="section-title" style="margin-bottom:0.75rem;">My Matches</div>
       <div class="lm-list">
-        ${season.myMatches.map(m => renderMyMatchCard(m, archived)).join('')}
+        ${season.myMatches.map(m => renderMyMatchCard(m, archived, season.id)).join('')}
       </div>
     </div>`;
 
@@ -429,7 +443,7 @@ function renderMe() {
   }
 }
 
-function renderMyMatchCard(m, archived = false) {
+function renderMyMatchCard(m, archived = false, seasonId = currentSeasonId) {
   if (m.result === 'upcoming') {
     return `
       <div class="lm-card lm-card--upcoming">
@@ -444,8 +458,9 @@ function renderMyMatchCard(m, archived = false) {
       </div>`;
   }
 
-  const label = m.result === 'win' ? 'W' : m.result === 'draw' ? 'D' : 'L';
-  const note  = (userData.davisNotes && userData.davisNotes[m.id]) || leagueNotes[m.id] || '';
+  const label   = m.result === 'win' ? 'W' : m.result === 'draw' ? 'D' : 'L';
+  const noteKey = `${seasonId}|${m.id}`;
+  const note    = (userData.davisNotes && userData.davisNotes[noteKey]) || leagueNotes[noteKey] || '';
 
   return `
     <div class="lm-card">
@@ -457,7 +472,7 @@ function renderMyMatchCard(m, archived = false) {
         </div>
         <textarea
           class="note-area${archived ? ' note-area--readonly' : ''}"
-          data-id="${m.id}"
+          data-id="${noteKey}"
           placeholder="${archived ? 'Archived season — notes are read-only' : 'Add notes for this match…'}"
           rows="2"
           ${archived ? 'readonly' : ''}
@@ -1177,6 +1192,8 @@ async function performSaveToRepo(token) {
 
 // ===== INIT =====
 async function init() {
+  migrateLegacyDavisNotes();
+
   document.getElementById('tabsBar').addEventListener('click', e => {
     const btn = e.target.closest('.tab-btn');
     if (!btn || !btn.dataset.tab) return;

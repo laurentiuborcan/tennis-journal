@@ -24,6 +24,9 @@ Repo: `laurentiuborcan/tennis-journal`
 - `SEASONS` array in app.js: currently `2025-26` (archived) and `2026-27` (active)
 - Each season loads from its own `data/season-<id>.json` file (app.js derives the path from
   the season's `id`, never a single hardcoded filename)
+- Davis League notes are season-scoped (`seasonId|matchId`, e.g. `2025-26|lm1`) in both
+  localStorage and `data/user-data.json`'s `davisNotes` — match IDs (`lm1`, `lm2`, ...) repeat
+  every season, so a bare match ID alone would collide across seasons
 - Fake 2024/25 test season was removed — don't re-add fake data
 
 ## Data pipelines (GitHub Actions)
