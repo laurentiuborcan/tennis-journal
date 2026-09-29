@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-09-29",
-  "ranking": "C30.4",
-  "totalPoints": 84846,
+  "ranking": "C30.2",
+  "totalPoints": 77621,
   "pointsBreakdown": {
     "bestResults": [
       {
@@ -17,13 +17,6 @@
         "date": "2026-08-16",
         "category": "Messieurs 5",
         "points": 117.3
-      },
-      {
-        "tournament": "T.C. MOUNIER",
-        "club": "1099",
-        "date": "2026-05-03",
-        "category": "Messieurs 35 5",
-        "points": 83.85
       },
       {
         "tournament": "TENNIS CLUB BOIS DE LA CAMBRE",
@@ -45,11 +38,18 @@
         "date": "2026-07-05",
         "category": "Messieurs 35 6",
         "points": 40.5
+      },
+      {
+        "tournament": "T.C. DAVIS",
+        "club": "1420",
+        "date": "2026-07-19",
+        "category": "Messieurs 35 6",
+        "points": 40.5
       }
     ],
-    "totalPoints": 509.075,
-    "weightedFormula": "100.00% * 509.075 / 6 = 84.846 pts",
-    "finalPoints": 84.846
+    "totalPoints": 465.725,
+    "weightedFormula": "100.00% * 465.725 / 6 = 77.621 pts",
+    "finalPoints": 77.621
   },
   "matches": [
     {
