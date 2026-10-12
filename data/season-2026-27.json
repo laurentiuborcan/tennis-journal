@@ -2,7 +2,7 @@
   "id": "2026-27",
   "label": "2026/27",
   "status": "active",
-  "lastUpdated": "2026-10-11",
+  "lastUpdated": "2026-10-12",
   "standings": [
     {
       "name": "Christopher Debuyst",
@@ -13,6 +13,16 @@
       "draws": 0,
       "losses": 0,
       "diff": 9
+    },
+    {
+      "name": "Xavier Naegel",
+      "ranking": "C30.2",
+      "pts": 4,
+      "played": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "diff": 7
     },
     {
       "name": "Georges Mensah",
@@ -33,16 +43,6 @@
       "draws": 0,
       "losses": 0,
       "diff": 4
-    },
-    {
-      "name": "Xavier Naegel",
-      "ranking": "C30.2",
-      "pts": 2,
-      "played": 1,
-      "wins": 1,
-      "draws": 0,
-      "losses": 0,
-      "diff": 3
     },
     {
       "name": "Guillaume Lainé",
@@ -67,16 +67,6 @@
     {
       "name": "Laurent Gunsbourg",
       "ranking": "C30.2",
-      "pts": 0,
-      "played": 0,
-      "wins": 0,
-      "draws": 0,
-      "losses": 0,
-      "diff": 0
-    },
-    {
-      "name": "Olivier Gatti",
-      "ranking": "C30",
       "pts": 0,
       "played": 0,
       "wins": 0,
@@ -113,6 +103,16 @@
       "draws": 0,
       "losses": 1,
       "diff": -3
+    },
+    {
+      "name": "Olivier Gatti",
+      "ranking": "C30",
+      "pts": 0,
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "diff": -4
     },
     {
       "name": "Franco Gueli",
@@ -171,15 +171,15 @@
       "s1": 4,
       "p2": "Christopher Debuyst",
       "s2": 11
+    },
+    {
+      "p1": "Olivier Gatti",
+      "s1": 5,
+      "p2": "Xavier Naegel",
+      "s2": 9
     }
   ],
   "upcoming": [
-    {
-      "date": "10/10/2026",
-      "time": "16:00",
-      "p1": "Olivier Gatti",
-      "p2": "Xavier Naegel"
-    },
     {
       "date": "12/10/2026",
       "time": "21:30",
