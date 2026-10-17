@@ -2,7 +2,7 @@
   "id": "2026-27",
   "label": "2026/27",
   "status": "active",
-  "lastUpdated": "2026-10-16",
+  "lastUpdated": "2026-10-17",
   "standings": [
     {
       "name": "Christopher Debuyst",
@@ -209,6 +209,12 @@
       "time": "12:00",
       "p1": "Bruno Ingrassia",
       "p2": "Olivier Kasiers"
+    },
+    {
+      "date": "24/10/2026",
+      "time": "17:00",
+      "p1": "Olivier Kasiers",
+      "p2": "Alain Braem"
     }
   ],
   "myMatches": [
