@@ -460,7 +460,9 @@ function renderMyMatchCard(m, archived = false, seasonId = currentSeasonId) {
 
   const label   = m.result === 'win' ? 'W' : m.result === 'draw' ? 'D' : 'L';
   const noteKey = `${seasonId}|${m.id}`;
-  const note    = (userData.davisNotes && userData.davisNotes[noteKey]) || leagueNotes[noteKey] || '';
+  // An unsaved local edit (including an explicit deletion, i.e. an empty string) must win over
+  // the last-synced repo value — only defer to the repo when this key was never touched locally.
+  const note    = (noteKey in leagueNotes) ? leagueNotes[noteKey] : ((userData.davisNotes && userData.davisNotes[noteKey]) || '');
 
   return `
     <div class="lm-card">
@@ -1036,7 +1038,10 @@ function renderTwbMatchCard(m) {
   const noteId         = `twb-note-${keyDate}-${keyTournament}-${keyOpponent}`;
   const noteStorageKey = `twb_note_${keyDate}_${keyTournament}_${keyOpponent}`;
   const rawNoteKey     = `${m.date}|${m.tournament}|${opponent}`;
-  const note = (userData.twbNotes && userData.twbNotes[rawNoteKey]) || localStorage.getItem(noteStorageKey) || '';
+  // An unsaved local edit (including an explicit deletion) must win over the last-synced repo
+  // value. localStorage.getItem distinguishes "never touched" (null) from "explicitly cleared" ('').
+  const localNote = localStorage.getItem(noteStorageKey);
+  const note = localNote !== null ? localNote : ((userData.twbNotes && userData.twbNotes[rawNoteKey]) || '');
 
   return `
     <div class="twb-match-card">
@@ -1064,7 +1069,9 @@ function renderTwbMatchCard(m) {
 
 // ===== SAVE TO REPO =====
 
-/** Overlay all locally-saved notes on top of the last-loaded user-data.json. */
+/** Overlay all locally-saved notes on top of the last-loaded user-data.json. Local edits are
+ *  authoritative: a present-but-empty local value means the note was explicitly deleted, so it
+ *  removes the key from the saved file rather than writing back an empty string. */
 function collectMergedUserData() {
   const merged = {
     twbNotes:          { ...(userData.twbNotes          || {}) },
@@ -1077,11 +1084,13 @@ function collectMergedUserData() {
     const rawKey = twbNoteIndex[k];
     if (!rawKey) return;
     const val = localStorage.getItem(k);
-    if (val) merged.twbNotes[rawKey] = val;
+    if (val === '') delete merged.twbNotes[rawKey];
+    else merged.twbNotes[rawKey] = val;
   });
 
-  Object.entries(leagueNotes).forEach(([id, val]) => {
-    if (val) merged.davisNotes[id] = val;
+  Object.entries(leagueNotes).forEach(([key, val]) => {
+    if (val === '') delete merged.davisNotes[key];
+    else merged.davisNotes[key] = val;
   });
 
   return merged;
@@ -1096,6 +1105,17 @@ function hasUnsavedChanges() {
 function updateSaveBadge() {
   const badge = document.getElementById('saveToRepoBadge');
   if (badge) badge.hidden = !hasUnsavedChanges();
+}
+
+/** After a successful save, every local note override (edit or deletion) is now reflected in
+ *  the freshly-updated userData, so the pending local copies are redundant — clear them, leaving
+ *  "no local entry" as the steady state until the next edit. */
+function clearPendingNoteOverrides() {
+  Object.keys(localStorage).forEach(k => {
+    if (k.startsWith('twb_note_')) localStorage.removeItem(k);
+  });
+  leagueNotes = {};
+  lsSet(KEYS.leagueNotes, leagueNotes);
 }
 
 function showToast(message, type = 'success') {
@@ -1181,6 +1201,7 @@ async function performSaveToRepo(token) {
     }
 
     userData = merged;
+    clearPendingNoteOverrides();
     updateSaveBadge();
     showToast('Saved to repo.', 'success');
   } catch (err) {
@@ -1206,11 +1227,15 @@ async function init() {
     seasonBar.innerHTML = `<div class="season-bar-inner"><span class="season-label season-label--loading">Loading…</span></div>`;
   }
 
+  // Cache-bust every data fetch below so a stale cached response (browser or CDN) never masks
+  // a note that was just saved to the repo.
+  const cacheBust = Date.now();
+
   // Load each season's own data file (derived from its id) — never a single hardcoded path,
   // so archived seasons keep their own history instead of being overwritten by newer ones.
   await Promise.all(SEASONS.map(async season => {
     try {
-      const res = await fetch(`./data/season-${season.id}.json`);
+      const res = await fetch(`./data/season-${season.id}.json?t=${cacheBust}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       if (data.id !== season.id) return; // file doesn't match its own season — skip
@@ -1225,7 +1250,7 @@ async function init() {
   }));
 
   try {
-    const twbRes = await fetch('./data/tournaments-twb.json');
+    const twbRes = await fetch(`./data/tournaments-twb.json?t=${cacheBust}`);
     if (!twbRes.ok) throw new Error(`HTTP ${twbRes.status}`);
     twbData = await twbRes.json();
     buildTwbNoteIndex();
@@ -1234,7 +1259,7 @@ async function init() {
   }
 
   try {
-    const userDataRes = await fetch('./data/user-data.json');
+    const userDataRes = await fetch(`./data/user-data.json?t=${cacheBust}`);
     if (!userDataRes.ok) throw new Error(`HTTP ${userDataRes.status}`);
     const data = await userDataRes.json();
     userData = {
