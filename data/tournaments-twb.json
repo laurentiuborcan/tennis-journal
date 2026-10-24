@@ -53,6 +53,16 @@
   },
   "matches": [
     {
+      "date": "2026-10-24",
+      "tournament": "SET WAHIS",
+      "category": "Simples Messieurs 5",
+      "opponent": "MALEVEZ Augustin",
+      "opponentPts": 15,
+      "opponentRanking": "C30.3",
+      "score": "6/3-6/4-0/0",
+      "result": "loss"
+    },
+    {
       "date": "2026-10-20",
       "tournament": "LAMBERMONT (BRABANT)",
       "category": "Simples Messieurs 35 5",
