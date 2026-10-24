@@ -2,7 +2,7 @@
   "id": "2026-27",
   "label": "2026/27",
   "status": "active",
-  "lastUpdated": "2026-10-23",
+  "lastUpdated": "2026-10-24",
   "standings": [
     {
       "name": "Xavier Naegel",
@@ -215,6 +215,30 @@
       "time": "17:00",
       "p1": "Olivier Kasiers",
       "p2": "Alain Braem"
+    },
+    {
+      "date": "01/11/2026",
+      "time": "15:00",
+      "p1": "Olivier Kasiers",
+      "p2": "Olivier Gatti"
+    },
+    {
+      "date": "07/11/2026",
+      "time": "17:30",
+      "p1": "Franco Gueli",
+      "p2": "Guillaume Lainé"
+    },
+    {
+      "date": "08/11/2026",
+      "time": "14:30",
+      "p1": "Bruno Ingrassia",
+      "p2": "Julian Van Hille"
+    },
+    {
+      "date": "08/11/2026",
+      "time": "15:00",
+      "p1": "Christopher Debuyst",
+      "p2": "Georges Mensah"
     }
   ],
   "myMatches": [
