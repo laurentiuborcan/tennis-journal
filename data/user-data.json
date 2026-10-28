@@ -33,5 +33,21 @@
     "2026-27|lm2": "Hits very hard, hard serve, hard and placed returns. Giving him slow short balls didn’t work. Only way is to move him all over and stay in the rally. I did many errors, overplayed the ball, tried to hit hard crosses that went out. Not once did I went to the net. At 6-6 and his service, I rushed, didn’t think.",
     "2026-27|lm3": "He did lots of mistakes, but I played correctly, tried to focus on relaxing, took my time, planned a bit many shots. Serving really well because I didn’t rushed it. Went to net several times, serve and volley, worked well."
   },
-  "otherMatchesExtra": []
+  "otherMatchesExtra": [
+    {
+      "id": "om-alberto-2026-10-28",
+      "date": "2026-10-28",
+      "opponent": "Alberto",
+      "location": "",
+      "sets": [
+        {
+          "p": 5,
+          "o": 4
+        }
+      ],
+      "result": "win",
+      "createdAt": 1761667200000,
+      "notes": "Friendly, 1 hour. 4-4 when time ran out, won the tiebreak 6-4. Led 3-1 and 4-2 but couldn't close it out — lost focus / started playing not to lose once ahead (recurring pattern).\n\nMy game: forehand fine; topspin backhand better than usual; slice backhand still giving issues (reworking it) but better than a few weeks ago. Both backhands work better when I stay sideways through the hit and don't turn.\n\nHim: as always — difficult sliced balls, gets everything back, never gives up.\n\nNet: went in only a few times, not successful, then stopped. Usually forget to watch him hit and split step, so I arrive at the net unbalanced; when I do split step it's fine.\n\nReturns (vs everyone): on his 2nd serve I often overhit long, or slice on the backhand, which doesn't work.\n\nTakeaway: keep attacking when ahead; come to the net more and finish with the volley — split step first; stay sideways on the backhand; controlled, driven 2nd-serve returns."
+    }
+  ]
 }

@@ -1267,6 +1267,13 @@ async function init() {
       davisNotes:        data.davisNotes        || {},
       otherMatchesExtra: data.otherMatchesExtra || [],
     };
+    // Show repo-saved Other Matches on every device: add any not already in the local list
+    const known = new Set(otherMatches.map(m => m.id));
+    const added = userData.otherMatchesExtra.filter(m => m && m.id && !known.has(m.id));
+    if (added.length) {
+      otherMatches = [...otherMatches, ...added];
+      lsSet(KEYS.otherMatches, otherMatches);
+    }
   } catch {
     // Network or parse error — fall back to the empty structure, localStorage notes still work
   }
