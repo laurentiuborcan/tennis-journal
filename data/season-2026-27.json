@@ -2,7 +2,7 @@
   "id": "2026-27",
   "label": "2026/27",
   "status": "active",
-  "lastUpdated": "2026-11-03",
+  "lastUpdated": "2026-11-04",
   "standings": [
     {
       "name": "Xavier Naegel",
@@ -239,6 +239,66 @@
       "time": "15:00",
       "p1": "Christopher Debuyst",
       "p2": "Georges Mensah"
+    },
+    {
+      "date": "16/11/2026",
+      "time": "12:00",
+      "p1": "Jean-Valéry De Reus",
+      "p2": "Olivier Kasiers"
+    },
+    {
+      "date": "23/11/2026",
+      "time": "12:00",
+      "p1": "Laurentiu Borcan",
+      "p2": "Guillaume Lainé"
+    },
+    {
+      "date": "26/11/2026",
+      "time": "21:30",
+      "p1": "Christopher Debuyst",
+      "p2": "Laurent Gunsbourg"
+    },
+    {
+      "date": "01/12/2026",
+      "time": "12:00",
+      "p1": "Guillaume Lainé",
+      "p2": "Jean-Valéry De Reus"
+    },
+    {
+      "date": "07/12/2026",
+      "time": "12:00",
+      "p1": "Laurentiu Borcan",
+      "p2": "Bruno Ingrassia"
+    },
+    {
+      "date": "08/12/2026",
+      "time": "12:00",
+      "p1": "Julian Van Hille",
+      "p2": "Alain Braem"
+    },
+    {
+      "date": "14/12/2026",
+      "time": "12:00",
+      "p1": "Olivier Kasiers",
+      "p2": "Guillaume Lainé"
+    },
+    {
+      "date": "14/12/2026",
+      "time": "21:30",
+      "p1": "Franco Gueli",
+      "p2": "Georges Mensah"
+    },
+    {
+      "date": "18/12/2026",
+      "time": "21:00",
+      "p1": "Bruno Ingrassia",
+      "p2": "Alain Braem"
+    },
+    {
+      "date": "28/12/2026",
+      "time": "16:00",
+      "p1": "Georges Mensah",
+      "p2": "Olivier Kasiers"
     }
   ],
   "myMatches": [
