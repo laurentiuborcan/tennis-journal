@@ -2,7 +2,7 @@
   "id": "2026-27",
   "label": "2026/27",
   "status": "active",
-  "lastUpdated": "2026-11-07",
+  "lastUpdated": "2026-11-08",
   "standings": [
     {
       "name": "Xavier Naegel",
@@ -239,6 +239,12 @@
       "time": "15:00",
       "p1": "Christopher Debuyst",
       "p2": "Georges Mensah"
+    },
+    {
+      "date": "15/11/2026",
+      "time": "15:00",
+      "p1": "Laurent Gunsbourg",
+      "p2": "Xavier Naegel"
     },
     {
       "date": "16/11/2026",
