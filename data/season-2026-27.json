@@ -2,7 +2,7 @@
   "id": "2026-27",
   "label": "2026/27",
   "status": "active",
-  "lastUpdated": "2026-11-08",
+  "lastUpdated": "2026-11-09",
   "standings": [
     {
       "name": "Xavier Naegel",
@@ -27,10 +27,10 @@
     {
       "name": "Christopher Debuyst",
       "ranking": "C30.2",
-      "pts": 4,
-      "played": 2,
+      "pts": 5,
+      "played": 3,
       "wins": 2,
-      "draws": 0,
+      "draws": 1,
       "losses": 0,
       "diff": 9
     },
@@ -45,6 +45,36 @@
       "diff": 9
     },
     {
+      "name": "Georges Mensah",
+      "ranking": "C30.0",
+      "pts": 3,
+      "played": 4,
+      "wins": 1,
+      "draws": 1,
+      "losses": 2,
+      "diff": 3
+    },
+    {
+      "name": "Guillaume Lainé",
+      "ranking": "NC",
+      "pts": 3,
+      "played": 2,
+      "wins": 1,
+      "draws": 1,
+      "losses": 0,
+      "diff": 2
+    },
+    {
+      "name": "Julian Van Hille",
+      "ranking": "C30.4",
+      "pts": 3,
+      "played": 3,
+      "wins": 1,
+      "draws": 1,
+      "losses": 1,
+      "diff": -1
+    },
+    {
       "name": "Laurentiu Borcan",
       "ranking": "C30.2",
       "pts": 2,
@@ -55,34 +85,24 @@
       "diff": 5
     },
     {
-      "name": "Georges Mensah",
-      "ranking": "C30.0",
-      "pts": 2,
-      "played": 3,
-      "wins": 1,
-      "draws": 0,
-      "losses": 2,
-      "diff": 3
-    },
-    {
-      "name": "Guillaume Lainé",
-      "ranking": "NC",
-      "pts": 2,
-      "played": 1,
-      "wins": 1,
-      "draws": 0,
-      "losses": 0,
-      "diff": 2
-    },
-    {
-      "name": "Julian Van Hille",
-      "ranking": "C30.4",
-      "pts": 2,
+      "name": "Bruno Ingrassia",
+      "ranking": "C30.5",
+      "pts": 1,
       "played": 2,
-      "wins": 1,
-      "draws": 0,
+      "wins": 0,
+      "draws": 1,
       "losses": 1,
-      "diff": -1
+      "diff": -6
+    },
+    {
+      "name": "Franco Gueli",
+      "ranking": "NC",
+      "pts": 1,
+      "played": 3,
+      "wins": 0,
+      "draws": 1,
+      "losses": 2,
+      "diff": -6
     },
     {
       "name": "Laurent Gunsbourg",
@@ -93,26 +113,6 @@
       "draws": 0,
       "losses": 0,
       "diff": 0
-    },
-    {
-      "name": "Bruno Ingrassia",
-      "ranking": "C30.5",
-      "pts": 0,
-      "played": 1,
-      "wins": 0,
-      "draws": 0,
-      "losses": 1,
-      "diff": -6
-    },
-    {
-      "name": "Franco Gueli",
-      "ranking": "NC",
-      "pts": 0,
-      "played": 2,
-      "wins": 0,
-      "draws": 0,
-      "losses": 2,
-      "diff": -6
     },
     {
       "name": "Jean-Valéry De Reus",
@@ -219,27 +219,27 @@
       "s1": 9,
       "p2": "Olivier Gatti",
       "s2": 4
+    },
+    {
+      "p1": "Franco Gueli",
+      "s1": 7,
+      "p2": "Guillaume Lainé",
+      "s2": 7
+    },
+    {
+      "p1": "Bruno Ingrassia",
+      "s1": 9,
+      "p2": "Julian Van Hille",
+      "s2": 9
+    },
+    {
+      "p1": "Christopher Debuyst",
+      "s1": 5,
+      "p2": "Georges Mensah",
+      "s2": 5
     }
   ],
   "upcoming": [
-    {
-      "date": "07/11/2026",
-      "time": "17:30",
-      "p1": "Franco Gueli",
-      "p2": "Guillaume Lainé"
-    },
-    {
-      "date": "08/11/2026",
-      "time": "14:30",
-      "p1": "Bruno Ingrassia",
-      "p2": "Julian Van Hille"
-    },
-    {
-      "date": "08/11/2026",
-      "time": "15:00",
-      "p1": "Christopher Debuyst",
-      "p2": "Georges Mensah"
-    },
     {
       "date": "15/11/2026",
       "time": "15:00",
@@ -251,6 +251,18 @@
       "time": "12:00",
       "p1": "Jean-Valéry De Reus",
       "p2": "Olivier Kasiers"
+    },
+    {
+      "date": "19/11/2026",
+      "time": "21:30",
+      "p1": "Franco Gueli",
+      "p2": "Bruno Ingrassia"
+    },
+    {
+      "date": "19/11/2026",
+      "time": "21:30",
+      "p1": "Alain Braem",
+      "p2": "Laurent Gunsbourg"
     },
     {
       "date": "23/11/2026",
@@ -271,6 +283,12 @@
       "p2": "Jean-Valéry De Reus"
     },
     {
+      "date": "06/12/2026",
+      "time": "14:30",
+      "p1": "Xavier Naegel",
+      "p2": "Christopher Debuyst"
+    },
+    {
       "date": "07/12/2026",
       "time": "12:00",
       "p1": "Laurentiu Borcan",
@@ -281,6 +299,12 @@
       "time": "12:00",
       "p1": "Julian Van Hille",
       "p2": "Alain Braem"
+    },
+    {
+      "date": "13/12/2026",
+      "time": "15:00",
+      "p1": "Jean-Valéry De Reus",
+      "p2": "Olivier Gatti"
     },
     {
       "date": "14/12/2026",
@@ -301,10 +325,22 @@
       "p2": "Alain Braem"
     },
     {
+      "date": "20/12/2026",
+      "time": "15:00",
+      "p1": "Olivier Gatti",
+      "p2": "Laurent Gunsbourg"
+    },
+    {
       "date": "28/12/2026",
       "time": "16:00",
       "p1": "Georges Mensah",
       "p2": "Olivier Kasiers"
+    },
+    {
+      "date": "03/01/2027",
+      "time": "14:30",
+      "p1": "Laurentiu Borcan",
+      "p2": "Jean-Valéry De Reus"
     }
   ],
   "myMatches": [
